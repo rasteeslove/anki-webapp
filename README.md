@@ -13,7 +13,7 @@ Here is what to actually do, and how.
 #### Base
 
 - No third-party CSS libraries, just plain CSS;
-- Hypescript;
+- ~Hype~Typescript;
 - [Figma design files](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?node-id=0%3A1);
 - Smart system "under the hood";
 
