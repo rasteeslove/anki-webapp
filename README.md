@@ -12,10 +12,12 @@ Here is what to actually do, and how.
 
 #### Base
 
+- Authentication;
 - No third-party CSS libraries, just plain CSS;
 - ~Hype~Typescript;
-- [Figma design files](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?node-id=0%3A1);
+- [Figma mock-up](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?node-id=0%3A1);
 - Smart system "under the hood";
+- Cards supporting markdown and LaTeX;
 
 #### App's functions
 
