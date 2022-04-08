@@ -1,8 +1,13 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+
 interface Props {
     status: string | undefined,
 }
 
 const StatusBar = (props: Props) => {
+    const theme = useContext(ThemeContext)
+
     return(
         <header style={{
             display: 'flex',
@@ -13,7 +18,7 @@ const StatusBar = (props: Props) => {
         }}>
             <p style={{
                 fontSize: '20px',
-                color: '#696969',
+                color: theme.text,
                 fontStyle: props.status ? 'inherit' : 'italic',
             }}>{props.status ? props.status : '(no status)'}</p>
         </header>

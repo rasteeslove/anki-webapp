@@ -1,15 +1,19 @@
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+
 const Header = () => {
+    const theme = useContext(ThemeContext)
     return(
         <header style={{
             display: 'flex',
             height: '40px',
             width: '100%',
-            backgroundColor: '#ffb23e',
+            backgroundColor: theme.primary,
             justifyContent: 'center',
             alignItems: 'center',
         }}>
             <p style={{
-                color: '#826cc2',
+                color: theme.secondary,
                 fontSize: '20px',
             }}>.anki</p>
         </header>

@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppWrapper from './AppWrapper';
 import reportWebVitals from './reportWebVitals';
 
+// it could be <App/> wrapped in <React.StrictMode> but AppWrapper
+// facilitates ThemeContext
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <AppWrapper />
   </React.StrictMode>,
   document.getElementById('root')
 );
