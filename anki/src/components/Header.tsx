@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
 const Header = () => {
-    const theme = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext)
     return(
         <header style={{
             display: 'flex',
@@ -19,5 +19,6 @@ const Header = () => {
         </header>
     )
 };
+
 
 export default Header

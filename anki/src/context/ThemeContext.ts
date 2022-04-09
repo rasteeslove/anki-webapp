@@ -27,4 +27,4 @@ export const themes = {
     }
 }
 
-export const ThemeContext = createContext(themes.light);
+export const ThemeContext = createContext<any>(themes.light);

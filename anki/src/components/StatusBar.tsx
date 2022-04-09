@@ -6,7 +6,7 @@ interface Props {
 }
 
 const StatusBar = (props: Props) => {
-    const theme = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext)
 
     return(
         <header style={{
