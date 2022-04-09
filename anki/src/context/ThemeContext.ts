@@ -1,6 +1,10 @@
 import { createContext } from "react";
 
-export const themes = {
+type themeType = {
+    [key: string]: object,
+}
+
+export const themes: themeType = {
     'light': {
         'primary': '#FFB23E',
         'secondary': '#826CC2',
@@ -27,4 +31,5 @@ export const themes = {
     }
 }
 
-export const ThemeContext = createContext<any>(themes.light);
+// any type bc it would be the useState type: [theme, setTheme]
+export const ThemeContext = createContext<any>(undefined);

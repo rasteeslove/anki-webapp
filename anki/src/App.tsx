@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import Header from './components/Header'
 import StatusBar from './components/StatusBar'
 import { ThemeContext, themes } from './context/ThemeContext'
+import storage from './utils/storage'
 
 const App = () => {
     const [theme, setTheme] = useContext(ThemeContext)
@@ -24,7 +25,8 @@ const App = () => {
                 alignItems: 'center',
             }}>
                 <button onClick={() => {
-                    setTheme(theme == themes.light ? themes.dark : themes.light)
+                    storage.setTheme(theme === themes.light ? 'dark': 'light')
+                    setTheme(theme === themes.light ? themes.dark : themes.light)
                 }}>change theme</button>
             </div>
         </div>
