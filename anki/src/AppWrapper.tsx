@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import App from './App'
 import { ThemeContext, themes } from './context/ThemeContext'
+import { MinimalismContext } from './context/MinimalismContext'
 import storage from './utils/storage'
 
 const AppWrapper = () => {
@@ -8,7 +9,9 @@ const AppWrapper = () => {
 
     return (
         <ThemeContext.Provider value={[theme, setTheme]}>
-            <App/>
+            <MinimalismContext.Provider value={false}>
+                <App/>
+            </MinimalismContext.Provider>
         </ThemeContext.Provider>
     )
 }

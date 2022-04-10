@@ -4,7 +4,7 @@ import AppWrapper from './AppWrapper';
 import reportWebVitals from './reportWebVitals';
 
 // it could be <App/> wrapped in <React.StrictMode> but AppWrapper
-// facilitates ThemeContext
+// facilitates contexts
 ReactDOM.render(
   <React.StrictMode>
       <AppWrapper />
