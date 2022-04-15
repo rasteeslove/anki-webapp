@@ -4,6 +4,9 @@ import StatusBar from './components/StatusBar'
 import { ThemeContext, themes } from './context/ThemeContext'
 import storage from './utils/storage'
 
+import ButtonSwitch from './components/ButtonSwitch'
+
+
 const App = () => {
     const [theme, setTheme] = useContext(ThemeContext)
 
@@ -24,10 +27,25 @@ const App = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-                <button onClick={() => {
-                    storage.setTheme(theme === themes.light ? 'dark': 'light')
-                    setTheme(theme === themes.light ? themes.dark : themes.light)
-                }}>change theme</button>
+                <div className='shadow-out-bottom' style={{
+                    width: 400,
+                    height: 200,
+                    backgroundColor: theme.foreground,
+                    borderRadius: 20,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: 20,
+                }}>
+                    <ButtonSwitch width={80} height={40} is_on={theme === themes.light} text={'light'} onClick={() => {
+                        storage.setTheme(theme === themes.light ? 'dark': 'light')
+                        setTheme(theme === themes.light ? themes.dark : themes.light)
+                    }}/>
+                    <ButtonSwitch width={80} height={40} is_on={theme === themes.dark} text={'dark'} onClick={() => {
+                        storage.setTheme(theme === themes.light ? 'dark': 'light')
+                        setTheme(theme === themes.light ? themes.dark : themes.light)
+                    }}/>
+                </div>
             </div>
         </div>
     )
