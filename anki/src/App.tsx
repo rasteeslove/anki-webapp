@@ -17,6 +17,7 @@ const App = () => {
             backgroundColor: theme.background,
             display: 'flex',
             flexFlow: 'column',
+            transition: 'background-color 100ms'
         }}>
             <Header/>
             <StatusBar status={undefined}/>
@@ -36,6 +37,7 @@ const App = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     gap: 20,
+                    transition: 'background-color 100ms',
                 }}>
                     <ButtonSwitch width={80} height={40} is_on={theme === themes.light} text={'light'} onClick={() => {
                         storage.setTheme(theme === themes.light ? 'dark': 'light')

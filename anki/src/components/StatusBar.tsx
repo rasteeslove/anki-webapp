@@ -19,6 +19,7 @@ const StatusBar = (props: Props) => {
             <p style={{
                 fontSize: '20px',
                 color: theme.text,
+                transition: 'color 100ms',
                 fontStyle: props.status ? 'inherit' : 'italic',
             }}>{props.status ? props.status : '(no status)'}</p>
         </header>

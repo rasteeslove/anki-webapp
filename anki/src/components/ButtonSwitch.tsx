@@ -22,6 +22,7 @@ const ButtonSwitch = (props: Props) => {
             fontSize: '20px',
             border: 'none',
             borderRadius: props.height / 2,
+            transition: 'background-color 100ms',
         }} onClick={props.onClick}
            onMouseDown={props.onMouseDown}
            onMouseUp={props.onMouseUp}>

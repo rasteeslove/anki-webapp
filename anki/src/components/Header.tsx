@@ -11,11 +11,11 @@ const Header = () => {
             backgroundColor: theme.primary,
             justifyContent: 'center',
             alignItems: 'center',
+            color: theme.secondary,
+            fontSize: '20px',
+            transition: 'background-color 100ms, color 100ms',
         }}>
-            <p style={{
-                color: theme.secondary,
-                fontSize: '20px',
-            }}>.anki</p>
+            .anki
         </header>
     )
 };
