@@ -1,7 +1,8 @@
-const DeckSpace = () => {
+const DeckSpace = (props: any) => {
     return(
-        <>
-        </>
+        <div>
+            {props.children}
+        </div>
     )
 };
 

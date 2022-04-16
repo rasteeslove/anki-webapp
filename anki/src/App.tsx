@@ -6,6 +6,7 @@ import storage from './utils/storage'
 
 import ButtonSwitch from './components/ButtonSwitch'
 
+import Deck from './features/deckspace/components/Deck'
 
 const App = () => {
     const [theme, setTheme] = useContext(ThemeContext)
@@ -27,7 +28,9 @@ const App = () => {
                 flex: '1 1 auto',
                 justifyContent: 'center',
                 alignItems: 'center',
+                gap: 40,
             }}>
+                <Deck color='#94A4F5' name={'Mandarin'} />
                 <div className='shadow-out-bottom' style={{
                     width: 400,
                     height: 200,
