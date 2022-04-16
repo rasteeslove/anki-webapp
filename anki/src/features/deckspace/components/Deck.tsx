@@ -29,37 +29,44 @@ const Deck = (props: Props) => {
     }
 
     return(
-        <button style={{
-            width: isEngaged ? 220 : 200,
-            height: isEngaged ? 220 : 200,
-            margin: isEngaged ? -10 : 0,
-            position: 'relative',
-            padding: 0,
-            border: 0,
-            background: 'none',
-            transition: 'width 100ms, height 100ms, margin 100ms',
-        }}
-            onMouseEnter={() => {
-                setIsEngaged(true)
+        <div style={{
+            width: 220,
+            height: 220,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            <button style={{
+                width: isEngaged ? 220 : 200,
+                height: isEngaged ? 220 : 200,
+                position: 'relative',
+                padding: 0,
+                border: 0,
+                background: 'none',
+                transition: 'width 100ms, height 100ms',
             }}
-            onMouseLeave={() => {
-                setIsEngaged(false)
-            }}>
-            <div className='shadow-out-bottom' style={{
-                position: 'absolute',
-                width: '100%',
-                height: isEngaged ? 132 : 120,
-                bottom: 0,
-                backgroundColor: props.color,
-                borderRadius: 4,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: isEngaged ? 22 : 20,
-                transition: 'height 100ms, font-size 100ms',
-            }}>{props.name}</div>
-            {cards}
-        </button>
+                onMouseEnter={() => {
+                    setIsEngaged(true)
+                }}
+                onMouseLeave={() => {
+                    setIsEngaged(false)
+                }}>
+                <div className='shadow-out-bottom' style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: isEngaged ? 132 : 120,
+                    bottom: 0,
+                    backgroundColor: props.color,
+                    borderRadius: 4,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: isEngaged ? 22 : 20,
+                    transition: 'height 100ms, font-size 100ms',
+                }}>{props.name}</div>
+                {cards}
+            </button>
+        </div>
     )
 };
 

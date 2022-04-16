@@ -1,15 +1,13 @@
 import { useContext } from 'react'
 import Header from './components/Header'
 import StatusBar from './components/StatusBar'
-import { ThemeContext, themes } from './context/ThemeContext'
-import storage from './utils/storage'
-
-import ButtonSwitch from './components/ButtonSwitch'
+import { ThemeContext } from './context/ThemeContext'
 
 import Deck from './features/deckspace/components/Deck'
+import DeckSpace from './features/deckspace/components/DeckSpace'
 
 const App = () => {
-    const [theme, setTheme] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext)
 
     return (
         <div id='App' style={{
@@ -27,30 +25,19 @@ const App = () => {
                 display: 'flex',
                 flex: '1 1 auto',
                 justifyContent: 'center',
-                alignItems: 'center',
-                gap: 40,
             }}>
-                <Deck color='#94A4F5' name={'Mandarin'} />
-                <div className='shadow-out-bottom' style={{
-                    width: 400,
-                    height: 200,
-                    backgroundColor: theme.foreground,
-                    borderRadius: 20,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 20,
-                    transition: 'background-color 100ms',
-                }}>
-                    <ButtonSwitch width={80} height={40} is_on={theme === themes.light} text={'light'} onClick={() => {
-                        storage.setTheme(theme === themes.light ? 'dark': 'light')
-                        setTheme(theme === themes.light ? themes.dark : themes.light)
-                    }}/>
-                    <ButtonSwitch width={80} height={40} is_on={theme === themes.dark} text={'dark'} onClick={() => {
-                        storage.setTheme(theme === themes.light ? 'dark': 'light')
-                        setTheme(theme === themes.light ? themes.dark : themes.light)
-                    }}/>
-                </div>
+                <DeckSpace>
+                    <Deck color='#A183C7' name={'Mandarin'} />
+                    <Deck color='#94A4F5' name={'Linear Algebra I'} />
+                    <Deck color='#FCB778' name={'Math Statistics I'} />
+                    <Deck color='#88FFCD' name={'Linear Algebra II'} />
+                    <Deck color='#F59A94' name={'Calculus'} />
+                    <Deck color='#F594C3' name={'Spanish'} />
+                    <Deck color='#69C578' name={'Philosophy I'} />
+                    <Deck color='#D5DE6C' name={'History I'} />
+                    <Deck color='#87DAE5' name={'Math Statistics II'} />
+                </DeckSpace>
+                
             </div>
         </div>
     )
