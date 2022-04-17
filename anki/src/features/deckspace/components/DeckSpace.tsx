@@ -1,3 +1,5 @@
+import FadeInOut from "../../../components/FadeInOut";
+
 const DeckSpace = (props: any) => {
     return(
         <div style={{
@@ -13,13 +15,13 @@ const DeckSpace = (props: any) => {
             gap: 40,
         }}>
             {props.children}
-            <div style={{
-                visibility: props.blurred ? 'visible' : 'hidden',
+            <FadeInOut show={props.blurred} duration={100} style={{
                 position: 'absolute',
                 width: '100%',
                 height: '100%',
                 backdropFilter: 'blur(10px)',
-            }} onClick={() => {props.deblur()}}/>
+            }}>
+            </FadeInOut>
         </div>
     )
 };

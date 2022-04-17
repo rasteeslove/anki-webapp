@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import FadeInOut from './components/FadeInOut'
 import Header from './components/Header'
 import StatusBar from './components/StatusBar'
 import { ThemeContext } from './context/ThemeContext'
@@ -66,13 +67,39 @@ const App = () => {
                 flex: '1 1 auto',
                 justifyContent: 'center',
                 scrollbarGutter: 'stable both-edges'
-            }}>
-                <DeckSpace blurred={deckSelected} deblur={() => {
+            }} onClick={() => {
+                if (deckSelected) {
                     setDeckSelected(false)
-                }}>
+                }
+            }}>
+                <DeckSpace blurred={deckSelected}>
                     {getDecks()}
                 </DeckSpace>
             </div>
+            <FadeInOut show={deckSelected} duration={100} className='shadow-out-bottom' style={{
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+                height: '60vh',
+                width: 1000,
+                zIndex: 100,
+                backgroundColor: theme.foreground,
+                borderRadius: 20,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: 20,
+                color: theme.text,
+            }}>
+                <div className='shadow-in-top-light' style={{
+                    position: 'absolute',
+                    height: '100%',
+                    width: '100%',
+                    borderRadius: 20,
+                }}/>
+                nothing here yet
+            </FadeInOut>
         </div>
     )
 }
