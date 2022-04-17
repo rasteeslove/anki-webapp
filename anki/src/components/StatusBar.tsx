@@ -12,6 +12,7 @@ const StatusBar = (props: Props) => {
         <header style={{
             display: 'flex',
             height: '40px',
+            minHeight: '40px',
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',

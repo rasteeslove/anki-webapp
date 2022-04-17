@@ -7,6 +7,7 @@ const Header = () => {
         <header style={{
             display: 'flex',
             height: '40px',
+            minHeight: '40px',
             width: '100%',
             backgroundColor: theme.primary,
             justifyContent: 'center',

@@ -8,6 +8,7 @@ const DeckSpace = (props: any) => {
             flexDirection: 'row',
             flexWrap: 'wrap',
             paddingTop: 40,
+            paddingBottom: 40,
             gap: 40,
         }}>
             {props.children}
