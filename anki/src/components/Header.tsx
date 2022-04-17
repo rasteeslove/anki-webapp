@@ -5,9 +5,10 @@ const Header = () => {
     const [theme, ] = useContext(ThemeContext)
     return(
         <header style={{
+            position: 'absolute',
+            top: 0,
             display: 'flex',
             height: '40px',
-            minHeight: '40px',
             width: '100%',
             backgroundColor: theme.primary,
             justifyContent: 'center',

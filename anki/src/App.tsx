@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import Header from './components/Header'
 import StatusBar from './components/StatusBar'
 import { ThemeContext } from './context/ThemeContext'
@@ -8,6 +8,42 @@ import DeckSpace from './features/deckspace/components/DeckSpace'
 
 const App = () => {
     const [theme, ] = useContext(ThemeContext)
+    const [deckSelected, setDeckSelected] = useState(false)
+    
+    const decks = [
+        { 'color': '#A183C7', 'name': 'Mandarin' },
+        { 'color': '#94A4F5', 'name': 'Linear Algebra I' },
+        { 'color': '#FCB778', 'name': 'Math Statistics I' },
+        { 'color': '#88FFCD', 'name': 'Linear Algebra II' },
+        { 'color': '#F59A94', 'name': 'Calculus' },
+        { 'color': '#F594C3', 'name': 'Spanish' },
+        { 'color': '#69C578', 'name': 'Philosophy I' },
+        { 'color': '#D5DE6C', 'name': 'History I' },
+        { 'color': '#87DAE5', 'name': 'Math Statistics II' },
+        { 'color': '#A183C7', 'name': 'Mandarin' },
+        { 'color': '#94A4F5', 'name': 'Linear Algebra I' },
+        { 'color': '#FCB778', 'name': 'Math Statistics I' },
+        { 'color': '#88FFCD', 'name': 'Linear Algebra II' },
+        { 'color': '#F59A94', 'name': 'Calculus' },
+        { 'color': '#F594C3', 'name': 'Spanish' },
+        { 'color': '#69C578', 'name': 'Philosophy I' },
+        { 'color': '#D5DE6C', 'name': 'History I' },
+        { 'color': '#87DAE5', 'name': 'Math Statistics II' },
+    ]
+
+    const getDecks = () => {
+        const deckComponents = []
+        for (let i = 0; i < decks.length; i++) {
+            deckComponents.push(
+                <Deck color={decks[i]['color']}
+                      name={decks[i]['name']}
+                      onClick={() => {
+                          setDeckSelected(true)
+                      }} />
+            )
+        }
+        return deckComponents
+    }
 
     return (
         <div id='App' style={{
@@ -19,35 +55,23 @@ const App = () => {
             transition: 'background-color 100ms'
         }}>
             <Header/>
-            <StatusBar status={undefined}/>
+            <StatusBar status={'your decks'}/>
             <div style={{
+                position: 'absolute',
+                top: 80,
+                bottom: 0,
                 width: '100%',
-                overflowY: 'auto',
+                overflowY: deckSelected ? 'hidden' : 'auto',
                 display: 'flex',
                 flex: '1 1 auto',
                 justifyContent: 'center',
+                scrollbarGutter: 'stable both-edges'
             }}>
-                <DeckSpace>
-                    <Deck color='#A183C7' name={'Mandarin'} />
-                    <Deck color='#94A4F5' name={'Linear Algebra I'} />
-                    <Deck color='#FCB778' name={'Math Statistics I'} />
-                    <Deck color='#88FFCD' name={'Linear Algebra II'} />
-                    <Deck color='#F59A94' name={'Calculus'} />
-                    <Deck color='#F594C3' name={'Spanish'} />
-                    <Deck color='#69C578' name={'Philosophy I'} />
-                    <Deck color='#D5DE6C' name={'History I'} />
-                    <Deck color='#87DAE5' name={'Math Statistics II'} />
-                    <Deck color='#A183C7' name={'Mandarin'} />
-                    <Deck color='#94A4F5' name={'Linear Algebra I'} />
-                    <Deck color='#FCB778' name={'Math Statistics I'} />
-                    <Deck color='#88FFCD' name={'Linear Algebra II'} />
-                    <Deck color='#F59A94' name={'Calculus'} />
-                    <Deck color='#F594C3' name={'Spanish'} />
-                    <Deck color='#69C578' name={'Philosophy I'} />
-                    <Deck color='#D5DE6C' name={'History I'} />
-                    <Deck color='#87DAE5' name={'Math Statistics II'} />
+                <DeckSpace blurred={deckSelected} deblur={() => {
+                    setDeckSelected(false)
+                }}>
+                    {getDecks()}
                 </DeckSpace>
-                
             </div>
         </div>
     )

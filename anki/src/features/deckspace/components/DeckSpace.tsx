@@ -1,6 +1,7 @@
 const DeckSpace = (props: any) => {
     return(
         <div style={{
+            position: 'relative',
             width: 800, // tmp
             height: 'min-content',
             display: 'flex',
@@ -12,6 +13,13 @@ const DeckSpace = (props: any) => {
             gap: 40,
         }}>
             {props.children}
+            <div style={{
+                visibility: props.blurred ? 'visible' : 'hidden',
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                backdropFilter: 'blur(10px)',
+            }} onClick={() => {props.deblur()}}/>
         </div>
     )
 };

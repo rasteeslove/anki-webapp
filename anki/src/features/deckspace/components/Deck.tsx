@@ -4,6 +4,7 @@ import { ThemeContext } from '../../../context/ThemeContext'
 interface Props {
     name: string,
     color: string,
+    onClick: () => void,
 }
 
 const Deck = (props: Props) => {
@@ -49,6 +50,10 @@ const Deck = (props: Props) => {
                     setIsEngaged(true)
                 }}
                 onMouseLeave={() => {
+                    setIsEngaged(false)
+                }}
+                onClick={() => {
+                    props.onClick()
                     setIsEngaged(false)
                 }}>
                 <div className='shadow-out-bottom' style={{
