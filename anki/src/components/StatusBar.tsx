@@ -27,7 +27,8 @@ const StatusBar = (props: Props) => {
             <div style={{
                 position: 'absolute',
                 height: '100%',
-                width: 800,
+                width: '100%',
+                maxWidth: 800,
                 left: '50%',
                 transform: 'translate(-50%, 0)',
                 boxShadow: '0px 12px 6px -12px #000000',
