@@ -1,50 +1,11 @@
 import { useContext, useState } from 'react'
-import FadeInOut from './components/FadeInOut'
 import Header from './components/Header'
-import StatusBar from './components/StatusBar'
 import { ThemeContext } from './context/ThemeContext'
 
-import Deck from './features/deckspace/components/Deck'
 import DeckSpace from './features/deckspace/components/DeckSpace'
 
 const App = () => {
     const [theme, ] = useContext(ThemeContext)
-    const [deckSelected, setDeckSelected] = useState(false)
-    
-    const decks = [
-        { 'color': '#A183C7', 'name': 'Mandarin' },
-        { 'color': '#94A4F5', 'name': 'Linear Algebra I' },
-        { 'color': '#FCB778', 'name': 'Math Statistics I' },
-        { 'color': '#88FFCD', 'name': 'Linear Algebra II' },
-        { 'color': '#F59A94', 'name': 'Calculus' },
-        { 'color': '#F594C3', 'name': 'Spanish' },
-        { 'color': '#69C578', 'name': 'Philosophy I' },
-        { 'color': '#D5DE6C', 'name': 'History I' },
-        { 'color': '#87DAE5', 'name': 'Math Statistics II' },
-        { 'color': '#A183C7', 'name': 'Mandarin' },
-        { 'color': '#94A4F5', 'name': 'Linear Algebra I' },
-        { 'color': '#FCB778', 'name': 'Math Statistics I' },
-        { 'color': '#88FFCD', 'name': 'Linear Algebra II' },
-        { 'color': '#F59A94', 'name': 'Calculus' },
-        { 'color': '#F594C3', 'name': 'Spanish' },
-        { 'color': '#69C578', 'name': 'Philosophy I' },
-        { 'color': '#D5DE6C', 'name': 'History I' },
-        { 'color': '#87DAE5', 'name': 'Math Statistics II' },
-    ]
-
-    const getDecks = () => {
-        const deckComponents = []
-        for (let i = 0; i < decks.length; i++) {
-            deckComponents.push(
-                <Deck color={decks[i]['color']}
-                      name={decks[i]['name']}
-                      onClick={() => {
-                          setDeckSelected(true)
-                      }} />
-            )
-        }
-        return deckComponents
-    }
 
     return (
         <div id='App' style={{
@@ -56,50 +17,8 @@ const App = () => {
             transition: 'background-color 100ms'
         }}>
             <Header/>
-            <StatusBar status={'your decks'}/>
-            <div style={{
-                position: 'absolute',
-                top: 80,
-                bottom: 0,
-                width: '100%',
-                overflowY: deckSelected ? 'hidden' : 'auto',
-                display: 'flex',
-                flex: '1 1 auto',
-                justifyContent: 'center',
-                scrollbarGutter: 'stable both-edges'
-            }} onClick={() => {
-                if (deckSelected) {
-                    setDeckSelected(false)
-                }
-            }}>
-                <DeckSpace blurred={deckSelected}>
-                    {getDecks()}
-                </DeckSpace>
-            </div>
-            <FadeInOut show={deckSelected} duration={100} className='shadow-out-bottom' style={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)',
-                height: '60vh',
-                width: 1000,
-                zIndex: 100,
-                backgroundColor: theme.foreground,
-                borderRadius: 20,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 20,
-                color: theme.text,
-            }}>
-                <div className='shadow-in-top-light' style={{
-                    position: 'absolute',
-                    height: '100%',
-                    width: '100%',
-                    borderRadius: 20,
-                }}/>
-                nothing here yet
-            </FadeInOut>
+
+            <DeckSpace/>
         </div>
     )
 }

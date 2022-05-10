@@ -11,7 +11,7 @@ const StatusBar = (props: Props) => {
     return(
         <header style={{
             position: 'absolute',
-            top: 40,
+            top: 0,
             display: 'flex',
             height: '40px',
             width: '100%',

@@ -46,10 +46,10 @@ const Deck = (props: Props) => {
                 background: 'none',
                 transition: 'width 100ms, height 100ms',
             }}
-                onMouseEnter={() => {
+                onMouseOver={() => {
                     setIsEngaged(true)
                 }}
-                onMouseLeave={() => {
+                onMouseOut={() => {
                     setIsEngaged(false)
                 }}
                 onClick={() => {
