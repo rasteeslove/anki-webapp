@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
-import ButtonSwitch from "../../../components/ButtonSwitch";
+import { ThemeContext } from "context/ThemeContext";
+import ButtonSwitch from "components/ButtonSwitch";
 
 const DeckInfo = () => {
     const [theme, ] = useContext(ThemeContext)

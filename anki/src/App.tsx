@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import Header from './components/Header'
-import { ThemeContext } from './context/ThemeContext'
+import Header from 'components/Header'
+import { ThemeContext } from 'context/ThemeContext'
 
-import DeckSpace from './features/deckspace/components/DeckSpace'
+import DeckSpace from 'features/deckspace/components/DeckSpace'
 
 const App = () => {
     const [theme, ] = useContext(ThemeContext)
