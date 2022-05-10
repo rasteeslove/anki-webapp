@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react'
-import { ThemeContext } from '../../../context/ThemeContext'
+import { useState } from 'react'
 
 interface Props {
     name: string,
@@ -8,7 +7,6 @@ interface Props {
 }
 
 const Deck = (props: Props) => {
-    const [theme, ] = useContext(ThemeContext)
     const [isEngaged, setIsEngaged] = useState(false)
 
     const cards = []
@@ -16,7 +14,7 @@ const Deck = (props: Props) => {
         cards.push(
             <div className='shadow-in-top-light' style={{
                 position: 'absolute',
-                backgroundColor: theme.deck_cards,
+                backgroundColor: '#FFFFFF',
                 width: isEngaged ? 198 : 180,
                 height: isEngaged ? 80 : 72,
                 top: 8*i,

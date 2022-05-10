@@ -6,6 +6,7 @@ interface Props {
     text: string,
     width: number,
     height: number,
+    super?: boolean,
     fontSize?: number,
     onClick?: () => void,
     onMouseDown?: () => void,
@@ -23,8 +24,9 @@ const ButtonSwitch = (props: Props) => {
         }}>
             <button disabled={props.is_on} className={'button-switch '.concat(props.is_on ? 'shadow-in-top' : 'shadow-out-bottom')} style={{
                 height: props.height,
-                backgroundColor: props.is_on ? theme.button_switch_on : theme.button_switch_off,
-                color: props.is_on ? '#FFFFFF' : '#696969',
+                backgroundColor: props.super ? (props.is_on ? theme.pressed_in : theme.middleground)
+                                             : (props.is_on ? theme.pressed_in : theme.foreground),
+                color: props.is_on ? theme.pressed_in_text : theme.text,
                 fontSize: props.fontSize ? props.fontSize : '20px',
                 border: 'none',
                 borderRadius: props.height / 2,

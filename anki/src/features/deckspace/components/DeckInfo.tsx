@@ -17,7 +17,7 @@ const DeckInfo = () => {
             width: '100%',
             maxWidth: 900,
             zIndex: 100,
-            backgroundColor: theme.foreground,
+            backgroundColor: theme.middleground,
             borderRadius: 20,
             display: 'flex',
             justifyContent: 'center',
