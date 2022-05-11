@@ -2,13 +2,13 @@ import { useContext } from 'react'
 import {
     BrowserRouter as Router,
     Routes,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
-import Header from 'components/Header'
+import { Header } from 'components/Header'
 import { ThemeContext } from 'context/ThemeContext'
 
-import DeckSpace from 'features/deckspace/components/DeckSpace'
+import { DeckSpace } from 'features/deckspace'
+import { EditMode } from 'features/editmode/components/EditMode';
 
 const App = () => {
     const [theme, ] = useContext(ThemeContext)
@@ -38,10 +38,11 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<DeckSpace/>}/>
+                    <Route path="/rasteeslove" element={<EditMode/>}/>
                 </Routes>
             </Router>
         </div>
     )
 }
 
-export default App
+export { App }

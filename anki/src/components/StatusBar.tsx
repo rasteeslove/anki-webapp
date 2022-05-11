@@ -37,4 +37,4 @@ const StatusBar = (props: Props) => {
     )
 };
 
-export default StatusBar
+export { StatusBar }

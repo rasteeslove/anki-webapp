@@ -40,4 +40,4 @@ const ButtonSwitch = (props: Props) => {
     )
 };
 
-export default ButtonSwitch
+export { ButtonSwitch }

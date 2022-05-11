@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import App from 'App'
+import { App } from 'App'
 import { ThemeContext, themes } from 'context/ThemeContext'
 import { MinimalismContext } from 'context/MinimalismContext'
-import storage from 'utils/storage'
+import { storage } from 'utils/storage'
 
 const AppWrapper = () => {
     const [theme, setTheme] = useState(themes[storage.getTheme()])

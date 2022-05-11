@@ -102,4 +102,4 @@ FadeInOut.defaultProps = {
     duration: 300
 };
 
-export default FadeInOut;
+export { FadeInOut };

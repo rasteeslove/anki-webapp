@@ -73,4 +73,4 @@ const Deck = (props: Props) => {
     )
 };
 
-export default Deck
+export { Deck }

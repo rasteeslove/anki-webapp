@@ -1,8 +1,8 @@
 import { useState } from "react";
-import FadeInOut from "components/FadeInOut";
-import StatusBar from "components/StatusBar";
-import Deck from "./Deck";
-import DeckInfo from "./DeckInfo";
+import { FadeInOut } from "components/FadeInOut";
+import { StatusBar } from "components/StatusBar";
+import { Deck } from "./Deck";
+import { DeckInfo } from "./DeckInfo";
 
 const DeckSpace = () => {
     const [deckSelected, setDeckSelected] = useState(false)
@@ -101,4 +101,4 @@ const DeckSpace = () => {
     )
 };
 
-export default DeckSpace
+export {DeckSpace}

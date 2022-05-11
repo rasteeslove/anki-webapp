@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
-import ButtonSwitch from "components/ButtonSwitch";
+import { ButtonSwitch } from "components/ButtonSwitch";
 
 const DeckInfo = () => {
     const [theme, ] = useContext(ThemeContext)
@@ -97,4 +97,4 @@ const DeckInfo = () => {
     )
 };
 
-export default DeckInfo
+export { DeckInfo }
