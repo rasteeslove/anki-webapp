@@ -1,25 +1,3 @@
-html {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-}
-
-* {
-    font-family: 'Inconsolata', monospace;
-}
-
-body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#root {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-}
-
 button {
     cursor: pointer;
 }

@@ -10,6 +10,8 @@ import { ThemeContext } from 'context/ThemeContext'
 import { DeckSpace } from 'features/deckspace'
 import { EditMode } from 'features/editmode/components/EditMode';
 
+import './index.css'
+
 const App = () => {
     const [theme, ] = useContext(ThemeContext)
 
@@ -38,7 +40,7 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<DeckSpace/>}/>
-                    <Route path="/rasteeslove" element={<EditMode/>}/>
+                    <Route path="/rasteeslove/spanish/edit" element={<EditMode/>}/>
                 </Routes>
             </Router>
         </div>
