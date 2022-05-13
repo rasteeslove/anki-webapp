@@ -8,7 +8,8 @@ import { Header } from 'components/Header'
 import { ThemeContext } from 'context/ThemeContext'
 
 import { DeckSpace } from 'features/deckspace'
-import { EditMode } from 'features/editmode/components/EditMode';
+import { EditMode } from 'features/editmode'
+import { TrainMode } from 'features/trainmode'
 
 import './index.css'
 
@@ -41,6 +42,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<DeckSpace/>}/>
                     <Route path="/rasteeslove/spanish/edit" element={<EditMode/>}/>
+                    <Route path="/rasteeslove/spanish/train" element={<TrainMode/>}/>
                 </Routes>
             </Router>
         </div>
