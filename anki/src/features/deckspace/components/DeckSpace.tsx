@@ -95,7 +95,7 @@ const DeckSpace = () => {
                         setDeckSelected(false)
                     }
                 }}/>
-                <DeckInfo/>
+                <DeckInfo name={'Spanish'} color={'#F594C3'}/>
             </FadeInOut>
         </div>
     )

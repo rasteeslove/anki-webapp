@@ -4,8 +4,8 @@ import { ThemeContext } from "../context/ThemeContext";
 interface Props {
     is_on: boolean,
     text: string,
-    width: number,
-    height: number,
+    width: number | string,
+    height: number | string,
     super?: boolean,
     fontSize?: number,
     onClick?: () => void,
@@ -16,6 +16,7 @@ interface Props {
 
 const ButtonSwitch = (props: Props) => {
     const [theme, ] = useContext(ThemeContext)
+
     return(
         <div style={{
             width: props.width,
@@ -31,7 +32,7 @@ const ButtonSwitch = (props: Props) => {
                 color: props.is_on ? theme.pressed_in_text : theme.text,
                 fontSize: props.fontSize ? props.fontSize : '20px',
                 border: 'none',
-                borderRadius: props.height / 2,
+                borderRadius: 696969, // don't ask why. just don't.    (todo: maybe find cleaner solution than https://stackoverflow.com/questions/27233295/possible-to-make-border-radius-equal-to-half-the-total-height-without-javascript)
                 transition: 'background-color 100ms, width 100ms',
             }} onClick={props.onClick}
             onMouseDown={props.onMouseDown}
