@@ -1,23 +1,23 @@
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext, themes } from "../context/ThemeContext";
+import { ButtonSwitch } from "./ButtonSwitch";
+
+import "./Header.css"
 
 const Header = () => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, setTheme] = useContext(ThemeContext)
+
     return(
-        <header style={{
-            position: 'absolute',
-            top: 0,
-            display: 'flex',
-            height: '40px',
-            width: '100%',
+        <header className="main-header" style={{
             backgroundColor: theme.primary,
-            justifyContent: 'center',
-            alignItems: 'center',
             color: theme.secondary,
-            fontSize: '20px',
-            transition: 'background-color 100ms, color 100ms',
         }}>
             .anki
+            <div className="theme-toggle">
+                <button onClick={() => {
+                    setTheme(theme == themes.light ? themes.dark : themes.light)
+                }}>change theme</button>
+            </div>
         </header>
     )
 };
