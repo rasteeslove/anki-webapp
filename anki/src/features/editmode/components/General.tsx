@@ -12,12 +12,8 @@ const General = () => {
             <div className="general-color-container">
                 deck color:
                 <PlainInput height={40} width={240} children={
-                    <div className="shadow-in-top" style={{
-                        width: 32,
-                        height: 32,
+                    <div className="shadow-in-top color-circle" style={{
                         backgroundColor: '#F594C3',
-                        borderRadius: 16,
-                        transform: 'translate(-40px)'
                     }}/>}
                 />
             </div>

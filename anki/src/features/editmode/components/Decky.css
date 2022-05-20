@@ -1,0 +1,36 @@
+.card {
+    position: absolute;
+    background-color: #FFFFFF;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: 'width 100ms, height 100ms',
+}
+
+.deck-wrapper {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-wrapper {
+    position: relative;
+    padding: 0px;
+    border: 0px;
+    background: none;
+    transition: width 100ms, height 100ms;
+}
+
+.deck {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height 100ms, font-size 100ms;
+}

@@ -4,14 +4,7 @@ import MarkdownTextArea from "./MarkdownTextArea"
 const Description = () => {
     return(
         <>
-            <div style={{
-                margin: 20,
-                marginBottom: 0,
-                width: '100%',
-                justifyContent: 'center',
-                display: 'flex',
-                flexGrow: 1,
-            }}>
+            <div className="description-md-container">
                 <MarkdownTextArea/>
             </div>
             <div className="description-show-preview-container">

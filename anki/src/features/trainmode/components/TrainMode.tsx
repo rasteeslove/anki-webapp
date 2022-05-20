@@ -18,10 +18,9 @@ const TrainMode = () => {
                     backgroundColor: theme.middleground,
                     color: theme.text,
                 }}>
-                    <div className="feedback-holder">
-                        <ButtonSwitch is_on={false} text={'Knew it'} width={180} height={40} color={'rgb(124, 255, 62, 0.6)'}/>
-                        <ButtonSwitch is_on={false} text={'Not there yet'} width={180} height={40} color={'rgb(255, 96, 62, 0.6)'}/>
-                    </div>
+                    first derivative of sin(x)?
+
+                    
                 </div>
             </div>
         </div>
