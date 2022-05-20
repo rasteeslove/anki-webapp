@@ -4,6 +4,8 @@ import { StatusBar } from "components/StatusBar";
 import { Deck } from "./Deck";
 import { DeckInfo } from "./DeckInfo";
 
+import "./DeckSpace.css";
+
 const DeckSpace = () => {
     const [deckSelected, setDeckSelected] = useState(false)
 
@@ -46,37 +48,12 @@ const DeckSpace = () => {
     }
 
     return(
-        <div style={{
-            position: 'absolute',
-            top: 40,
-            bottom: 0,
-            left: 0,
-            right: 0,
-        }}>
+        <div className="deck-space-and-status-bar">
             <StatusBar status={'your decks'}/>
-            <div style={{
-                position: 'absolute',
-                top: 40,
-                bottom: 0,
-                width: '100%',
+            <div className="deckspace" style={{
                 overflowY: deckSelected ? 'hidden' : 'auto',
-                display: 'flex',
-                flex: '1 1 auto',
-                justifyContent: 'center',
-                scrollbarGutter: 'stable both-edges',
             }}>
-                <div style={{
-                    position: 'relative',
-                    width: 800,
-                    height: 'min-content',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    paddingTop: 40,
-                    paddingBottom: 40,
-                    gap: 40,
-                }}>
+                <div className="decks">
                     {getDecks()}
                 </div>
             </div>

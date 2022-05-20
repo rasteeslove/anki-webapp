@@ -1,0 +1,31 @@
+.deck-space-and-status-bar {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.deckspace {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    scrollbar-gutter: stable both-edges;
+}
+
+.decks {
+    position: relative;
+    width: 800px;
+    height: min-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    gap: 40px;
+}

@@ -7,7 +7,7 @@ interface Props {
     width: number | string,
     height: number | string,
     super?: boolean,
-    fontSize?: number,
+    fontSize?: number | string,
     onClick?: () => void,
     onMouseDown?: () => void,
     onMouseUp?: () => void,
