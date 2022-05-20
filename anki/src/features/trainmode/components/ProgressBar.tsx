@@ -14,7 +14,7 @@ const ProgressBar = (props: Props) => {
             position: 'absolute',
             top: 20,
             height: 40,
-            width: '100%',
+            width: '90%',
             maxWidth: 900,
             borderRadius: 20,
             backgroundColor: theme.middleground,
