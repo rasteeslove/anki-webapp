@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FadeInOut } from "components/FadeInOut";
 import { StatusBar } from "components/StatusBar";
-import { Deck } from "./Deck";
+import { Deck } from "components/Deck";
 import { DeckInfo } from "./DeckInfo";
 
 import "./DeckSpace.css";

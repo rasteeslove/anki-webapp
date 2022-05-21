@@ -1,6 +1,6 @@
 import { ButtonSwitch } from "components/ButtonSwitch"
 import { PlainInput } from "./PlainInput"
-import { Decky } from "./Decky"
+import { Deck } from "components/Deck"
 
 const General = () => {
     return(
@@ -19,7 +19,7 @@ const General = () => {
             </div>
             <div className="general-preview-container">
                 preview:
-                <Decky name={'Spanish'} color={'#F594C3'}/>
+                <Deck name={'Spanish'} color={'#F594C3'} isDecky={true}/>
             </div>
             <div style={{
                 display: 'flex',
