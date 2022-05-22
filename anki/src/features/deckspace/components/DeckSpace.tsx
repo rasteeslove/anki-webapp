@@ -58,6 +58,7 @@ const DeckSpace = () => {
                 </div>
             </div>
             <FadeInOut show={deckSelected} duration={100} style={{
+                /* don't know how to avoid using inline style here */
                 position: 'absolute',
                 top: 40,
                 bottom: 0,
