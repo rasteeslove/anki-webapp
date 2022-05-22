@@ -6,33 +6,19 @@ interface Props {
     total: number,
 }
 
+import "./ProgressBar.css"
+
 const ProgressBar = (props: Props) => {
     const [theme, ] = useContext(ThemeContext)
 
     return(
-        <div className="shadow-out-bottom" style={{
-            position: 'absolute',
-            top: 20,
-            height: 40,
-            width: '90%',
-            maxWidth: 900,
-            borderRadius: 20,
+        <div className="shadow-out-bottom progress-bar" style={{
             backgroundColor: theme.middleground,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
             color: theme.text,
-            fontSize: 20,
-            overflow: 'hidden',
         }}>
-            <div style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                bottom: 0,
+            <div className="progress" style={{
                 width: `${props.current/props.total*100}%`,
                 backgroundColor: theme.primary,
-                opacity: '40%',
             }}/>
             {props.current}/{props.total}
         </div>
