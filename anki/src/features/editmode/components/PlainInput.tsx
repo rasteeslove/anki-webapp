@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
+import "./PlainInput.css"
+
 interface Props {
     width: number,
     height: number,
@@ -13,20 +15,12 @@ const PlainInput = (props: Props) => {
     const [theme, ] = useContext(ThemeContext)
 
     return(
-        <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
+        <div className="input-wrapper" style={{
             transform: props.children ? 'translate(16px)' : 'none'
         }}>
             <input className="shadow-in-top" style={{
-                background: 'transparent',
-                border: 'none',
-                fontSize: 16,
-                borderRadius: 20,
                 height: props.height,
                 width: props.width,
-                textAlign: 'center',
                 backgroundColor: theme.foreground,
                 color: theme.text,
             }}/>

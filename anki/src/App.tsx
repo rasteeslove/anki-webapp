@@ -18,12 +18,7 @@ const App = () => {
 
     return (
         <div id='App' style={{
-            width: '100%',
-            height: '100%',
             backgroundColor: theme.background,
-            display: 'flex',
-            flexFlow: 'column',
-            transition: 'background-color 100ms'
         }}>
             {/*
                 ok, so some docu:
