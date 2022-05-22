@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
+import "./ProgressBar.css"
+
 interface Props {
     current: number,
     total: number,
 }
-
-import "./ProgressBar.css"
 
 const ProgressBar = (props: Props) => {
     const [theme, ] = useContext(ThemeContext)
