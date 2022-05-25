@@ -1,0 +1,48 @@
+.trainmode-and-status-bar {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.trainmode {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.question-answer {
+    top: 92px;
+    bottom: 32px;
+    position: absolute;
+    width: 90%;
+    max-width: 900px;
+    box-sizing: border-box;
+    z-index: 100;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    font-size: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.feedback-holder {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}

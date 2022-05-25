@@ -1,0 +1,15 @@
+.buttonswitch-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-switch {
+    width: 90%;
+    border: none;
+    border-radius: 696969px;   /* don't ask why. just don't.    (todo: maybe find cleaner solution than https://stackoverflow.com/questions/27233295/possible-to-make-border-radius-equal-to-half-the-total-height-without-javascript) */
+    transition: background-color 100ms, width 100ms;
+}
+
+.button-switch:hover:enabled {
+    width: 100%;
+}
