@@ -43,7 +43,7 @@ const Deck = (props: Props) => {
     const cards = []
     for (let i = 0; i < 3; i++) {
         cards.push(
-            <div className='shadow-in-top-light card' style={{
+            <div key={i} className='shadow-in-top-light card' style={{
                 width: isEngaged ? params?.card_width_big : params.card_width_small,
                 height: isEngaged ? params.card_height_big : params.card_height_small,
                 top: 8*i,
