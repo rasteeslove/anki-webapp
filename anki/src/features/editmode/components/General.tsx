@@ -1,6 +1,6 @@
-import { ButtonSwitch } from "components/ButtonSwitch"
-import { PlainInput } from "./PlainInput"
-import { Deck } from "components/Deck"
+import { ButtonSwitch } from "components/ButtonSwitch";
+import { PlainInput } from "./PlainInput";
+import { Deck } from "components/Deck";
 
 const General = () => {
     return(
@@ -30,7 +30,7 @@ const General = () => {
                 <ButtonSwitch is_on={false} text={'public'} height={32} width={120} fontSize={16}/>
             </div>
         </>
-    )
-}
+    );
+};
 
-export { General }
+export { General };

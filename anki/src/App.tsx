@@ -1,20 +1,20 @@
-import { useContext } from 'react'
+import { useContext } from 'react';
 import {
     BrowserRouter as Router,
     Routes,
     Route
-} from "react-router-dom";
-import { Header } from 'components/Header'
-import { ThemeContext } from 'context/ThemeContext'
+} from 'react-router-dom';
+import { Header } from 'components/Header';
+import { ThemeContext } from 'context/ThemeContext';
 
-import { DeckSpace } from 'features/deckspace'
-import { EditMode } from 'features/editmode'
-import { TrainMode } from 'features/trainmode'
+import { DeckSpace } from 'features/deckspace';
+import { EditMode } from 'features/editmode';
+import { TrainMode } from 'features/trainmode';
 
-import './index.css'
+import './index.css';
 
 const App = () => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext);
 
     return (
         <div id='App' style={{
@@ -41,7 +41,7 @@ const App = () => {
                 </Routes>
             </Router>
         </div>
-    )
-}
+    );
+};
 
-export { App }
+export { App };

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
-import "./ButtonSwitch.css"
+import "./ButtonSwitch.css";
 
 interface Props {
     is_on: boolean,
@@ -14,10 +14,10 @@ interface Props {
     onMouseDown?: () => void,
     onMouseUp?: () => void,
     color?: string,
-}
+};
 
 const ButtonSwitch = (props: Props) => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext);
 
     return(
         <div className="buttonswitch-container" style={{
@@ -37,7 +37,7 @@ const ButtonSwitch = (props: Props) => {
                 {props.text}
             </button>
         </div>
-    )
+    );
 };
 
-export { ButtonSwitch }
+export { ButtonSwitch };

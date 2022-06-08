@@ -1,3 +1,3 @@
 import { EditMode } from "./components/EditMode";
 
-export { EditMode }
+export { EditMode };

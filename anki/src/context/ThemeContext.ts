@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 type themeType = {
     [key: string]: object,
-}
+};
 
 export const themes: themeType = {
     'light': {
@@ -28,8 +28,8 @@ export const themes: themeType = {
         'pressed_in_text': '#FFFFFF',
         'deck_name_inner': '#CDCDCD',
         'deck_name_outer': '#242424',
-    }
-}
+    },
+};
 
 // any type bc it would be the useState type: [theme, setTheme]
 export const ThemeContext = createContext<any>(undefined);

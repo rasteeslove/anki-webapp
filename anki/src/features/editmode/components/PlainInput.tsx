@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
-import "./PlainInput.css"
+import "./PlainInput.css";
 
 interface Props {
     width: number,
     height: number,
     children?: JSX.Element,
-}
+};
 
 // todo: account for the color circle here and not outside;
 //       the code here is pretty shitty tbh
 const PlainInput = (props: Props) => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext);
 
     return(
         <div className="input-wrapper" style={{
@@ -26,7 +26,7 @@ const PlainInput = (props: Props) => {
             }}/>
             {props.children}
         </div>
-    )
-}
+    );
+};
 
-export { PlainInput }
+export { PlainInput };

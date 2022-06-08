@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
-import "./StatusBar.css"
+import "./StatusBar.css";
 
 interface Props {
     status: string | undefined,
-}
+};
 
 const StatusBar = (props: Props) => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext);
 
     return(
         <header className='status-bar' style={{
@@ -18,7 +18,7 @@ const StatusBar = (props: Props) => {
             {props.status ? props.status : '(no status)'}
             <div className='shadow-caster'/>
         </header>
-    )
+    );
 };
 
-export { StatusBar }
+export { StatusBar };

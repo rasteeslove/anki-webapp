@@ -14,7 +14,7 @@ type DeckType = {
     color: string,
     public: boolean,
     owner: number,
-}
+};
 
 const DeckSpace = () => {
     const [decks, setDecks] = useState<Array<DeckType>>([]);
@@ -60,4 +60,4 @@ const DeckSpace = () => {
     )
 };
 
-export {DeckSpace}
+export {DeckSpace};

@@ -1,14 +1,14 @@
-import { useContext } from 'react'
-import { ThemeContext } from 'context/ThemeContext' 
+import { useContext } from 'react';
+import { ThemeContext } from 'context/ThemeContext';
 
-import "./MarkdownTextArea.css"
+import "./MarkdownTextArea.css";
 
 interface Props {
     borderRadius?: string,
 }
 
 const MarkdownTextArea = (props: Props) => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext);
 
     return(
         <div className='shadow-in-top md-wrapper' style={{
@@ -20,7 +20,7 @@ const MarkdownTextArea = (props: Props) => {
                 borderRadius: props.borderRadius ? props.borderRadius : '20px 20px 0px 0px',
             }}/>
         </div>
-    )
+    );
 };
 
-export default MarkdownTextArea
+export default MarkdownTextArea;

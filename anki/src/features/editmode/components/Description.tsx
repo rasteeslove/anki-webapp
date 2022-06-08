@@ -1,5 +1,5 @@
-import { ButtonSwitch } from "components/ButtonSwitch"
-import MarkdownTextArea from "./MarkdownTextArea"
+import { ButtonSwitch } from "components/ButtonSwitch";
+import MarkdownTextArea from "./MarkdownTextArea";
 
 const Description = () => {
     return(
@@ -11,7 +11,7 @@ const Description = () => {
                 <ButtonSwitch is_on={false} text={'show preview'} width={200} height={'var(--button-height)'} fontSize={18}/>
             </div> 
         </>
-    )
-}
+    );
+};
 
-export { Description }
+export { Description };

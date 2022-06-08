@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { ThemeContext, themes } from "../context/ThemeContext";
 import { ButtonSwitch } from "./ButtonSwitch";
 
-import "./Header.css"
+import "./Header.css";
 
 const Header = () => {
-    const [theme, setTheme] = useContext(ThemeContext)
+    const [theme, setTheme] = useContext(ThemeContext);
 
     return(
         <header className="main-header" style={{
@@ -19,7 +19,7 @@ const Header = () => {
                 }}>change theme</button>
             </div>
         </header>
-    )
+    );
 };
 
-export { Header }
+export { Header };

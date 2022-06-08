@@ -7,10 +7,10 @@ import "./DeckInfo.css";
 interface DeckInfoProps {
     name: string,
     color: string,
-}
+};
 
 const DeckInfo = (props: DeckInfoProps) => {
-    const [theme, ] = useContext(ThemeContext)
+    const [theme, ] = useContext(ThemeContext);
 
     // todo: deck info to be retrieved from API using the URL
 
@@ -80,7 +80,7 @@ const DeckInfo = (props: DeckInfoProps) => {
 
             </div>
         </div>
-    )
+    );
 };
 
-export { DeckInfo }
+export { DeckInfo };

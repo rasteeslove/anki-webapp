@@ -10,8 +10,8 @@ import { Cards } from "./Cards";
 import "./EditMode.css";
 
 const EditMode = () => {
-    const [theme, ] = useContext(ThemeContext)
-    const [submode, setSubmode] = useState<string>('general')
+    const [theme, ] = useContext(ThemeContext);
+    const [submode, setSubmode] = useState<string>('general');
 
     return(
         <div className="editmode-and-status-bar">
@@ -47,7 +47,7 @@ const EditMode = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export { EditMode }
+export { EditMode };
