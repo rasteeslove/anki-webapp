@@ -2,9 +2,11 @@
 
 My shot at creating a personal use [_Anki_](https://en.wikipedia.org/wiki/Anki_(software))-like webapp for stuff memorization. Spaced repetition is a great tool for learning and I've always wanted to make an app using algorithms facilitating it.
 
-### Uni meta
+### Rationale
 
-Ростислав Койко 953501.
+Here is a set of videos and/or articles explaining the whole deal:
+- https://www.youtube.com/watch?v=ukLnPbIffxE;
+- I don't remember the other ones lol (I will add them later)
 
 ### Design
 
