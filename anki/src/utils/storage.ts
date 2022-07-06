@@ -15,12 +15,18 @@ const storage = {
     setAccessToken: (token: string) => {
         window.localStorage.setItem(`${storagePrefix}access_token`, token);
     },
+    clearAccessToken: () => {
+        window.localStorage.removeItem(`${storagePrefix}access_token`);
+    },
     getRefreshToken: () : string | null => {
         const token = window.localStorage.getItem(`${storagePrefix}refresh_token`);
         return token;
     },
     setRefreshToken: (token: string) => {
         window.localStorage.setItem(`${storagePrefix}refresh_token`, token);
+    },
+    clearRefreshToken: () => {
+        window.localStorage.removeItem(`${storagePrefix}refresh_token`);
     },
 };
 
