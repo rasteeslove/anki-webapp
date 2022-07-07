@@ -27,3 +27,9 @@ Here is what to actually do, and how.
 - CRUD cards in decks;
 - Repetition sessions;
 - User progress reports;
+
+### Other important notes
+
+#### Security
+
+Right now, JWT tokens are stored in localStorage on the client side. That is to be changed later (in favor of cookies) to avoid XSS attacks.
