@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from 'lib/axios';
 import { API_URL } from 'config';
 
 const getDecks = async (username: string) => {
