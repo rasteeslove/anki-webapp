@@ -36,8 +36,8 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<DeckSpace/>}/>
-                    <Route path="/rasteeslove/spanish/edit" element={<EditMode/>}/>
-                    <Route path="/rasteeslove/spanish/train" element={<TrainMode/>}/>
+                    <Route path="/:username/:deckname/edit" element={<EditMode/>}/>
+                    <Route path="/:username/:deckname/train" element={<TrainMode/>}/>
                 </Routes>
             </Router>
         </div>
