@@ -11,6 +11,8 @@ import { DeckSpace } from 'features/deckspace';
 import { EditMode } from 'features/editmode';
 import { TrainMode } from 'features/trainmode';
 
+import { AppRoutes } from 'routes';
+
 import './index.css';
 
 const App = () => {
@@ -20,25 +22,12 @@ const App = () => {
         <div id='App' style={{
             backgroundColor: theme.background,
         }}>
-            {/*
-                ok, so some docu:
-                the header is always there; the status bar probably too ?
-                then there's routing:
-                - if the URL is invalid, redirect to auth if not auth'd, else to the auth'd user's decks,
-                  except when the URL is a subURL of a valid link, then go to the latter
-                - /auth: auth, obviously
-                - /{username}: {username}'s deckspace, might be yours (if not, showing only public decks)
-                - /{username}/{deckname}: accessible deckinfo open over the owner's deckspace with buttons for allowed actions
-                - /{username}/{deckname}/train: train mode on an accessible deck; if you're auth'd, your stats will be persisted
-                - /{username}/{deckname}/edit: edit mode on your deck
-            */}
-            <Header/>
             <Router>
-                <Routes>
-                    <Route path="/" element={<DeckSpace/>}/>
-                    <Route path="/:username/:deckname/edit" element={<EditMode/>}/>
-                    <Route path="/:username/:deckname/train" element={<TrainMode/>}/>
-                </Routes>
+                <Header/>
+                { /* SubHeader to be moved here in order to 
+                     provide a prompt-based navigation tool
+                     for the whole app */ }
+                <AppRoutes/>
             </Router>
         </div>
     );
