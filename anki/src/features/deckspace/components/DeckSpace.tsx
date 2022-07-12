@@ -14,6 +14,7 @@ const DeckSpace = () => {
 
     const navigate = useNavigate();
 
+    // TODO: make sure this use effect doesn't get called too often
     useEffect(() => {
         getDecks(username!)
             .then(data => setDecks(data))
