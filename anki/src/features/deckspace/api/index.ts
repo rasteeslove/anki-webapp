@@ -8,4 +8,11 @@ const getDecks = async (username: string) => {
         }).then(res => res.data);
 };
 
-export { getDecks };
+const getDeckInfo = async (username: string, deckname: string) => {
+    return axios
+        .get(`${API_URL}/get-deck-info`, {
+            params: { username, deckname },
+        }).then(res => res.data);
+};
+
+export { getDecks, getDeckInfo };
