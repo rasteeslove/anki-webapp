@@ -1,45 +1,50 @@
-import { useState, useEffect } from "react";
-import { FadeInOut } from "components/FadeInOut";
-import { StatusBar } from "components/StatusBar";
-import { Deck } from "components/Deck";
-import { DeckInfo } from "./DeckInfo";
+import { useContext, useState, useEffect } from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Deck, StatusBar, FadeInOut } from "components";
+import { UserContext } from "context";
 
 import { getDecks } from "features/deckspace/api";
-
+import { DeckType } from "../types";
 import "./DeckSpace.css";
 
-type DeckType = {
-    id: number,
-    name: string,
-    color: string,
-    public: boolean,
-    owner: number,
-};
-
 const DeckSpace = () => {
+    const { user } = useContext(UserContext);
+    const { username, deckname } = useParams();
     const [decks, setDecks] = useState<Array<DeckType>>([]);
-    const [deckSelected, setDeckSelected] = useState(false);
 
-    // todo: decks to be retrieved from API using current URL username fragment.
-    // if invalid, perform redirect to auth / auth'd user deckspace
+    const navigate = useNavigate();
+
     useEffect(() => {
-        getDecks('krastsislau').then(data => setDecks(data));
-    }, []);
+        getDecks(username!)
+            .then(data => setDecks(data))
+            .catch((error) => {
+                if (!!user) {
+                    navigate(`/${username}`);
+                } else {
+                    navigate('/auth/login');
+                }
+            });
+    }, [username, user, navigate]);
 
     return(
         <div className="deck-space-and-status-bar">
             <StatusBar status={'your decks'}/>
             <div className="deckspace" style={{
-                overflowY: deckSelected ? 'hidden' : 'auto',
+                overflowY: false ? 'hidden' : 'auto',
             }}>
                 <div className="decks">
                     {
-                        decks.map(deck => <Deck key={deck.id} name={deck.name} color={deck.color}/>)
+                        decks.map(deck => <Deck key={deck.id}
+                                                name={deck.name}
+                                                color={deck.color}
+                                                onClick={() => {
+                                                    navigate(`/${username}/${deck.name}`);
+                                                }}/>)
                     }
                 </div>
             </div>
-            <FadeInOut show={deckSelected} duration={100} style={{
-                /* don't know how to avoid using inline style here */
+            <FadeInOut show={!!deckname} duration={100} style={{
+                /* don't know how to avoid using inline style here yet */
                 position: 'absolute',
                 top: 40,
                 bottom: 0,
@@ -50,14 +55,12 @@ const DeckSpace = () => {
                     width: '100%',
                     height: '100%',
                 }} onClick={() => {
-                    if (deckSelected) {
-                        setDeckSelected(false)
-                    }
+                    navigate(`/${username}`);
                 }}/>
-                <DeckInfo name={'Spanish'} color={'#F594C3'}/>
+                <Outlet/>
             </FadeInOut>
         </div>
     )
 };
 
-export {DeckSpace};
+export { DeckSpace };
