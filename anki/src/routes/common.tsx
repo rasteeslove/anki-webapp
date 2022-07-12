@@ -4,15 +4,16 @@ In accordance to the docu piece in `index.tsx`, the common routes are:
     2. deckinfos
 \*/
 
-import { DeckSpace } from "features/deckspace";
+import { DeckSpace, DeckInfo } from "features/deckspace";
 
 const commonRoutes = [
     {
         path: '/:username',
         element: <DeckSpace/>,
+        children: [
+            { path: '/:username/:deckname', element: <DeckInfo/> },
+        ],
     },
-    /* deck info to be added
-       probably as a child of deckspace route */
 ];
 
 export { commonRoutes };
