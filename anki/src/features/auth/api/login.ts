@@ -8,5 +8,12 @@ export type LoginCredsDTO = {
 };
 
 export const loginWithUsernameAndPassword = (data: LoginCredsDTO) : Promise<JwtToken> => {
-    return axios.post('/api/login', data);
+    let formData = new FormData();
+    formData.append('username', data.username);
+    formData.append('password', data.password);
+
+    return axios
+        .post('/token/', formData,
+              { headers: { 'Content-Type': 'multipart/form-data' } })
+        .then(res => res.data);
 };
