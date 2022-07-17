@@ -24,6 +24,7 @@ const refreshAccessToken = async () : Promise<void> => {
     return axios.post('/token/refresh/', refreshBody)
         .then((response: AxiosResponse) => {
             storage.setAccessToken(response.data.access);
+            console.log('Access token refreshed successfully.')
         });
 }
 

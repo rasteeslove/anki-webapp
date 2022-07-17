@@ -18,7 +18,9 @@ const DeckInfo = () => {
         getDeckInfo(username!, deckname!)
             .then(data => setDeckInfo(data))
             .catch((error) => {
-                navigate(`/${username}`);
+                if (error.response.status === 404) {
+                    navigate(`/${username}`);
+                }
             });
     }, [username, deckname, navigate]);
 
