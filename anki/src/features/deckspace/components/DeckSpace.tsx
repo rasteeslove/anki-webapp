@@ -1,14 +1,12 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Deck, StatusBar, FadeInOut } from "components";
-import { UserContext } from "context";
 
 import { getDecks } from "features/deckspace/api";
 import { DeckType } from "../types";
 import "./DeckSpace.css";
 
 const DeckSpace = () => {
-    const { user } = useContext(UserContext);
     const { username, deckname } = useParams();
     const [decks, setDecks] = useState<Array<DeckType>>([]);
 
@@ -18,20 +16,13 @@ const DeckSpace = () => {
     useEffect(() => {
         getDecks(username!)
             .then(data => setDecks(data))
-            .catch((error) => {
-                if (!!user) {
-                    navigate(`/${username}`);
-                } else {
-                    navigate('/auth/login');
-                }
-            });
-    }, [username, user, navigate]);
+    }, [username]);
 
     return(
         <div className="deck-space-and-status-bar">
             <StatusBar status={'your decks'}/>
             <div className="deckspace" style={{
-                overflowY: false ? 'hidden' : 'auto',
+                overflowY: 'auto',
             }}>
                 <div className="decks">
                     {

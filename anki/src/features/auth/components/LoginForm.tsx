@@ -1,10 +1,18 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import { loginWithUsernameAndPassword, LoginCredsDTO } from "../api/login";
+import { storage } from "utils/storage";
 
-class LoginForm extends React.Component<any, LoginCredsDTO> {
+type LoginHelperType = {
+    loginSucceeded: boolean,
+};
+
+class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
     constructor(props: any) {
         super(props);
-        this.state = { username: '', password: '', };
+        this.state = { username: '',
+                       password: '',
+                       loginSucceeded: false, };
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -22,7 +30,19 @@ class LoginForm extends React.Component<any, LoginCredsDTO> {
     handleSubmit(event: any) {
         console.log(this.state);
 
-        loginWithUsernameAndPassword(this.state).then(data => console.log(data));
+        loginWithUsernameAndPassword(this.state)
+            .then(data => {
+                console.log('Login succeeded!');
+                console.log(data);
+                storage.setAccessToken(data.access);
+                storage.setRefreshToken(data.refresh);
+
+                this.setState({ loginSucceeded: true });
+            })
+            .catch((error) => {
+                console.log('Login failed with these creds');
+                console.log(error);
+            })
 
         event.preventDefault();
     }
@@ -56,6 +76,8 @@ class LoginForm extends React.Component<any, LoginCredsDTO> {
                        onChange={this.handlePasswordChange} />
                     <input type='submit' value='submit'/>
                 </form>
+                { this.state.loginSucceeded &&
+                  <Navigate to={`/${this.state.username}`} replace={true}/> }
             </div>
         );
     }

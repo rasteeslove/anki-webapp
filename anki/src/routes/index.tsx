@@ -1,6 +1,4 @@
 import { useRoutes } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "context/UserContext";
 
 import { commonRoutes } from "./common";
 import { publicRoutes } from "./public";
@@ -15,19 +13,17 @@ Non-auth'd users can:
     1. authenticate, then be redirected to personal deckspace
     2. check out others' deckspaces and deckinfos
 
-Auth'd users can, in addition to the above:
+Auth'd users can, in addition to #2:
     3. edit their own decks and cards
     4. train on public decks of other users
 
 \*/
 
 const AppRoutes = () => {
-    const {isUserLoggedIn} = useContext(UserContext);
+    const element = useRoutes([...protectedRoutes,
+                               ...publicRoutes,
+                               ...commonRoutes]);
 
-    const routes = isUserLoggedIn() ? protectedRoutes : publicRoutes;
-
-    const element = useRoutes([...routes, ...commonRoutes]);
-    
     return(
         <>{element}</>
     );
