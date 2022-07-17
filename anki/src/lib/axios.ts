@@ -24,7 +24,7 @@ const refreshAccessToken = async () : Promise<void> => {
     return axios.post('/token/refresh/', refreshBody)
         .then((response: AxiosResponse) => {
             storage.setAccessToken(response.data.access);
-            console.log('Access token refreshed successfully.')
+            console.log('Access token refreshed successfully.');
         });
 }
 
@@ -60,10 +60,8 @@ function errorInterceptor(error: any) {
     if (tokenError(error)) {
         console.log('Refreshing access token...');
         storage.clearAccessToken();
-        refreshAccessToken()
-            .then(() => {
-                return axios.request(originalRequest);
-            })
+        return refreshAccessToken()
+            .then(() => axios.request(originalRequest))
             .catch((error) => {
                 console.log('Refresh token expired')
                 // refresh token expired => logout

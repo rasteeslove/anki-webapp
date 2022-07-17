@@ -13,13 +13,15 @@ const DeckInfo = () => {
     const { username, deckname } = useParams();
     const navigate = useNavigate();
 
-    // TODO: make sure this use effect doesn't get called too often
     useEffect(() => {
         getDeckInfo(username!, deckname!)
             .then(data => setDeckInfo(data))
             .catch((error) => {
                 if (error.response.status === 404) {
                     navigate(`/${username}`);
+                } else {
+                    // TODO: if it's a token issue maybe retry request
+                    //  after the token get refreshed ??
                 }
             });
     }, [username, deckname, navigate]);
