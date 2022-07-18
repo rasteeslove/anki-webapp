@@ -16,7 +16,11 @@ const DeckSpace = () => {
         getDecks(username!)
             .then(data => {
                 setDecks(data);
-            });
+            })
+            .catch((error) => {
+                // todo: if refresh token error => auth
+                //       if 404 error => /{getMe().username}
+            })
     }, [username]);
 
     return(

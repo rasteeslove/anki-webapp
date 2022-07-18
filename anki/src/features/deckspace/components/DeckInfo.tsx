@@ -17,11 +17,12 @@ const DeckInfo = () => {
         getDeckInfo(username!, deckname!)
             .then(data => setDeckInfo(data))
             .catch((error) => {
+                // todo: if refresh token error => auth
+                //       if 404 error => /{username}
                 if (error.response.status === 404) {
                     navigate(`/${username}`);
                 } else {
-                    // TODO: if it's a token issue maybe retry request
-                    //  after the token get refreshed ??
+
                 }
             });
     }, [username, deckname, navigate]);
