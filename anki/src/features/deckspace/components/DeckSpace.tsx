@@ -15,7 +15,6 @@ const DeckSpace = () => {
     useEffect(() => {
         getDecks(username!)
             .then(data => {
-                console.log(data);
                 setDecks(data);
             });
     }, [username]);
