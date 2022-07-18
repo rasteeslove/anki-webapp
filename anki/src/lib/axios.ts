@@ -63,8 +63,7 @@ function errorInterceptor(error: any) {
         return refreshAccessToken()
             .then(() => axios.request(originalRequest))
             .catch((error) => {
-                console.log('Refresh token expired')
-                // refresh token expired => logout
+                console.log('Refresh token expired. Logging out...')
                 logOut();
                 return Promise.reject(error);
             });

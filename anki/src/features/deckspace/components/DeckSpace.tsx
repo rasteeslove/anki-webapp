@@ -17,8 +17,7 @@ const DeckSpace = () => {
             .then(data => {
                 console.log(data);
                 setDecks(data);
-            })
-            .catch(error => console.log(error))
+            });
     }, [username]);
 
     return(
