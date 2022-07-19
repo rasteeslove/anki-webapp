@@ -31,7 +31,7 @@ const DeckSpace = () => {
                         navigate('/auth/login');
                     });
             })
-    }, [username]);
+    }, [username, navigate]);
 
     return(
         <div className="deck-space-and-status-bar">
