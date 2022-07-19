@@ -17,3 +17,5 @@ export type UserType = {
     groups: Array<string>,
     user_permissions: Array<string>,
 };
+
+export * from './errors';

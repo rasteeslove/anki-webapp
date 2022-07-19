@@ -1,16 +1,8 @@
 import { useContext } from 'react';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import { Header } from 'components/Header';
 import { ThemeContext } from 'context/ThemeContext';
-
-import { DeckSpace } from 'features/deckspace';
-import { EditMode } from 'features/editmode';
-import { TrainMode } from 'features/trainmode';
-
 import { AppRoutes } from 'routes';
 
 import './index.css';

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-import { getMe, logOut } from "utils/auth";
+import { getMe } from "api";
+import { logOut } from "utils/auth";
 
 import { Login } from "./Login";
 import { Register } from "./Register";

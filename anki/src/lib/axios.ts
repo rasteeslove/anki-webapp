@@ -6,6 +6,7 @@ and also handles JWT token refreshing.
 import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { API_URL } from 'config';
+import { NotFoundError, RefreshTokenExpirationError } from "types";
 import { storage } from 'utils/storage';
 import { logOut } from 'utils/auth';
 
@@ -53,6 +54,8 @@ function responseInterceptor(response: AxiosResponse) {
 
 // To be called on every error response from API.
 // Response middleware ?
+// The point is to handle handleable API errors and rethrow those
+// which cannot be handled as more specific errors.
 function errorInterceptor(error: any) {
     console.log('The API returned error response:');
     console.log(error);
@@ -65,8 +68,12 @@ function errorInterceptor(error: any) {
             .catch((error) => {
                 console.log('Refresh token expired. Logging out...')
                 logOut();
+                error = new RefreshTokenExpirationError(error);
                 return Promise.reject(error);
             });
+    } else if (error.response.status === 404) {
+        error = new NotFoundError(error);
+        return Promise.reject(error);
     } else {
         return Promise.reject(error);
     }

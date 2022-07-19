@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Deck, StatusBar, FadeInOut } from "components";
 
+import { getMe } from 'api';
 import { getDecks } from "features/deckspace/api";
 import { DeckType } from "../types";
 import "./DeckSpace.css";
@@ -17,9 +18,18 @@ const DeckSpace = () => {
             .then(data => {
                 setDecks(data);
             })
-            .catch((error) => {
-                // todo: if refresh token error => auth
-                //       if 404 error => /{getMe().username}
+            .catch(() => {
+                getMe()
+                    .then((data) => {
+                        if (typeof data != "string") {
+                            navigate(`/${data.username}`);
+                        } else {
+                            navigate('/auth/login');
+                        }
+                    })
+                    .catch(() => {
+                        navigate('/auth/login');
+                    });
             })
     }, [username]);
 
