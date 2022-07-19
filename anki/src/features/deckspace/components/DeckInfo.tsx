@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { ThemeContext } from "context";
 import { getDeckInfo } from "../api";
