@@ -78,6 +78,20 @@
     white-space: pre-line;
 }
 
+.deckinfo-closer {
+    display: none;
+    height: 60px;   /* as container */
+    width: 60px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 40px;
+}
+
+a {
+    text-decoration: none;
+}
+
 @media (max-width: 900px) {
     .deckinfo {
         max-width: 900px;
@@ -113,5 +127,11 @@
 
     .deckinfo-main {
         margin-top: 12px;
+    }
+
+    .deckinfo-closer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

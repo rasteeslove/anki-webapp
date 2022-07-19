@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 import { ThemeContext } from "context";
 import { getDeckInfo } from "../api";
@@ -35,6 +35,11 @@ const DeckInfo = () => {
             <div className='shadow-in-top-light inner-shadow-maker'/>
             <div className="deckname-holder">
                 { deckInfo && deckInfo.name }
+                <div className='deckinfo-closer'>
+                    <Link style={{
+                        color: theme.text,
+                    }} to={`/${username}`}>×</Link>
+                </div>
             </div>
             <div className="mode-buttons-holder">
                 <ButtonSwitch is_on={true} text={'description'}
