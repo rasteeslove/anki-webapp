@@ -18,7 +18,7 @@
     width: 100%;
     max-width: 400px;
     height: 40px;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 20px 0 0;
     flex-shrink: 0;
 }
 
@@ -60,39 +60,39 @@
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    align-items: center;
+    margin: auto;
     z-index: 1;
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
-    
 }
 
 .deckinfo-description-box {
     width: 100%;
+    height: fit-content;
     max-width: 600px;
     font-size: 18px;
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
     padding: 30px;
+    white-space: pre-line;
 }
 
 @media (max-width: 900px) {
     .deckinfo {
         max-width: 900px;
-        border-radius: 40px 40px 0px 0px;
+        border-radius: 40px 40px 0 0;
         height: auto;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         transform: none;
     }
 
     .bottom-clippy {
         max-width: none;
-        border-radius: 40px 40px 0px 0px;
+        border-radius: 40px 40px 0 0;
         height: 80px;
     }
 
