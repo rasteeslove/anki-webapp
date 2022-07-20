@@ -13,4 +13,5 @@ export type DeckInfoType = {
     public: boolean,
     owner: number,
     description: string,
+    card_number: number,
 };
