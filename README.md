@@ -5,8 +5,8 @@ My shot at creating a personal use [_Anki_](https://en.wikipedia.org/wiki/Anki_(
 ### Rationale
 
 Here is a set of videos and/or articles explaining the whole deal:
-- https://www.youtube.com/watch?v=ukLnPbIffxE;
-- I don't remember the other ones lol (I will add them later)
+- [Ali Abdaal](https://aliabdaal.com/)'s videos on [study techniques](https://www.youtube.com/watch?v=ukLnPbIffxE), [learning stuff](https://www.youtube.com/watch?v=unityETmypk), and [using Anki itself](https://www.youtube.com/watch?v=W-EpiaPcgTk);
+- todo: add later
 
 ### Design
 
