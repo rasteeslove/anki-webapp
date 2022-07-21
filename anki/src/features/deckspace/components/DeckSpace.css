@@ -1,15 +1,15 @@
 .deck-space-and-status-bar {
     position: absolute;
     top: 40px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .deckspace {
     position: absolute;
     top: 40px;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     display: flex;
     flex: 1 1 auto;
