@@ -13,3 +13,7 @@
 .button-switch:hover:enabled {
     width: 100%;
 }
+
+.button-switch:hover:disabled {
+    cursor: default;
+}
