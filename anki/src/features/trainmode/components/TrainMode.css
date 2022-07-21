@@ -1,15 +1,15 @@
 .trainmode-and-status-bar {
     position: absolute;
     top: 40px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .trainmode {
     position: absolute;
     top: 40px;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     display: flex;
     flex: 1 1 auto;
@@ -23,7 +23,6 @@
     width: 90%;
     max-width: 900px;
     box-sizing: border-box;
-    z-index: 100;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -39,7 +38,7 @@
 .feedback-holder {
     position: absolute;
     width: 100%;
-    bottom: 0px;
+    bottom: 0;
     height: 80px;
     display: flex;
     flex-direction: row;

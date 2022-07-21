@@ -1,12 +1,11 @@
 .status-bar {
     position: absolute;
-    top: 0px;
+    top: 0;
     display: flex;
     height: 40px;
     width: 100%;
     justify-content: center;
     align-items: center;
-    z-index: 69;
     font-size: 20px;
     transition: color 100ms;
 }
@@ -18,5 +17,5 @@
     max-width: 800px;
     left: 50%;
     transform: translate(-50%, 0);
-    box-shadow: 0px 12px 6px -12px #000000;
+    box-shadow: 0 12px 6px -12px #000000;
 }

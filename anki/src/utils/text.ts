@@ -9,4 +9,8 @@ e.g.:
         21 -> 21 objects
 \*/
 
-export {};
+const getProperWordForm = (word: string, quantity: number) : string => {
+    throw Error('not implemented');
+}
+
+export { getProperWordForm };
