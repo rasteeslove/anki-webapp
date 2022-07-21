@@ -133,8 +133,7 @@
 }
 
 .description-md-container {
-    margin: 20px;
-    margin-bottom: 0;
+    margin: 20px 20px 0;
     width: 100%;
     justify-content: center;
     display: flex;
