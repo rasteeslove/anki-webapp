@@ -12,12 +12,26 @@ type Props = {
 const Description = (props: Props) => {
     return(
         <>
-            <div className="description-md-container">
-                <MarkdownTextArea/>
-            </div>
-            <div className="description-show-preview-container">
-                <ButtonSwitch is_on={false} text={'show preview'} width={200} height={'var(--button-height)'} fontSize={18}/>
-            </div> 
+            {
+                props.deckStuff &&
+                <>
+                    <div className="description-md-container">
+                        <MarkdownTextArea value={props.deckStuff.deck.description} onChange={(event) => {
+                            props.setDeckStuff({
+                                deck: {
+                                    ...props.deckStuff!.deck,
+                                    description: event.target.value,
+                                },
+                                cards: props.deckStuff!.cards,
+                            });
+                        }}/>
+                    </div>
+                    <div className="description-show-preview-container">
+                        { /* TODO: add markdown & LaTeX support */ }
+                        <ButtonSwitch is_on={false} text={'show preview'} width={200} height={'var(--button-height)'} fontSize={18}/>
+                    </div>
+                </>
+            }
         </>
     );
 };
