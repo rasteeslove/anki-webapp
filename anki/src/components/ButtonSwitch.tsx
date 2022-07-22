@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "context/ThemeContext";
 
 import "./ButtonSwitch.css";
 
@@ -14,7 +14,7 @@ interface Props {
     onMouseDown?: () => void,
     onMouseUp?: () => void,
     color?: string,
-};
+}
 
 const ButtonSwitch = (props: Props) => {
     const [theme, ] = useContext(ThemeContext);
