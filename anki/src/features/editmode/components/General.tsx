@@ -1,8 +1,18 @@
+import React, { useState } from "react";
+
 import { ButtonSwitch } from "components/ButtonSwitch";
 import { PlainInput } from "./PlainInput";
 import { Deck } from "components/Deck";
+import { DeckStuffDTO } from "../types";
 
-const General = () => {
+type Props = {
+    deckStuff: DeckStuffDTO | undefined,
+    setDeckStuff: React.Dispatch<React.SetStateAction<DeckStuffDTO | undefined>>,
+};
+
+const General = (props: Props) => {
+    const [deckStuff, setDeckStuff] = useState<DeckStuffDTO | undefined>(props.deckStuff);
+
     return(
         <>
             <div className="general-deckname-container">
