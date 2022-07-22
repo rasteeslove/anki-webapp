@@ -28,4 +28,4 @@ const MarkdownTextArea = (props: Props) => {
     );
 };
 
-export default MarkdownTextArea;
+export { MarkdownTextArea };

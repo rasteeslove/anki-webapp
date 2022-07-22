@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ButtonSwitch } from "components/ButtonSwitch";
-import MarkdownTextArea from "./MarkdownTextArea";
+import { MarkdownTextArea } from "./MarkdownTextArea";
 import { DeckStuffDTO } from "../types";
 
 type Props = {
