@@ -11,12 +11,18 @@ import { Description } from "./Description";
 import { Cards } from "./Cards";
 import "./EditMode.css";
 
+enum SubMode {
+    General,
+    Description,
+    Cards,
+}
+
 const EditMode = () => {
     const { username, deckname } = useParams();
 
     const [theme, ] = useContext(ThemeContext);
     const [deckStuff, setDeckStuff] = useState<DeckStuffDTO | undefined>(undefined);
-    const [submode, setSubmode] = useState<string>('general');
+    const [subMode, setSubMode] = useState<SubMode>(SubMode.General);
 
     useEffect(() => {
         getDeckStuff(username!, deckname!)
@@ -31,30 +37,39 @@ const EditMode = () => {
                     <StatusBar status={`the "${deckStuff.deck.name}" deck: editing mode`}/>
                     <div className="editmode">
                         <div className="buttons-holder">
-                            <ButtonSwitch is_on={submode === 'general'}
+                            <ButtonSwitch is_on={subMode === SubMode.General}
                                           text={'general'}
-                                          height={40} width={'var(--button-width)'} super={true} fontSize={'var(--button-font-size)'} onClick={() => {setSubmode('general')}}/>
-                            <ButtonSwitch is_on={submode === 'description'}
+                                          height={40} width={'var(--button-width)'}
+                                          super={true}
+                                          fontSize={'var(--button-font-size)'}
+                                          onClick={() => {setSubMode(SubMode.General)}}/>
+                            <ButtonSwitch is_on={subMode === SubMode.Description}
                                           text={'description'}
-                                          height={40} width={'var(--button-width)'} super={true} fontSize={'var(--button-font-size)'} onClick={() => {setSubmode('description')}}/>
-                            <ButtonSwitch is_on={submode === 'cards'}
+                                          height={40} width={'var(--button-width)'}
+                                          super={true}
+                                          fontSize={'var(--button-font-size)'}
+                                          onClick={() => {setSubMode(SubMode.Description)}}/>
+                            <ButtonSwitch is_on={subMode === SubMode.Cards}
                                           text={'cards'}
-                                          height={40} width={'var(--button-width)'} super={true} fontSize={'var(--button-font-size)'} onClick={() => {setSubmode('cards')}}/>
+                                          height={40} width={'var(--button-width)'}
+                                          super={true}
+                                          fontSize={'var(--button-font-size)'}
+                                          onClick={() => {setSubMode(SubMode.Cards)}}/>
                         </div>
                         <div className='shadow-out-bottom main-container' style={{
                             backgroundColor: theme.middleground,
                             color: theme.text,
                         }}>
                             {
-                                submode === 'general' &&
+                                subMode === SubMode.General &&
                                 <General deckStuff={deckStuff} setDeckStuff={setDeckStuff} />
                             }
                             {
-                                submode === 'description' &&
+                                subMode === SubMode.Description &&
                                 <Description deckStuff={deckStuff} setDeckStuff={setDeckStuff} />
                             }
                             {
-                                submode === 'cards' &&
+                                subMode === SubMode.Cards &&
                                 <Cards deckStuff={deckStuff} setDeckStuff={setDeckStuff} />
                             }
                         </div>
