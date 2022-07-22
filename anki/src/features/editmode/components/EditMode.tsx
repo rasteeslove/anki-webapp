@@ -21,7 +21,7 @@ const EditMode = () => {
     useEffect(() => {
         getDeckStuff(username!, deckname!)
             .then((data) => setDeckStuff(data));
-    }, []);
+    }, [username, deckname]);
 
     return(
         <>

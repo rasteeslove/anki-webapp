@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { ButtonSwitch } from "components/ButtonSwitch";
 import MarkdownTextArea from "./MarkdownTextArea";
@@ -10,8 +10,6 @@ type Props = {
 };
 
 const Description = (props: Props) => {
-    const [deckStuff, setDeckStuff] = useState<DeckStuffDTO | undefined>(props.deckStuff);
-
     return(
         <>
             <div className="description-md-container">
