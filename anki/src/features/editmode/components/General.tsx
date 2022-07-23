@@ -23,7 +23,7 @@ const General = (props: Props) => {
                 <>
                     <div className="general-deckname-container">
                         deck name:
-                        <PlainInput height={40} width={240} value={props.deckStuff.deck.name}
+                        <PlainInput value={props.deckStuff.deck.name}
                                     saveChanges={(newVal) => {
                                         if (props.deckStuff) {
                                             updateDeckStuff(username!, props.deckStuff)
@@ -39,11 +39,13 @@ const General = (props: Props) => {
                                             },
                                             cards: props.deckStuff!.cards,
                                         })
-                                    }}/>
+                                    }}
+                                    // TODO: reimplement the line below in CSS
+                                    height={40} width={240}/>
                     </div>
                     <div className="general-color-container">
                         deck color:
-                        <PlainInput height={40} width={240} value={props.deckStuff.deck.color}
+                        <PlainInput value={props.deckStuff.deck.color}
                                     isColor={true}
                                     saveChanges={(newVal) => {
                                         if (props.deckStuff) {
@@ -58,7 +60,9 @@ const General = (props: Props) => {
                                                 color: event.target.value,
                                             },
                                             cards: props.deckStuff!.cards,
-                                        })}/>
+                                        })}
+                                    // TODO: reimplement the line below in CSS
+                                    height={40} width={240}/>
                     </div>
                     <div className="general-preview-container">
                         preview:
@@ -69,7 +73,8 @@ const General = (props: Props) => {
                         flexGrow: 1,
                     }}/>
                     <div className="general-private-public-container">
-                        <ButtonSwitch is_on={!props.deckStuff.deck.public} text={'private'} height={32} width={120} fontSize={16}
+                        <ButtonSwitch text={'private'}
+                                      is_on={!props.deckStuff.deck.public}
                                       onClick={() => {
                                           props.setDeckStuff({
                                               deck: {
@@ -78,8 +83,11 @@ const General = (props: Props) => {
                                               },
                                               cards: props.deckStuff!.cards,
                                           })
-                                      }}/>
-                        <ButtonSwitch is_on={props.deckStuff.deck.public} text={'public'} height={32} width={120} fontSize={16}
+                                      }}
+                                      // TODO: reimplement the line below in CSS
+                                      height={32} width={120} fontSize={16}/>
+                        <ButtonSwitch text={'public'}
+                                      is_on={props.deckStuff.deck.public}
                                       onClick={() => {
                                           props.setDeckStuff({
                                               deck: {
@@ -88,7 +96,9 @@ const General = (props: Props) => {
                                               },
                                               cards: props.deckStuff!.cards,
                                           })
-                                      }}/>
+                                      }}
+                                      // TODO: reimplement the line below in CSS
+                                      height={32} width={120} fontSize={16}/>
                     </div>
                 </>
             }

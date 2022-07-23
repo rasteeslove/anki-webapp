@@ -28,7 +28,10 @@ const Description = (props: Props) => {
                     </div>
                     <div className="description-show-preview-container">
                         { /* TODO: add markdown & LaTeX support */ }
-                        <ButtonSwitch is_on={false} text={'show preview'} width={200} height={'var(--button-height)'} fontSize={18}/>
+                        <ButtonSwitch text={'show preview'}
+                                      is_on={false}
+                                      // TODO: reimplement the line below in CSS
+                                      width={200} height={'var(--button-height)'} fontSize={18}/>
                     </div>
                 </>
             }

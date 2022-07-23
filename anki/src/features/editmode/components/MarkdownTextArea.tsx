@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ThemeContext } from 'context/ThemeContext';
 
 import "./MarkdownTextArea.css";
@@ -11,6 +11,7 @@ interface Props {
 
 const MarkdownTextArea = (props: Props) => {
     const [theme, ] = useContext(ThemeContext);
+    const [value, setValue] = useState<string>(props.value);
 
     return(
         <div className='shadow-in-top md-wrapper' style={{
@@ -18,8 +19,11 @@ const MarkdownTextArea = (props: Props) => {
             borderRadius: props.borderRadius ? props.borderRadius : '20px 20px 0px 0px',
         }}>
             <textarea className='md-area'
-                      defaultValue={props.value}
-                      onChange={(event) => props.onChange(event)}
+                      defaultValue={value}
+                      onChange={(event) => {
+                          setValue(event.target.value);
+                          props.onChange(event);
+                      }}
                       style={{
                           color: theme.text,
                           borderRadius: props.borderRadius ? props.borderRadius : '20px 20px 0px 0px',
