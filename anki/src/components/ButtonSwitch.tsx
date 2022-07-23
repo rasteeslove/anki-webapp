@@ -14,6 +14,7 @@ interface Props {
     onMouseDown?: () => void,
     onMouseUp?: () => void,
     color?: string,
+    isSaveChangesButton?: boolean,
 }
 
 const ButtonSwitch = (props: Props) => {
@@ -29,7 +30,8 @@ const ButtonSwitch = (props: Props) => {
                 backgroundColor: props.color ? props.color :
                                  props.is_on ? theme.pressed_in :
                                  props.super ? theme.middleground : theme.foreground,
-                color: props.is_on ? theme.pressed_in_text : theme.text,
+                color: props.isSaveChangesButton ? theme.secondary :
+                    props.is_on ? theme.pressed_in_text : theme.text,
                 fontSize: props.fontSize ? props.fontSize : '20px',
             }} onClick={props.onClick}
             onMouseDown={props.onMouseDown}

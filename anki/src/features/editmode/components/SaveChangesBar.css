@@ -1,0 +1,9 @@
+.save-changes-bar {
+    position: absolute;
+    top: 40px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

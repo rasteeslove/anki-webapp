@@ -8,7 +8,7 @@ interface Props {
     height: number,
     value: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    saveChanges: (newVal: string) => void,
+    saveChanges?: (newVal: string) => void,
     isColor?: boolean,
 }
 
@@ -17,7 +17,7 @@ const PlainInput = (props: Props) => {
     const [value, setValue] = useState<string>(props.value);
 
     const onPressEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
+        if (props.saveChanges && event.key === 'Enter') {
             props.saveChanges(value);
         }
     }
@@ -32,7 +32,11 @@ const PlainInput = (props: Props) => {
                        setValue(event.target.value);
                        props.onChange(event);
                    }}
-                   onBlur={(event) => props.saveChanges(event.target.value)}
+                   onBlur={(event) => {
+                       if (props.saveChanges) {
+                           props.saveChanges(event.target.value);
+                       }
+                   }}
                    onKeyDown={(event) => onPressEnter(event)}
                    style={{
                        height: props.height,

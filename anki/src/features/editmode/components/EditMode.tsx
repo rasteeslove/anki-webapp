@@ -1,14 +1,16 @@
 import { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { ThemeContext } from "context/ThemeContext";
 import { ButtonSwitch } from "components/ButtonSwitch";
 import { StatusBar } from "components/StatusBar";
 import { DeckStuffDTO } from "../types";
-import { getDeckStuff } from "../api";
+import { getDeckStuff, updateDeckStuff } from "../api";
+import { sameDeckStuff } from "../utils";
 import { General } from "./General";
 import { Description } from "./Description";
 import { Cards } from "./Cards";
+import { SaveChangesBar } from "./SaveChangesBar";
 import "./EditMode.css";
 
 enum SubMode {
@@ -19,14 +21,19 @@ enum SubMode {
 
 const EditMode = () => {
     const { username, deckname } = useParams();
+    const navigate = useNavigate();
 
     const [theme, ] = useContext(ThemeContext);
     const [deckStuff, setDeckStuff] = useState<DeckStuffDTO | undefined>(undefined);
+    const [newDeckStuff, setNewDeckStuff] = useState<DeckStuffDTO | undefined>(undefined);
     const [subMode, setSubMode] = useState<SubMode>(SubMode.General);
 
     useEffect(() => {
         getDeckStuff(username!, deckname!)
-            .then((data) => setDeckStuff(data));
+            .then((data) => {
+                setDeckStuff(data);
+                setNewDeckStuff(data);
+            });
     }, [username, deckname]);
 
     return(
@@ -34,27 +41,25 @@ const EditMode = () => {
             {
                 deckStuff &&
                 <div className="editmode-and-status-bar">
-                    <StatusBar status={`the "${deckStuff.deck.name}" deck: editing mode`}/>
+                    <StatusBar status={`the "${deckStuff.deck.name}" deck: editing mode`}
+                               noShadow={true}/>
                     <div className="editmode">
                         <div className="buttons-holder">
-                            <ButtonSwitch is_on={subMode === SubMode.General}
-                                          text={'general'}
-                                          height={40} width={'var(--button-width)'}
+                            <ButtonSwitch text={'general'}
                                           super={true}
-                                          fontSize={'var(--button-font-size)'}
-                                          onClick={() => {setSubMode(SubMode.General)}}/>
-                            <ButtonSwitch is_on={subMode === SubMode.Description}
-                                          text={'description'}
-                                          height={40} width={'var(--button-width)'}
+                                          is_on={subMode === SubMode.General}
+                                          onClick={() => {setSubMode(SubMode.General)}}
+                                          height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
+                            <ButtonSwitch text={'description'}
                                           super={true}
-                                          fontSize={'var(--button-font-size)'}
-                                          onClick={() => {setSubMode(SubMode.Description)}}/>
-                            <ButtonSwitch is_on={subMode === SubMode.Cards}
-                                          text={'cards'}
-                                          height={40} width={'var(--button-width)'}
+                                          is_on={subMode === SubMode.Description}
+                                          onClick={() => {setSubMode(SubMode.Description)}}
+                                          height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
+                            <ButtonSwitch text={'cards'}
                                           super={true}
-                                          fontSize={'var(--button-font-size)'}
-                                          onClick={() => {setSubMode(SubMode.Cards)}}/>
+                                          is_on={subMode === SubMode.Cards}
+                                          onClick={() => {setSubMode(SubMode.Cards)}}
+                                          height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
                         </div>
                         <div className='shadow-out-bottom main-container' style={{
                             backgroundColor: theme.middleground,
@@ -62,19 +67,33 @@ const EditMode = () => {
                         }}>
                             {
                                 subMode === SubMode.General &&
-                                <General deckStuff={deckStuff} setDeckStuff={setDeckStuff} />
+                                <General deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
                             }
                             {
                                 subMode === SubMode.Description &&
-                                <Description deckStuff={deckStuff} setDeckStuff={setDeckStuff} />
+                                <Description deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
                             }
                             {
                                 subMode === SubMode.Cards &&
-                                <Cards deckStuff={deckStuff} setDeckStuff={setDeckStuff} />
+                                <Cards deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
                             }
                         </div>
                     </div>
                 </div>
+            }
+            {
+                deckStuff && newDeckStuff &&
+                !sameDeckStuff(deckStuff, newDeckStuff) &&
+                <SaveChangesBar saveFunction={() => {
+                    updateDeckStuff(username!, newDeckStuff)
+                        .then(() => {
+                            setDeckStuff(newDeckStuff);
+                        })
+                        .then(() => navigate(`/${username}/${newDeckStuff.deck.name}/edit`))
+                        .catch(() => {
+                            console.log('Error saving data.');
+                        })
+                }}/>
             }
         </>
     );
