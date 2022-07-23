@@ -27,7 +27,20 @@ const Cards = (props: Props) => {
                         <ButtonSwitch text={'add'}
                                       is_on={false}
                                       onClick={() => {
-                                          // TODO: add new card after the current one
+                                          const cardNum = props.deckStuff!.cards.length;
+                                          props.setDeckStuff(prev => ({
+                                              deck: prev!.deck,
+                                              cards: [
+                                                  ...prev!.cards,
+                                                  {
+                                                      id: prev!.cards[prev!.cards.length-1].id < 0 ? prev!.cards[prev!.cards.length-1].id-1 : -1,
+                                                      question: '',
+                                                      answer: '',
+                                                      deck: prev!.deck.id,
+                                                  },
+                                              ]
+                                          }));
+                                          setCardIndex(cardNum);
                                       }}
                                       // TODO: reimplement the line below in CSS
                                       height={'var(--cards-button-height)'} width={60} fontSize={16}/>
@@ -45,7 +58,15 @@ const Cards = (props: Props) => {
                         <ButtonSwitch text={'rm'}
                                       is_on={false}
                                       onClick={() => {
-                                          // TODO: remove the cardIndex card
+                                          const cardNum = props.deckStuff!.cards.length;
+                                          const idOfCardToBeRemoved = props.deckStuff!.cards[cardIndex].id;
+                                          props.setDeckStuff(prev => ({
+                                              deck: prev!.deck,
+                                              cards: prev!.cards.filter(card => card.id !== idOfCardToBeRemoved),
+                                          }));
+                                          if (cardIndex === cardNum-1) {
+                                              setCardIndex(cardIndex-1);
+                                          }
                                       }}
                                       // TODO: reimplement the line below in CSS
                                       height={'var(--cards-button-height)'} width={60} fontSize={16}/>
@@ -63,7 +84,7 @@ const Cards = (props: Props) => {
                                       height={'var(--cards-button-height)'} width={120} fontSize={16}/>
                     </div>
                     <div className="cards-md-container">
-                        <MarkdownTextArea key={subMode}   // can you guess what problem the key solves? if no, that's bc it's a bs solution. TODO: figure out the better way
+                        <MarkdownTextArea key={subMode+cardIndex}   // can you guess what problem the key solves? if no, that's bc it's a bs solution. TODO: figure out the better way
                                           value={ subMode === SubMode.Question ? props.deckStuff.cards[cardIndex].question
                                                                                : props.deckStuff.cards[cardIndex].answer }
                                           onChange={(event) => {

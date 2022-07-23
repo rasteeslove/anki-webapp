@@ -11,7 +11,7 @@ export type CardDTO = {
     id: number,
     question: string,
     answer: string,
-    deck: string,
+    deck: number,
 };
 
 export type DeckStuffDTO = {
