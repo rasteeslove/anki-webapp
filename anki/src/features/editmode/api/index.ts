@@ -8,9 +8,11 @@ const getDeckStuff = async (username: string, deckname: string) : Promise<DeckSt
         }).then(res => res.data);
 };
 
-const updateDeckStuff = async (deckStuff: DeckStuffDTO) => {
+const updateDeckStuff = async (username:string, deckStuff: DeckStuffDTO) => {
     return axios
-        .post('/update-deck-stuff/', deckStuff)
+        .post('/update-deck-stuff', deckStuff, {
+            params: { username },
+        })
         .then(res => res.data);
 };
 

@@ -1,9 +1,11 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { ButtonSwitch } from "components/ButtonSwitch";
 import { PlainInput } from "./PlainInput";
 import { Deck } from "components/Deck";
 import { DeckStuffDTO } from "../types";
+import { updateDeckStuff } from "../api";
 
 type Props = {
     deckStuff: DeckStuffDTO | undefined,
@@ -11,6 +13,9 @@ type Props = {
 };
 
 const General = (props: Props) => {
+    const { username } = useParams();
+    const navigate = useNavigate();
+
     return(
         <>
             {
@@ -19,6 +24,13 @@ const General = (props: Props) => {
                     <div className="general-deckname-container">
                         deck name:
                         <PlainInput height={40} width={240} value={props.deckStuff.deck.name}
+                                    saveChanges={(newVal) => {
+                                        if (props.deckStuff) {
+                                            updateDeckStuff(username!, props.deckStuff)
+                                                .then(() => console.log(`saved ${newVal}`))
+                                                .then(() => navigate(`/${username}/${newVal}/edit`));
+                                        }
+                                    }}
                                     onChange={(event) => {
                                         props.setDeckStuff({
                                             deck: {
@@ -33,6 +45,12 @@ const General = (props: Props) => {
                         deck color:
                         <PlainInput height={40} width={240} value={props.deckStuff.deck.color}
                                     isColor={true}
+                                    saveChanges={(newVal) => {
+                                        if (props.deckStuff) {
+                                            updateDeckStuff(username!, props.deckStuff)
+                                                .then(() => console.log(`saved ${newVal}`));
+                                        }
+                                    }}
                                     onChange={(event) =>
                                         props.setDeckStuff({
                                             deck: {
