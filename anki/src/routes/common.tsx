@@ -5,6 +5,7 @@ In accordance to the docu piece in `index.tsx`, the common routes are:
 \*/
 
 import { DeckSpace, DeckInfo } from "features/deckspace";
+import { RootComponent } from "features/misc";
 
 const commonRoutes = [
     {
@@ -13,6 +14,10 @@ const commonRoutes = [
         children: [
             { path: '/:username/:deckname', element: <DeckInfo/> },
         ],
+    },
+    {
+        path: '/',
+        element: <RootComponent/>,
     },
 ];
 

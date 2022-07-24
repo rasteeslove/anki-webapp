@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
-import "./ProgressBar.css"
+import "./ProgressBar.css";
 
 interface Props {
     current: number,
@@ -25,4 +25,4 @@ const ProgressBar = (props: Props) => {
     )
 };
 
-export default ProgressBar
+export { ProgressBar };

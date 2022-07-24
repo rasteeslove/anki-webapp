@@ -4,7 +4,7 @@ import { Deck, StatusBar, FadeInOut } from "components";
 
 import { getMe } from 'api';
 import { getDecks } from "features/deckspace/api";
-import { DeckType } from "../types";
+import { DeckType } from "types";
 import "./DeckSpace.css";
 
 const DeckSpace = () => {

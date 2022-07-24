@@ -15,3 +15,10 @@ export type DeckInfoType = {
     description: string,
     card_number: number,
 };
+
+export type CardType = {
+    id: number,
+    question: string,
+    answer: string,
+    deck: number,
+};

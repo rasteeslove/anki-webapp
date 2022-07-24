@@ -1,5 +1,7 @@
 /*\
-NOTE: might need to remove unnecessary details.
+This file is for the global types that are used across the app.
+
+NOTE: might need to remove unnecessary details from UserType.
 \*/
 
 export type UserType = {
@@ -19,3 +21,4 @@ export type UserType = {
 };
 
 export * from './errors';
+export * from './apiTypes';
