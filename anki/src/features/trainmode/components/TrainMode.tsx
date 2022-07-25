@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import {Link, useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CardType } from "types";
 import { ThemeContext } from "context/ThemeContext";
 import { StatusBar } from "components/StatusBar";
@@ -9,27 +9,20 @@ import { ProgressBar } from "./ProgressBar";
 import { ButtonSwitch } from "components/ButtonSwitch";
 
 import "./TrainMode.css";
+import {PlainInput} from "../../editmode/components/PlainInput";
 
 const TrainMode = () => {
     const { username, deckname } = useParams();
+    const navigate = useNavigate();
     const [theme, ] = useContext(ThemeContext);
+
+    const [inputCardNum, setInputCardNum] = useState<string>('');
+    const [started, setStarted] = useState<boolean>(false);
     const [totalCardNumber, setTotalCardNumber] = useState<number>(0);
     const [cardNumber, setCardNumber] = useState<number>(0);
     const [cardInfo, setCardInfo] = useState<CardType | undefined>(undefined);
     const [showAnswer, setShowAnswer] = useState<boolean>(false);
     const [completed, setCompleted] = useState<boolean>(false);
-
-    useEffect(() => {
-        let cardNum = 0;
-        do {
-            const input = prompt('how many cards to train on?');
-            if (input != null && !isNaN(parseInt(input))) {
-                cardNum = parseInt(input);
-            }
-        } while (cardNum <= 0);
-        setCardNumber(cardNum);
-        setTotalCardNumber(cardNum);
-    }, []);
 
     useEffect(() => {
         if (cardNumber > 0) {
@@ -49,7 +42,34 @@ const TrainMode = () => {
             <StatusBar status={`the "${deckname}" deck: training mode`}/>
             <div className="trainmode">
                 {
-                    !completed && cardInfo &&
+                    !started &&
+                    <div className='alert-container shadow-out-bottom' style={{
+                        backgroundColor: theme.middleground,
+                        color: theme.text,
+                    }}>
+                        <div className='alert-main'>
+                            How many cards to train on?
+                            <PlainInput value={inputCardNum}
+                                        onChange={(event) => {
+                                            setInputCardNum(event.target.value);
+                                        }}
+                                        width={200} height={40}/>
+                            <ButtonSwitch text='start'
+                                          is_on={false}
+                                          onClick={() => {
+                                              const input = parseInt(inputCardNum);
+                                              if (!isNaN(input) && input > 0) {
+                                                  setCardNumber(input);
+                                                  setTotalCardNumber(input);
+                                                  setStarted(true);
+                                              }
+                                          }}
+                                          width={220} height={40}/>
+                        </div>
+                    </div>
+                }
+                {
+                    started && !completed && cardInfo &&
                     <>
                         <ProgressBar current={totalCardNumber-cardNumber} total={totalCardNumber}/>
                         <div className='shadow-out-bottom question-answer' style={{
@@ -112,15 +132,18 @@ const TrainMode = () => {
                 }
                 {
                     completed &&
-                    <div className='completed-container shadow-out-bottom' style={{
+                    <div className='alert-container shadow-out-bottom' style={{
                         backgroundColor: theme.middleground,
                         color: theme.text,
                     }}>
-                        <div className='completed-main'>
+                        <div className='alert-main'>
                             Good job! You have trained on {totalCardNumber} card(s).
-                            <br/>
-                            <br/>
-                            <Link to={`/${username}/${deckname}`}>Back to deck</Link>
+                            <ButtonSwitch text='back to deck'
+                                          is_on={false}
+                                          onClick={() => {
+                                              navigate(`/${username}/${deckname}`);
+                                          }}
+                                          width={220} height={40}/>
                         </div>
                     </div>
                 }
