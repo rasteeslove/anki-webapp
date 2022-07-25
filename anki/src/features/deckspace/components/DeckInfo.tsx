@@ -1,86 +1,114 @@
-import { useContext } from "react";
-import { ThemeContext } from "context/ThemeContext";
-import { ButtonSwitch } from "components/ButtonSwitch";
+import { useContext, useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
+import { getMe } from "api";
+import { RefreshTokenExpirationError, NotFoundError } from "types";
+import { ThemeContext } from "context";
+import { ButtonSwitch } from "components/ButtonSwitch";
+import { getDeckInfo } from "../api";
+import { DeckInfoType } from "types";
 import "./DeckInfo.css";
 
-interface DeckInfoProps {
-    name: string,
-    color: string,
-}
 
-const DeckInfo = (props: DeckInfoProps) => {
-    const [theme, ] = useContext(ThemeContext)
+const DeckInfo = () => {
+    const [theme, ] = useContext(ThemeContext);
+    const [deckInfo, setDeckInfo] = useState<DeckInfoType>();
+    const [myDeckInfo, setMyDeckInfo] = useState<boolean>(false);
+    const [subDeckInfo, setSubDeckInfo] = useState<string>('description');
+    const { username, deckname } = useParams();
+    const navigate = useNavigate();
 
-    // todo: deck info to be retrieved from API using the URL
+    useEffect(() => {
+        getDeckInfo(username!, deckname!)
+            .then(data => setDeckInfo(data))
+            .then(() => getMe())
+            .then(data => {
+                if (typeof data != "string" && data.username === username) {
+                    setMyDeckInfo(true);
+                }
+            })
+            .catch((error) => {
+                if (error instanceof NotFoundError) {
+                    navigate(`/${username}`);
+                } else if (error instanceof RefreshTokenExpirationError) {
+                    navigate('/auth/login');
+                } else {
+                    console.log('Unhandled error:');
+                    console.log(error);
+                }
+            });
+    }, [username, deckname, navigate]);
 
     return(
-        <div className='shadow-out-bottom deckinfo' style={{
-            backgroundColor: theme.middleground,
-            color: theme.text,
-        }}>
-            <div className='shadow-in-top-light inner-shadow-maker'/>
-            <div className="deckname-holder">
-                {props.name}
-            </div>
-            <div className="mode-buttons-holder">
-                <ButtonSwitch is_on={true} text={'description'}
-                            width={'var(--button-width)'}
-                            height={'var(--button-height)'}
-                            fontSize={16}/>
-                <ButtonSwitch is_on={false} text={'stats'}
-                            width={'var(--button-width)'}
-                            height={'var(--button-height)'}
-                            fontSize={16}/>
-            </div>
-            <div className="deckinfo-main">
-                <div className="deckinfo-description-box">
-                    This is to be a description box of sorts, I imagine. By default it is to be something like “(no description)” but italic because I want it to be so. The user can also write something meaningful here in order to define the purpose of the deck. I imagine this box would also support markdown and stuff but it’s not compulsory. This is just a description after all.
-                    <br/>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium varius massa. Aliquam erat volutpat. Maecenas vel justo a diam finibus gravida. Curabitur cursus, erat ac sodales consectetur, augue diam cursus tellus, et consectetur diam felis vel urna.
-                    <br/>
-                    <br/>
-                    The box is to be scrollable too.
-                    <br/>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium varius massa. Aliquam erat volutpat. Maecenas vel justo a diam finibus gravida. Curabitur cursus, erat ac sodales consectetur, augue diam cursus tellus, et consectetur diam felis vel urna.
-                    <br/>
-                    <br/>
-                    The box is to be scrollable too.
-                    <br/>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium varius massa. Aliquam erat volutpat. Maecenas vel justo a diam finibus gravida. Curabitur cursus, erat ac sodales consectetur, augue diam cursus tellus, et consectetur diam felis vel urna.
-                    <br/>
-                    <br/>
-                    The box is to be scrollable too.
-                    <br/>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium varius massa. Aliquam erat volutpat. Maecenas vel justo a diam finibus gravida. Curabitur cursus, erat ac sodales consectetur, augue diam cursus tellus, et consectetur diam felis vel urna.
-                    <br/>
-                    <br/>
-                    The box is to be scrollable too.
-                    <br/>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium varius massa. Aliquam erat volutpat. Maecenas vel justo a diam finibus gravida. Curabitur cursus, erat ac sodales consectetur, augue diam cursus tellus, et consectetur diam felis vel urna.
-                    <br/>
-                    <br/>
-                    The box is to be scrollable too.
-                    <br/>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium varius massa. Aliquam erat volutpat. Maecenas vel justo a diam finibus gravida. Curabitur cursus, erat ac sodales consectetur, augue diam cursus tellus, et consectetur diam felis vel urna.
-                    <br/>
-                    <br/>
-                    The box is to be scrollable too.
+        <>
+            {
+                deckInfo &&
+                <div className='shadow-out-bottom deckinfo' style={{
+                    backgroundColor: theme.middleground,
+                    color: theme.text,
+                }}>
+                    <div className='shadow-in-top-light inner-shadow-maker'/>
+                    <div className="deckname-holder">
+                        { deckInfo && deckInfo.name }
+                        <div className='deckinfo-closer'>
+                            <Link style={{
+                                color: theme.text,
+                            }} to={`/${username}`}>×</Link>
+                        </div>
+                    </div>
+                    <div className="mode-buttons-holder">
+                        <ButtonSwitch is_on={subDeckInfo === 'description'}
+                                      text={'description'}
+                                      width={'var(--button-width)'}
+                                      height={'var(--button-height)'}
+                                      fontSize={16}
+                                      onClick={() => {
+                                          setSubDeckInfo('description');
+                                      }}/>
+                        <ButtonSwitch is_on={subDeckInfo === 'stats'}
+                                      text={'stats'}
+                                      width={'var(--button-width)'}
+                                      height={'var(--button-height)'}
+                                      fontSize={16}
+                                      onClick={() => {
+                                          setSubDeckInfo('stats');
+                                      }}/>
+                    </div>
+                    <div className="deckinfo-main">
+                        {
+                            subDeckInfo === 'description' &&
+                            <div className="deckinfo-description-box">
+                                { !!deckInfo && deckInfo.description }
+                            </div>
+                        }
+                        {
+                            // todo: provide stats smh
+                            subDeckInfo === 'stats' &&
+                            <div style={{
+                                padding: 30,
+                                boxSizing: "border-box",
+                                fontSize: 18,
+                            }}>
+                                dunno how to present stats yet ._.
+                            </div>
+                        }
+                    </div>
+                    <div className="bottom-clippy" style={{
+                        backgroundColor: deckInfo?.color,
+                    }}>
+                        <div className="deckinfo-card-number">
+                            {deckInfo?.card_number} card(s)
+                        </div>
+                        <div className="deckinfo-action-button-group">
+                            { myDeckInfo &&
+                                <Link to={`/${username}/${deckname}/edit`} className='deckinfo-action-button edit-button'/> }
+                            <Link to={`/${username}/${deckname}/train`} className='deckinfo-action-button play-button'/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="bottom-clippy" style={{
-                backgroundColor: props.color,
-            }}>
-
-            </div>
-        </div>
-    )
+            }
+        </>
+    );
 };
 
-export { DeckInfo }
+export { DeckInfo };

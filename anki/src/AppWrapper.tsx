@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { App } from 'App'
-import { ThemeContext, themes } from 'context/ThemeContext'
-import { MinimalismContext } from 'context/MinimalismContext'
-import { storage } from 'utils/storage'
+import { useState } from 'react';
+import { App } from 'App';
+import { ThemeContext, themes } from 'context/ThemeContext';
+import { MinimalismContext } from 'context/MinimalismContext';
+import { storage } from 'utils/storage';
 
 const AppWrapper = () => {
-    const [theme, setTheme] = useState(themes[storage.getTheme()])
+    const [theme, setTheme] = useState(themes[storage.getTheme()]);
 
     return (
         <ThemeContext.Provider value={[theme, setTheme]}>
@@ -13,7 +13,7 @@ const AppWrapper = () => {
                 <App/>
             </MinimalismContext.Provider>
         </ThemeContext.Provider>
-    )
-}
+    );
+};
 
-export default AppWrapper
+export default AppWrapper;

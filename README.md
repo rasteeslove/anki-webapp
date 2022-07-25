@@ -1,27 +1,35 @@
-# The Anki-like webapp
+# anki-webapp
 
-My shot at creating a personal use [_Anki_](https://en.wikipedia.org/wiki/Anki_(software))-like webapp for stuff memorization. Spaced repetition is a great tool for learning and I've always wanted to make an app using algorithms facilitating it.
+My shot at creating a personal use [_Anki_](https://apps.ankiweb.net)-like webapp for stuff memorization. Spaced repetition is a great tool for learning, and I've always wanted to make an app using algorithms facilitating it.
 
-### Uni meta
+## Rationale
 
-Ростислав Койко 953501.
+### What's Anki
 
-### Design
+Here is a set of videos, articles, and whatnot explaining the whole deal:
+- [Ali Abdaal](https://aliabdaal.com)'s videos on [study techniques](https://www.youtube.com/watch?v=ukLnPbIffxE), [learning stuff](https://www.youtube.com/watch?v=unityETmypk), and [using Anki itself](https://www.youtube.com/watch?v=W-EpiaPcgTk)
+- [Anki subreddit](https://www.reddit.com/r/Anki/)
 
-Here is what to actually do, and how.
+### Why reinvent the wheel
 
-#### Base
+For ultimate customization.
 
-- Authentication;
-- No third-party CSS libraries, just plain CSS;
-- ~Hype~Typescript;
-- [Figma mock-up](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?node-id=0%3A1);
-- Smart system "under the hood";
-- Cards supporting markdown and LaTeX;
+## Design
 
-#### App's functions
+### Appearance
 
-- CRUD decks;
-- CRUD cards in decks;
-- Repetition sessions;
-- User progress reports;
+Figma mockup is [here](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?node-id=0%3A1).
+
+### Tools
+
+- React
+- Typescript
+- Pure CSS
+- Axios
+- Vercel
+
+## Other important notes
+
+### Security
+
+Right now, JWT tokens are stored in localStorage on the client side. That is to be changed later (in favor of cookies) to avoid XSS attacks.

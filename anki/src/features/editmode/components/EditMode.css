@@ -1,15 +1,15 @@
 .editmode-and-status-bar {
     position: absolute;
     top: 40px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .editmode {
     position: absolute;
     top: 40px;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     display: flex;
     flex: 1 1 auto;
@@ -38,7 +38,6 @@
     width: 100%;
     max-width: 900px;
     box-sizing: border-box;
-    z-index: 100;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -134,27 +133,19 @@
 }
 
 .description-md-container {
-    margin: 20px;
-    margin-bottom: 0px;
+    margin: 20px 20px 0;
     width: 100%;
     justify-content: center;
     display: flex;
     flex-grow: 1;
 }
 
-.color-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    transform: translate(-40px);
-}
-
 @media (max-width: 900px) {
     .main-container {
-        border-radius: 40px 40px 0px 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
+        border-radius: 40px 40px 0 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .buttons-holder {

@@ -1,27 +1,152 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { CardType } from "types";
 import { ThemeContext } from "context/ThemeContext";
 import { StatusBar } from "components/StatusBar";
-import ProgressBar from "./ProgressBar";
+
+import { pullNextCard, postFeedback } from "../api";
+import { ProgressBar } from "./ProgressBar";
 import { ButtonSwitch } from "components/ButtonSwitch";
 
-import "./TrainMode.css"
+import "./TrainMode.css";
+import {PlainInput} from "../../editmode/components/PlainInput";
 
 const TrainMode = () => {
-    const [theme, ] = useContext(ThemeContext)
+    const { username, deckname } = useParams();
+    const navigate = useNavigate();
+    const [theme, ] = useContext(ThemeContext);
+
+    const [inputCardNum, setInputCardNum] = useState<string>('');
+    const [started, setStarted] = useState<boolean>(false);
+    const [totalCardNumber, setTotalCardNumber] = useState<number>(0);
+    const [cardNumber, setCardNumber] = useState<number>(0);
+    const [cardInfo, setCardInfo] = useState<CardType | undefined>(undefined);
+    const [showAnswer, setShowAnswer] = useState<boolean>(false);
+    const [completed, setCompleted] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (cardNumber > 0) {
+            pullNextCard(username!, deckname!).then((data) => {
+                setCardInfo(data);
+            });
+        } else {
+            if (totalCardNumber > 0) {
+                setCompleted(true);
+            }
+        }
+
+    }, [username, deckname, cardNumber]);
 
     return(
         <div className="trainmode-and-status-bar">
-            <StatusBar status={'the "Spanish" deck: training mode'}/>
+            <StatusBar status={`the "${deckname}" deck: training mode`}/>
             <div className="trainmode">
-                <ProgressBar current={4} total={14}/>
-                <div className='shadow-out-bottom question-answer' style={{
-                    backgroundColor: theme.middleground,
-                    color: theme.text,
-                }}>
-                    first derivative of sin(x)?
+                {
+                    !started &&
+                    <div className='alert-container shadow-out-bottom' style={{
+                        backgroundColor: theme.middleground,
+                        color: theme.text,
+                    }}>
+                        <div className='alert-main'>
+                            How many cards to train on?
+                            <PlainInput value={inputCardNum}
+                                        onChange={(event) => {
+                                            setInputCardNum(event.target.value);
+                                        }}
+                                        width={200} height={40}/>
+                            <ButtonSwitch text='start'
+                                          is_on={false}
+                                          onClick={() => {
+                                              const input = parseInt(inputCardNum);
+                                              if (!isNaN(input) && input > 0) {
+                                                  setCardNumber(input);
+                                                  setTotalCardNumber(input);
+                                                  setStarted(true);
+                                              }
+                                          }}
+                                          width={220} height={40}/>
+                        </div>
+                    </div>
+                }
+                {
+                    started && !completed && cardInfo &&
+                    <>
+                        <ProgressBar current={totalCardNumber-cardNumber} total={totalCardNumber}/>
+                        <div className='shadow-out-bottom question-answer' style={{
+                            backgroundColor: theme.middleground,
+                            color: theme.text,
+                        }}>
+                            <div className='question-container'>
+                                {cardInfo.question}
+                            </div>
+                            { /* TODO: maybe add visual separator */ }
+                            <div className='answer-container'>
+                                {
+                                    showAnswer ?
+                                        <>
+                                            {cardInfo.answer}
+                                        </>
+                                        :
+                                        <>
+                                            <ButtonSwitch text='show answer'
+                                                          is_on={false}
+                                                          width={160} height={40} fontSize={16}
+                                                          onClick={() => setShowAnswer(true)}/>
+                                        </>
+                                }
+                            </div>
+                            <div className='feedback-container'>
+                                {
+                                    showAnswer &&
+                                    <>
+                                        <ButtonSwitch text={'knew it'}
+                                                      is_on={false}
+                                                      color='#7CFF3E'
+                                                      width={160} height={40}
+                                                      onClick={() => {
+                                                          postFeedback(username!, deckname!,
+                                                              cardInfo.id, true)
+                                                              .then(() => {
+                                                                  setCardNumber(cardNumber-1);
+                                                                  setShowAnswer(false);
+                                                              });
+                                                      }}/>
+                                        <ButtonSwitch text={'not there yet'}
+                                                      is_on={false}
+                                                      color='#FF603E'
+                                                      width={160} height={40}
+                                                      onClick={() => {
+                                                          postFeedback(username!, deckname!,
+                                                              cardInfo.id, false)
+                                                              .then(() => {
+                                                                  setCardNumber(cardNumber-1);
+                                                                  setShowAnswer(false);
+                                                              });
+                                                      }}/>
+                                    </>
+                                }
 
-                    
-                </div>
+                            </div>
+                        </div>
+                    </>
+                }
+                {
+                    completed &&
+                    <div className='alert-container shadow-out-bottom' style={{
+                        backgroundColor: theme.middleground,
+                        color: theme.text,
+                    }}>
+                        <div className='alert-main'>
+                            Good job! You have trained on {totalCardNumber} card(s).
+                            <ButtonSwitch text='back to deck'
+                                          is_on={false}
+                                          onClick={() => {
+                                              navigate(`/${username}/${deckname}`);
+                                          }}
+                                          width={220} height={40}/>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )

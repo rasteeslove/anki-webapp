@@ -1,64 +1,57 @@
-import { useState } from "react";
-import { FadeInOut } from "components/FadeInOut";
-import { StatusBar } from "components/StatusBar";
-import { Deck } from "components/Deck";
-import { DeckInfo } from "./DeckInfo";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Deck, StatusBar, FadeInOut } from "components";
 
+import { getMe } from 'api';
+import { getDecks } from "features/deckspace/api";
+import { DeckType } from "types";
 import "./DeckSpace.css";
 
 const DeckSpace = () => {
-    const [deckSelected, setDeckSelected] = useState(false)
+    const { username, deckname } = useParams();
+    const [decks, setDecks] = useState<Array<DeckType>>([]);
 
-    // todo: decks to be retrieved from API using current URL username fragment.
-    // if invalid, perform redirect to auth / auth'd user deckspace
+    const navigate = useNavigate();
 
-    const decks = [
-        { 'color': '#A183C7', 'name': 'Mandarin' },
-        { 'color': '#94A4F5', 'name': 'Linear Algebra I' },
-        { 'color': '#FCB778', 'name': 'Math Statistics I' },
-        { 'color': '#88FFCD', 'name': 'Linear Algebra II' },
-        { 'color': '#F59A94', 'name': 'Calculus' },
-        { 'color': '#F594C3', 'name': 'Spanish' },
-        { 'color': '#69C578', 'name': 'Philosophy I' },
-        { 'color': '#D5DE6C', 'name': 'History I' },
-        { 'color': '#87DAE5', 'name': 'Math Statistics II' },
-        { 'color': '#A183C7', 'name': 'Mandarin' },
-        { 'color': '#94A4F5', 'name': 'Linear Algebra I' },
-        { 'color': '#FCB778', 'name': 'Math Statistics I' },
-        { 'color': '#88FFCD', 'name': 'Linear Algebra II' },
-        { 'color': '#F59A94', 'name': 'Calculus' },
-        { 'color': '#F594C3', 'name': 'Spanish' },
-        { 'color': '#69C578', 'name': 'Philosophy I' },
-        { 'color': '#D5DE6C', 'name': 'History I' },
-        { 'color': '#87DAE5', 'name': 'Math Statistics II' },
-    ]
-
-    const getDecks = () => {
-        const deckComponents = []
-        for (let i = 0; i < decks.length; i++) {
-            deckComponents.push(
-                <Deck color={decks[i]['color']}
-                      name={decks[i]['name']}
-                      onClick={() => {
-                          setDeckSelected(true)
-                      }} />
-            )
-        }
-        return deckComponents
-    }
+    useEffect(() => {
+        getDecks(username!)
+            .then(data => {
+                setDecks(data);
+            })
+            .catch(() => {
+                getMe()
+                    .then((data) => {
+                        if (typeof data != "string") {
+                            navigate(`/${data.username}`);
+                        } else {
+                            navigate('/auth/login');
+                        }
+                    })
+                    .catch(() => {
+                        navigate('/auth/login');
+                    });
+            })
+    }, [username, navigate]);
 
     return(
         <div className="deck-space-and-status-bar">
             <StatusBar status={'your decks'}/>
             <div className="deckspace" style={{
-                overflowY: deckSelected ? 'hidden' : 'auto',
+                overflowY: 'auto',
             }}>
                 <div className="decks">
-                    {getDecks()}
+                    {
+                        decks.map(deck => <Deck key={deck.id}
+                                                name={deck.name}
+                                                color={deck.color}
+                                                onClick={() => {
+                                                    navigate(`/${username}/${deck.name}`);
+                                                }}/>)
+                    }
                 </div>
             </div>
-            <FadeInOut show={deckSelected} duration={100} style={{
-                /* don't know how to avoid using inline style here */
+            <FadeInOut show={!!deckname} duration={100} style={{
+                /* don't know how to avoid using inline style here yet */
                 position: 'absolute',
                 top: 40,
                 bottom: 0,
@@ -69,14 +62,12 @@ const DeckSpace = () => {
                     width: '100%',
                     height: '100%',
                 }} onClick={() => {
-                    if (deckSelected) {
-                        setDeckSelected(false)
-                    }
+                    navigate(`/${username}`);
                 }}/>
-                <DeckInfo name={'Spanish'} color={'#F594C3'}/>
+                <Outlet/>
             </FadeInOut>
         </div>
     )
 };
 
-export {DeckSpace}
+export { DeckSpace };

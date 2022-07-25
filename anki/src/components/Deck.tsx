@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import "./Deck.css"
+import "./Deck.css";
 
 interface Props {
     name: string,
     color: string,
     onClick?: () => void,
     isDecky?: boolean,
-}
+};
 
 const DeckParams = {
     full_size_small: 200,
@@ -20,7 +20,7 @@ const DeckParams = {
     deck_height_big: 132,
     font_size_small: 20,
     font_size_big: 22,
-}
+};
 
 const DeckyParams = {
     full_size_small: 100,
@@ -33,22 +33,22 @@ const DeckyParams = {
     deck_height_big: 66,
     font_size_small: 10,
     font_size_big: 11,
-}
+};
 
 const Deck = (props: Props) => {
-    const [isEngaged, setIsEngaged] = useState(false)
+    const [isEngaged, setIsEngaged] = useState(false);
 
     const params = props.isDecky ? DeckyParams : DeckParams;
     
-    const cards = []
+    const cards = [];
     for (let i = 0; i < 3; i++) {
         cards.push(
-            <div className='shadow-in-top-light card' style={{
+            <div key={i} className='shadow-in-top-light card' style={{
                 width: isEngaged ? params?.card_width_big : params.card_width_small,
                 height: isEngaged ? params.card_height_big : params.card_height_small,
                 top: 8*i,
             }}/>
-        )
+        );
     }
 
     return(
@@ -58,16 +58,16 @@ const Deck = (props: Props) => {
                 height: isEngaged ? params.full_size_big : params.full_size_small,
             }}
                 onMouseOver={() => {
-                    setIsEngaged(true)
+                    setIsEngaged(true);
                 }}
                 onMouseOut={() => {
-                    setIsEngaged(false)
+                    setIsEngaged(false);
                 }}
                 onClick={() => {
                     if (props.onClick) { 
-                        props.onClick()
+                        props.onClick();
                     }
-                    setIsEngaged(false)
+                    setIsEngaged(false);
                 }}>
                 <div className='shadow-out-bottom deck' style={{
                     height: isEngaged ? params.deck_height_big : params.deck_height_small,
@@ -77,7 +77,7 @@ const Deck = (props: Props) => {
                 {cards}
             </button>
         </div>
-    )
+    );
 };
 
-export { Deck }
+export { Deck };
