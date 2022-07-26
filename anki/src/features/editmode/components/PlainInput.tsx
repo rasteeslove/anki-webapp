@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
-import "./PlainInput.css";
+import "./styles/PlainInput.css";
 
 interface Props {
     width: number,

@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
+import { ThemeContext } from 'context/ThemeContext';
 
-import "./StatusBar.css";
+import "./styles/StatusBar.css";
 
 interface Props {
-    status: string | undefined,
+    status?: string,
     noShadow?: boolean,
 }
 

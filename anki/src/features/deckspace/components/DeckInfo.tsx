@@ -7,7 +7,7 @@ import { ThemeContext } from "context";
 import { ButtonSwitch } from "components/ButtonSwitch";
 import { getDeckInfo } from "../api";
 import { DeckInfoType } from "types";
-import "./DeckInfo.css";
+import "./styles/DeckInfo.css";
 
 
 const DeckInfo = () => {

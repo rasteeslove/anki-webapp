@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
-import "./ButtonSwitch.css";
+import "./styles/ButtonSwitch.css";
 
 interface Props {
     is_on: boolean,

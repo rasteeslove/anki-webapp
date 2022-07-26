@@ -8,7 +8,7 @@ import { pullNextCard, postFeedback } from "../api";
 import { ProgressBar } from "./ProgressBar";
 import { ButtonSwitch } from "components/ButtonSwitch";
 
-import "./TrainMode.css";
+import "./styles/TrainMode.css";
 import {PlainInput} from "../../editmode/components/PlainInput";
 
 const TrainMode = () => {

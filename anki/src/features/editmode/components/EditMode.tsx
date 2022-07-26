@@ -11,7 +11,7 @@ import { General } from "./General";
 import { Description } from "./Description";
 import { Cards } from "./Cards";
 import { SaveChangesBar } from "./SaveChangesBar";
-import "./EditMode.css";
+import "./styles/EditMode.css";
 
 enum SubMode {
     General,

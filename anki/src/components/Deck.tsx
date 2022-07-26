@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import "./Deck.css";
+import "./styles/Deck.css";
 
 interface Props {
     name: string,
     color: string,
     onClick?: () => void,
     isDecky?: boolean,
-};
+}
 
 const DeckParams = {
     full_size_small: 200,
