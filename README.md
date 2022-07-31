@@ -12,7 +12,7 @@ Here is a set of videos, articles, and whatnot explaining the whole deal:
 
 ### Why reinvent the wheel
 
-For ultimate customization.
+For ultimate customization, i.e. to explore and gain more control over the underlying algorithm to better utilize it.
 
 ## Design
 
