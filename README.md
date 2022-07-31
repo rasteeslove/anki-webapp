@@ -16,6 +16,10 @@ For ultimate customization.
 
 ## Design
 
+### General
+
+This app adopts some practices from the [Bulletproof React](https://github.com/alan2207/bulletproof-react) architecture.
+
 ### Appearance
 
 Figma mockup is [here](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?node-id=0%3A1).
