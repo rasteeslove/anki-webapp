@@ -6,7 +6,6 @@ import "./styles/MarkdownTextArea.css";
 interface Props {
     value: string,
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void,
-    borderRadius?: string,
 }
 
 const MarkdownTextArea = (props: Props) => {
@@ -16,7 +15,7 @@ const MarkdownTextArea = (props: Props) => {
     return(
         <div className='shadow-in-top md-wrapper' style={{
             backgroundColor: theme.foreground,
-            borderRadius: props.borderRadius ? props.borderRadius : '20px 20px 0px 0px',
+            borderRadius: '20px 20px 0px 0px',
         }}>
             <textarea className='md-area'
                       defaultValue={value}
@@ -26,7 +25,7 @@ const MarkdownTextArea = (props: Props) => {
                       }}
                       style={{
                           color: theme.text,
-                          borderRadius: props.borderRadius ? props.borderRadius : '20px 20px 0px 0px',
+                          borderRadius: '20px 20px 0px 0px',
                       }}/>
         </div>
     );
