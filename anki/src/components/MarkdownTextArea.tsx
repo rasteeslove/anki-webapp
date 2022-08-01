@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from 'context/ThemeContext';
 
-import "./styles/MarkdownTextArea.css";
+import "./styles/MarkdownTextArea.scss";
 
 interface Props {
     value: string,

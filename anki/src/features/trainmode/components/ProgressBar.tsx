@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
-import "./styles/ProgressBar.css";
+import "./styles/ProgressBar.scss";
 import { MiddleGroundPanel } from "components";
 
 interface Props {

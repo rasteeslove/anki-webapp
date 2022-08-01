@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MiddleGroundPanel } from "components";
-import "./RootComponent.css";
+import "./RootComponent.scss";
 
 const RootComponent = () => {
     return(

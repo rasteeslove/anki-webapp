@@ -5,7 +5,7 @@ import { Header } from 'components/Header';
 import { ThemeContext } from 'context/ThemeContext';
 import { AppRoutes } from 'routes';
 
-import './index.css';
+import './index.scss';
 
 const App = () => {
     const [theme, ] = useContext(ThemeContext);

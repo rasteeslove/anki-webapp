@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import "./styles/Deck.css";
+import "./styles/Deck.scss";
 
 interface Props {
     name: string,

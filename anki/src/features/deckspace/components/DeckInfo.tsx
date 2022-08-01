@@ -7,7 +7,7 @@ import { ThemeContext } from "context";
 import { ButtonSwitch } from "components/ButtonSwitch";
 import { getDeckInfo } from "../api";
 import { DeckInfoType } from "types";
-import "./styles/DeckInfo.css";
+import "./styles/DeckInfo.scss";
 import { MiddleGroundPanel } from "components";
 
 

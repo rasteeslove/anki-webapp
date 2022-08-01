@@ -10,7 +10,7 @@ import { General } from "./General";
 import { Description } from "./Description";
 import { Cards } from "./Cards";
 import { SaveChangesBar } from "./SaveChangesBar";
-import "./styles/EditMode.css";
+import "./styles/EditMode.scss";
 import {MiddleGroundPanel} from "../../../components";
 
 enum SubMode {

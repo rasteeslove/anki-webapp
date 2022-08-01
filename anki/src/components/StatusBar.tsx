@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'context/ThemeContext';
 
-import "./styles/StatusBar.css";
+import "./styles/StatusBar.scss";
 
 interface Props {
     status?: string,
