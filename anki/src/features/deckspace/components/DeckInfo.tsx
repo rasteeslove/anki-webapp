@@ -8,6 +8,7 @@ import { ButtonSwitch } from "components/ButtonSwitch";
 import { getDeckInfo } from "../api";
 import { DeckInfoType } from "types";
 import "./styles/DeckInfo.css";
+import {MiddleGroundPanel} from "../../../components";
 
 
 const DeckInfo = () => {
@@ -43,10 +44,7 @@ const DeckInfo = () => {
         <>
             {
                 deckInfo &&
-                <div className='shadow-out-bottom deckinfo' style={{
-                    backgroundColor: theme.middleground,
-                    color: theme.text,
-                }}>
+                <MiddleGroundPanel className='shadow-out-bottom deckinfo'>
                     <div className='shadow-in-top-light inner-shadow-maker'/>
                     <div className="deckname-holder">
                         { deckInfo && deckInfo.name }
@@ -105,7 +103,7 @@ const DeckInfo = () => {
                             <Link to={`/${username}/${deckname}/train`} className='deckinfo-action-button play-button'/>
                         </div>
                     </div>
-                </div>
+                </MiddleGroundPanel>
             }
         </>
     );

@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CardType } from "types";
-import { ThemeContext } from "context/ThemeContext";
-import { StatusBar } from "components/StatusBar";
+import { StatusBar, MiddleGroundPanel } from "components";
 
 import { pullNextCard, postFeedback } from "../api";
 import { ProgressBar } from "./ProgressBar";
@@ -14,7 +13,6 @@ import {PlainInput} from "../../editmode/components/PlainInput";
 const TrainMode = () => {
     const { username, deckname } = useParams();
     const navigate = useNavigate();
-    const [theme, ] = useContext(ThemeContext);
 
     const [inputCardNum, setInputCardNum] = useState<string>('');
     const [started, setStarted] = useState<boolean>(false);
@@ -43,10 +41,7 @@ const TrainMode = () => {
             <div className="trainmode">
                 {
                     !started &&
-                    <div className='alert-container shadow-out-bottom' style={{
-                        backgroundColor: theme.middleground,
-                        color: theme.text,
-                    }}>
+                    <MiddleGroundPanel className='alert-container shadow-out-bottom'>
                         <div className='alert-main'>
                             How many cards to train on?
                             <PlainInput value={inputCardNum}
@@ -66,16 +61,13 @@ const TrainMode = () => {
                                           }}
                                           width={220} height={40}/>
                         </div>
-                    </div>
+                    </MiddleGroundPanel>
                 }
                 {
                     started && !completed && cardInfo &&
                     <>
                         <ProgressBar current={totalCardNumber-cardNumber} total={totalCardNumber}/>
-                        <div className='shadow-out-bottom question-answer' style={{
-                            backgroundColor: theme.middleground,
-                            color: theme.text,
-                        }}>
+                        <MiddleGroundPanel className='shadow-out-bottom question-answer'>
                             <div className='question-container'>
                                 {cardInfo.question}
                             </div>
@@ -127,15 +119,12 @@ const TrainMode = () => {
                                 }
 
                             </div>
-                        </div>
+                        </MiddleGroundPanel>
                     </>
                 }
                 {
                     completed &&
-                    <div className='alert-container shadow-out-bottom' style={{
-                        backgroundColor: theme.middleground,
-                        color: theme.text,
-                    }}>
+                    <MiddleGroundPanel className='alert-container shadow-out-bottom'>
                         <div className='alert-main'>
                             Good job! You have trained on {totalCardNumber} card(s).
                             <ButtonSwitch text='back to deck'
@@ -145,7 +134,7 @@ const TrainMode = () => {
                                           }}
                                           width={220} height={40}/>
                         </div>
-                    </div>
+                    </MiddleGroundPanel>
                 }
             </div>
         </div>

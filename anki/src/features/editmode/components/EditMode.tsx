@@ -1,7 +1,6 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { ThemeContext } from "context/ThemeContext";
 import { ButtonSwitch } from "components/ButtonSwitch";
 import { StatusBar } from "components/StatusBar";
 import { DeckStuffDTO } from "../types";
@@ -12,6 +11,7 @@ import { Description } from "./Description";
 import { Cards } from "./Cards";
 import { SaveChangesBar } from "./SaveChangesBar";
 import "./styles/EditMode.css";
+import {MiddleGroundPanel} from "../../../components";
 
 enum SubMode {
     General,
@@ -23,7 +23,6 @@ const EditMode = () => {
     const { username, deckname } = useParams();
     const navigate = useNavigate();
 
-    const [theme, ] = useContext(ThemeContext);
     const [deckStuff, setDeckStuff] = useState<DeckStuffDTO | undefined>(undefined);
     const [newDeckStuff, setNewDeckStuff] = useState<DeckStuffDTO | undefined>(undefined);
     const [subMode, setSubMode] = useState<SubMode>(SubMode.General);
@@ -61,10 +60,7 @@ const EditMode = () => {
                                           onClick={() => {setSubMode(SubMode.Cards)}}
                                           height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
                         </div>
-                        <div className='shadow-out-bottom main-container' style={{
-                            backgroundColor: theme.middleground,
-                            color: theme.text,
-                        }}>
+                        <MiddleGroundPanel className='shadow-out-bottom main-container'>
                             {
                                 subMode === SubMode.General &&
                                 <General deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
@@ -77,7 +73,7 @@ const EditMode = () => {
                                 subMode === SubMode.Cards &&
                                 <Cards deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
                             }
-                        </div>
+                        </MiddleGroundPanel>
                     </div>
                 </div>
             }

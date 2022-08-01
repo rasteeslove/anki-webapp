@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
 import "./styles/ProgressBar.css";
+import {MiddleGroundPanel} from "../../../components";
 
 interface Props {
     current: number,
@@ -12,16 +13,13 @@ const ProgressBar = (props: Props) => {
     const [theme, ] = useContext(ThemeContext)
 
     return(
-        <div className="shadow-out-bottom progress-bar" style={{
-            backgroundColor: theme.middleground,
-            color: theme.text,
-        }}>
+        <MiddleGroundPanel className="shadow-out-bottom progress-bar">
             <div className="progress" style={{
                 width: `${props.current/props.total*100}%`,
                 backgroundColor: theme.primary,
             }}/>
             {props.current}/{props.total}
-        </div>
+        </MiddleGroundPanel>
     )
 };
 
