@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ButtonSwitch } from "components/ButtonSwitch";
-import { PlainInput } from "./PlainInput";
+import { PlainInput } from "components/PlainInput";
 import { Deck } from "components/Deck";
 import { DeckStuffDTO } from "../types";
 

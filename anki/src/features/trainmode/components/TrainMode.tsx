@@ -8,7 +8,7 @@ import { ProgressBar } from "./ProgressBar";
 import { ButtonSwitch } from "components/ButtonSwitch";
 
 import "./styles/TrainMode.css";
-import {PlainInput} from "../../editmode/components/PlainInput";
+import { PlainInput } from "components/PlainInput";
 
 const TrainMode = () => {
     const { username, deckname } = useParams();

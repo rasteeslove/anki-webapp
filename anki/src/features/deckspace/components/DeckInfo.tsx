@@ -8,7 +8,7 @@ import { ButtonSwitch } from "components/ButtonSwitch";
 import { getDeckInfo } from "../api";
 import { DeckInfoType } from "types";
 import "./styles/DeckInfo.css";
-import {MiddleGroundPanel} from "../../../components";
+import { MiddleGroundPanel } from "components";
 
 
 const DeckInfo = () => {
