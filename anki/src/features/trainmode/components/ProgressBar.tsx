@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "context/ThemeContext";
 
 import "./styles/ProgressBar.css";
-import {MiddleGroundPanel} from "../../../components";
+import { MiddleGroundPanel } from "components";
 
 interface Props {
     current: number,
