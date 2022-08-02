@@ -70,22 +70,23 @@ const TrainMode = () => {
                             !completed &&
                             <MiddleGroundPanel className='shadow-out-bottom question-answer'>
                                 <div className='question-container'>
-                                    {cardInfo.question}
+                                    <div className='question' key={cardInfo.id}>
+                                        {cardInfo.question}
+                                    </div>
                                 </div>
+                                <br/>
                                 { /* TODO: maybe add visual separator */ }
                                 <div className='answer-container'>
                                     {
                                         showAnswer ?
-                                            <>
+                                            <div className='answer'>
                                                 {cardInfo.answer}
-                                            </>
+                                            </div>
                                             :
-                                            <>
-                                                <ButtonSwitch text='show answer'
-                                                              is_on={false}
-                                                              width={160} height={40} fontSize={16}
-                                                              onClick={() => setShowAnswer(true)}/>
-                                            </>
+                                            <ButtonSwitch text='show answer'
+                                                          is_on={false}
+                                                          width={160} height={40} fontSize={16}
+                                                          onClick={() => setShowAnswer(true)}/>
                                     }
                                 </div>
                                 <div className='feedback-container'>

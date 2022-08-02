@@ -21,3 +21,8 @@ button {
     flex-flow: column;
     transition: background-color 100ms;
 }
+
+@keyframes fade {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
