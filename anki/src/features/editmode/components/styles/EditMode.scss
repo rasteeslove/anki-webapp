@@ -8,7 +8,7 @@
 
 .editmode {
     position: absolute;
-    top: 40px;
+    top: 0;
     bottom: 0;
     width: 100%;
     display: flex;
@@ -29,6 +29,8 @@
 
     --button-font-size: 20px;
     --button-width: 200px;
+
+    animation: fade 100ms linear;
 }
 
 .main-container {
@@ -45,6 +47,8 @@
     font-size: 20px;
     padding-left: 20px;
     padding-right: 20px;
+
+    animation: fade 100ms linear;
 }
 
 .description-show-preview-container {
@@ -57,6 +61,8 @@
     --button-height: 20px;
 }
 
+/* general */
+
 .general-deckname-container {
     display: flex;
     align-Items: center;
@@ -64,6 +70,7 @@
     gap: 10px;
     margin-top: 40px;
     margin-bottom: 40px;
+    animation: fade 100ms linear;
 }
 
 .general-color-container {
@@ -72,6 +79,7 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 40px;
+    animation: fade 100ms linear;
 }
 
 .general-preview-container {
@@ -79,6 +87,7 @@
     align-items: center;
     flex-direction: column;
     gap: 10px;
+    animation: fade 100ms linear;
 }
 
 .general-private-public-container {
@@ -87,7 +96,10 @@
     display: flex;
     flex-direction: row;
     gap: 40px;
+    animation: fade 100ms linear;
 }
+
+/* cards */
 
 .cards-iterator-container {
     height: 40px;
@@ -100,6 +112,7 @@
     gap: 45px;
     order: 1;
     --cards-button-height: 20px;
+    animation: fade 100ms linear;
 }
 
 .cards-qa-container {
@@ -112,6 +125,7 @@
     gap: 40px;
     order: 2;
     --cards-button-height: 20px;
+    animation: fade 100ms linear;
 }
 
 .cards-md-container {
@@ -120,6 +134,7 @@
     flex-grow: 1;
     width: 100%;
     order: 3;
+    animation: fade 100ms linear;
 }
 
 .cards-show-preview {
@@ -130,7 +145,10 @@
     align-items: center;
     order: 4;
     --cards-button-height: 20px;
+    animation: fade 100ms linear;
 }
+
+/* description */
 
 .description-md-container {
     margin: 20px 20px 0;
@@ -138,6 +156,7 @@
     justify-content: center;
     display: flex;
     flex-grow: 1;
+    animation: fade 100ms linear;
 }
 
 @media (max-width: 900px) {
