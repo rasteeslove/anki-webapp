@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Header } from 'components/Header';
+import { Header, StatusBar } from 'components';
 import { ThemeContext } from 'context/ThemeContext';
 import { AppRoutes } from 'routes';
 
@@ -16,9 +16,7 @@ const App = () => {
         }}>
             <Router>
                 <Header/>
-                { /* SubHeader to be moved here in order to 
-                     provide a prompt-based navigation tool
-                     for the whole app */ }
+                <StatusBar/>
                 <AppRoutes/>
             </Router>
         </div>

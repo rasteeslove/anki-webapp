@@ -5,7 +5,6 @@ import "./styles/StatusBar.scss";
 
 interface Props {
     status?: string,
-    noShadow?: boolean,
 }
 
 const StatusBar = (props: Props) => {
@@ -17,10 +16,6 @@ const StatusBar = (props: Props) => {
             fontStyle: props.status ? 'inherit' : 'italic',
         }}>
             {props.status ? props.status : '(no status)'}
-            {
-                !props.noShadow &&
-                <div className='shadow-caster'/>
-            }
         </header>
     );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CardType } from "types";
-import { StatusBar, MiddleGroundPanel } from "components";
+import { MiddleGroundPanel } from "components";
 
 import { pullNextCard, postFeedback } from "../api";
 import { ProgressBar } from "./ProgressBar";
@@ -36,8 +36,7 @@ const TrainMode = () => {
     }, [username, deckname, cardNumber]);
 
     return(
-        <div className="trainmode-and-status-bar">
-            <StatusBar status={`the "${deckname}" deck: training mode`}/>
+        <div className="trainmode-container">
             <div className="trainmode">
                 {
                     !started &&

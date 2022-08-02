@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Deck, StatusBar, FadeInOut } from "components";
+import { Deck, FadeInOut } from "components";
 
 import { getMe } from 'api';
 import { getDecks } from "features/deckspace/api";
@@ -34,8 +34,7 @@ const DeckSpace = () => {
     }, [username, navigate]);
 
     return(
-        <div className="deck-space-and-status-bar">
-            <StatusBar status={'your decks'}/>
+        <div className="deck-space-container">
             <div className="deckspace" style={{
                 overflowY: 'auto',
             }}>
