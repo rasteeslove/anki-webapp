@@ -19,6 +19,7 @@ const General = (props: Props) => {
                     <div className="general-deckname-container">
                         deck name:
                         <PlainInput value={props.deckStuff.deck.name}
+                                    maxLength={16}
                                     onChange={(event) => {
                                         props.setDeckStuff({
                                             deck: {
@@ -34,6 +35,7 @@ const General = (props: Props) => {
                     <div className="general-color-container">
                         deck color:
                         <PlainInput value={props.deckStuff.deck.color}
+                                    maxLength={7}
                                     isColor={true}
                                     onChange={(event) =>
                                         props.setDeckStuff({
