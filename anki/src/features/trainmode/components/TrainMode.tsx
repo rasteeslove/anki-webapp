@@ -63,77 +63,80 @@ const TrainMode = () => {
                     </MiddleGroundPanel>
                 }
                 {
-                    started && !completed && cardInfo &&
+                    started && cardInfo &&
                     <>
                         <ProgressBar current={totalCardNumber-cardNumber} total={totalCardNumber}/>
-                        <MiddleGroundPanel className='shadow-out-bottom question-answer'>
-                            <div className='question-container'>
-                                {cardInfo.question}
-                            </div>
-                            { /* TODO: maybe add visual separator */ }
-                            <div className='answer-container'>
-                                {
-                                    showAnswer ?
+                        {
+                            !completed &&
+                            <MiddleGroundPanel className='shadow-out-bottom question-answer'>
+                                <div className='question-container'>
+                                    {cardInfo.question}
+                                </div>
+                                { /* TODO: maybe add visual separator */ }
+                                <div className='answer-container'>
+                                    {
+                                        showAnswer ?
+                                            <>
+                                                {cardInfo.answer}
+                                            </>
+                                            :
+                                            <>
+                                                <ButtonSwitch text='show answer'
+                                                              is_on={false}
+                                                              width={160} height={40} fontSize={16}
+                                                              onClick={() => setShowAnswer(true)}/>
+                                            </>
+                                    }
+                                </div>
+                                <div className='feedback-container'>
+                                    {
+                                        showAnswer &&
                                         <>
-                                            {cardInfo.answer}
-                                        </>
-                                        :
-                                        <>
-                                            <ButtonSwitch text='show answer'
+                                            <ButtonSwitch text={'knew it'}
                                                           is_on={false}
-                                                          width={160} height={40} fontSize={16}
-                                                          onClick={() => setShowAnswer(true)}/>
+                                                          color='#7CFF3E'
+                                                          width={160} height={40}
+                                                          onClick={() => {
+                                                              postFeedback(username!, deckname!,
+                                                                  cardInfo.id, true)
+                                                                  .then(() => {
+                                                                      setCardNumber(cardNumber-1);
+                                                                      setShowAnswer(false);
+                                                                  });
+                                                          }}/>
+                                            <ButtonSwitch text={'not there yet'}
+                                                          is_on={false}
+                                                          color='#FF603E'
+                                                          width={160} height={40}
+                                                          onClick={() => {
+                                                              postFeedback(username!, deckname!,
+                                                                  cardInfo.id, false)
+                                                                  .then(() => {
+                                                                      setCardNumber(cardNumber-1);
+                                                                      setShowAnswer(false);
+                                                                  });
+                                                          }}/>
                                         </>
-                                }
-                            </div>
-                            <div className='feedback-container'>
-                                {
-                                    showAnswer &&
-                                    <>
-                                        <ButtonSwitch text={'knew it'}
-                                                      is_on={false}
-                                                      color='#7CFF3E'
-                                                      width={160} height={40}
-                                                      onClick={() => {
-                                                          postFeedback(username!, deckname!,
-                                                              cardInfo.id, true)
-                                                              .then(() => {
-                                                                  setCardNumber(cardNumber-1);
-                                                                  setShowAnswer(false);
-                                                              });
-                                                      }}/>
-                                        <ButtonSwitch text={'not there yet'}
-                                                      is_on={false}
-                                                      color='#FF603E'
-                                                      width={160} height={40}
-                                                      onClick={() => {
-                                                          postFeedback(username!, deckname!,
-                                                              cardInfo.id, false)
-                                                              .then(() => {
-                                                                  setCardNumber(cardNumber-1);
-                                                                  setShowAnswer(false);
-                                                              });
-                                                      }}/>
-                                    </>
-                                }
+                                    }
 
-                            </div>
-                        </MiddleGroundPanel>
+                                </div>
+                            </MiddleGroundPanel>
+                        }
+                        {
+                            completed &&
+                            <MiddleGroundPanel className='alert-container shadow-out-bottom'>
+                                <div className='alert-main'>
+                                    Good job! You have trained on {totalCardNumber} card(s).
+                                    <ButtonSwitch text='back to deck'
+                                                  is_on={false}
+                                                  onClick={() => {
+                                                      navigate(`/${username}/${deckname}`);
+                                                  }}
+                                                  width={220} height={40}/>
+                                </div>
+                            </MiddleGroundPanel>
+                        }
                     </>
-                }
-                {
-                    completed &&
-                    <MiddleGroundPanel className='alert-container shadow-out-bottom'>
-                        <div className='alert-main'>
-                            Good job! You have trained on {totalCardNumber} card(s).
-                            <ButtonSwitch text='back to deck'
-                                          is_on={false}
-                                          onClick={() => {
-                                              navigate(`/${username}/${deckname}`);
-                                          }}
-                                          width={220} height={40}/>
-                        </div>
-                    </MiddleGroundPanel>
                 }
             </div>
         </div>
