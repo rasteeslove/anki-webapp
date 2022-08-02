@@ -6,4 +6,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    animation: fade 100ms linear;
+}
+
+@keyframes fade {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
 }
