@@ -74,7 +74,7 @@ const TrainMode = () => {
                                         {cardInfo.question}
                                     </div>
                                 </div>
-                                <br/>
+                                <div className='break-line'/>
                                 { /* TODO: maybe add visual separator */ }
                                 <div className='answer-container'>
                                     {
