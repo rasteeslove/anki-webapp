@@ -3,10 +3,11 @@ import { Navigate } from "react-router-dom";
 import { loginWithUsernameAndPassword, LoginCredsDTO } from "../api/login";
 import { storage } from "utils/storage";
 import { AlertWindow, PlainInput, ButtonSwitch } from "components";
-import './styles/LoginForm.scss';
+import './styles/Form.scss';
 
 type LoginHelperType = {
     loginSucceeded: boolean,
+    moveToSignUp: boolean,
 };
 
 class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
@@ -14,7 +15,8 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
         super(props);
         this.state = { username: '',
                        password: '',
-                       loginSucceeded: false, };
+                       loginSucceeded: false,
+                       moveToSignUp: false, };
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -53,7 +55,7 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
         return(
             <AlertWindow>
                 Login Form
-                <form className='login-form' onSubmit={this.handleSubmit} >
+                <form className='form-main' onSubmit={this.handleSubmit} >
                     username:
                     <PlainInput type='text' name='username'
                                 value={this.state.username} onChange={(event) => this.handleUsernameChange(event)}
@@ -63,10 +65,17 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
                                 value={this.state.password} onChange={(event) => this.handlePasswordChange(event)}
                                 width={220} height={32} />
                     <ButtonSwitch text='submit' is_on={false}
-                                  width={220} height={32}/>
+                                  width={220} height={32} fontSize={16}/>
                 </form>
                 { this.state.loginSucceeded &&
                   <Navigate to={`/${this.state.username}`} replace={true}/> }
+                <ButtonSwitch text='to to sign up page' is_on={false}
+                              onClick={() => {
+                                    this.setState({ moveToSignUp: true });
+                              }}
+                              width={220} height={32} fontSize={16}/>
+                { this.state.moveToSignUp &&
+                    <Navigate to='/auth/register' replace={false}/> }
             </AlertWindow>
         );
     }
