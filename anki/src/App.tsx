@@ -17,7 +17,9 @@ const App = () => {
             <Router>
                 <Header/>
                 <StatusBar/>
-                <AppRoutes/>
+                <div className='app-main-container'>
+                    <AppRoutes/>
+                </div>
             </Router>
         </div>
     );

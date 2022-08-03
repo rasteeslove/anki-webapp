@@ -2,6 +2,8 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { loginWithUsernameAndPassword, LoginCredsDTO } from "../api/login";
 import { storage } from "utils/storage";
+import { MiddleGroundPanel } from "components";
+import './styles/LoginForm.scss';
 
 type LoginHelperType = {
     loginSucceeded: boolean,
@@ -53,7 +55,7 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
                 position: 'absolute',
                 display: 'flex',
                 width: '100%',
-                top: 40,
+                top: 80,
                 bottom: 0,
                 justifyContent: 'center',
                 alignItems: 'center',

@@ -34,7 +34,7 @@ const DeckSpace = () => {
     }, [username, navigate]);
 
     return(
-        <div className="deck-space-container">
+        <>
             <div className="deckspace" style={{
                 overflowY: 'auto',
             }}>
@@ -52,7 +52,7 @@ const DeckSpace = () => {
             <FadeInOut show={!!deckname} duration={100} style={{
                 /* don't know how to avoid using inline style here yet */
                 position: 'absolute',
-                top: 40,
+                top: 0,
                 bottom: 0,
                 width: '100%',
                 backdropFilter: 'blur(10px)',
@@ -65,7 +65,7 @@ const DeckSpace = () => {
                 }}/>
                 <Outlet/>
             </FadeInOut>
-        </div>
+        </>
     )
 };
 
