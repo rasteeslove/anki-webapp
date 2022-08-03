@@ -7,6 +7,9 @@ interface Props {
     width: number,
     height: number,
     value: string,
+    type?: string,
+    name?: string,
+    placeholder?: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     saveChanges?: (newVal: string) => void,
     isColor?: boolean,
@@ -28,6 +31,9 @@ const PlainInput = (props: Props) => {
             transform: props.isColor ? 'translate(16px)' : 'none'
         }}>
             <input className="shadow-in-top"
+                   type={props.type}
+                   name={props.name}
+                   placeholder={props.placeholder}
                    value={props.value}
                    maxLength={props.maxLength}
                    onChange={(event) => {

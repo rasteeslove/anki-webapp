@@ -1,9 +1,17 @@
+import React from "react";
 import { MiddleGroundPanel } from "./MiddleGroundPanel";
+import './styles/AlertWindow.scss';
 
-const AlertWindow = () => {
+interface Props {
+    children?: React.ReactNode,
+}
+
+const AlertWindow = (props: Props) => {
     return(
-        <MiddleGroundPanel>
-
+        <MiddleGroundPanel className='alert-container shadow-out-bottom'>
+            <div className='alert-main'>
+                { props.children }
+            </div>
         </MiddleGroundPanel>
     );
 };

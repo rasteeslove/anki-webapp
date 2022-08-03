@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { loginWithUsernameAndPassword, LoginCredsDTO } from "../api/login";
 import { storage } from "utils/storage";
-import { MiddleGroundPanel } from "components";
+import { AlertWindow, PlainInput, ButtonSwitch } from "components";
 import './styles/LoginForm.scss';
 
 type LoginHelperType = {
@@ -51,36 +51,21 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
 
     render() {
         return(
-            <div style={{
-                position: 'absolute',
-                display: 'flex',
-                width: '100%',
-                top: 80,
-                bottom: 0,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
-                <form style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 20,
-                    flexDirection: 'column',
-                }} onSubmit={this.handleSubmit} >
+            <AlertWindow>
+                <form className='login-form' onSubmit={this.handleSubmit} >
                     Login Form
-                    <input type='text' name='username' style={{
-                        background: '#ffffff',
-                    }} placeholder='username'
-                       onChange={this.handleUsernameChange} />
-                    <input type='password' name='password' style={{
-                        background: '#ffffff',
-                    }} placeholder='password'
-                       onChange={this.handlePasswordChange} />
-                    <input type='submit' value='submit'/>
+                    <PlainInput type='text' name='username' placeholder='username'
+                                value={''} onChange={this.handleUsernameChange}
+                                width={220} height={32} />
+                    <PlainInput type='password' name='password' placeholder='password'
+                                value={''} onChange={this.handlePasswordChange}
+                                width={220} height={32} />
+                    <ButtonSwitch text='submit' is_on={false}
+                                  width={220} height={32}/>
                 </form>
                 { this.state.loginSucceeded &&
                   <Navigate to={`/${this.state.username}`} replace={true}/> }
-            </div>
+            </AlertWindow>
         );
     }
 }
