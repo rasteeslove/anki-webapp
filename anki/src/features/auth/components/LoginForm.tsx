@@ -52,13 +52,15 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
     render() {
         return(
             <AlertWindow>
+                Login Form
                 <form className='login-form' onSubmit={this.handleSubmit} >
-                    Login Form
-                    <PlainInput type='text' name='username' placeholder='username'
-                                value={''} onChange={this.handleUsernameChange}
+                    username:
+                    <PlainInput type='text' name='username'
+                                value={this.state.username} onChange={(event) => this.handleUsernameChange(event)}
                                 width={220} height={32} />
-                    <PlainInput type='password' name='password' placeholder='password'
-                                value={''} onChange={this.handlePasswordChange}
+                    password:
+                    <PlainInput type='password' name='password'
+                                value={this.state.password} onChange={(event) => this.handlePasswordChange(event)}
                                 width={220} height={32} />
                     <ButtonSwitch text='submit' is_on={false}
                                   width={220} height={32}/>
