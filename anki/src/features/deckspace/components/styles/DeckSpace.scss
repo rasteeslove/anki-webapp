@@ -29,3 +29,15 @@
     padding-bottom: 40px;
     gap: 40px;
 }
+
+.decks .deck-wrapper {
+    animation: fade 100ms linear;
+    animation-fill-mode: both;
+}
+
+@for $i from 1 through 30
+{
+    .decks .deck-wrapper:nth-of-type(#{$i}) {
+        animation-delay: #{($i)/20}s;
+    }
+}
