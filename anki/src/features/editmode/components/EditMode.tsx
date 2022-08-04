@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { ButtonSwitch } from "components/ButtonSwitch";
+import { ButtonSwitch, MiddleGroundPanel } from "components";
 import { DeckStuffDTO } from "../types";
 import { getDeckStuff, updateDeckStuff } from "../api";
 import { sameDeckStuff } from "../utils";
@@ -10,7 +10,6 @@ import { Description } from "./Description";
 import { Cards } from "./Cards";
 import { SaveChangesBar } from "./SaveChangesBar";
 import "./styles/EditMode.scss";
-import { MiddleGroundPanel } from "components";
 
 enum SubMode {
     General,
