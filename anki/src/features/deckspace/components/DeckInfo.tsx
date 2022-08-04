@@ -86,6 +86,7 @@ const DeckInfo = () => {
                                 padding: 30,
                                 boxSizing: "border-box",
                                 fontSize: 18,
+                                animation: 'fade 100ms linear',
                             }}>
                                 dunno how to present stats yet ._.
                             </div>
