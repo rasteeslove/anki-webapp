@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 import { getMe } from "api";
 import { logOut } from "utils/auth";
@@ -36,6 +36,7 @@ const AuthRoutes = () => {
                 <Routes>
                     <Route path='register' element={<Register/>}/>
                     <Route path='login' element={<Login/>}/>
+                    <Route path='*' element={<Navigate to='login' replace={true}/>}/>
                 </Routes>
             }
         </>
