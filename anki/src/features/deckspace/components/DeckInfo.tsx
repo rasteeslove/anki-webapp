@@ -95,7 +95,7 @@ const DeckInfo = () => {
                         backgroundColor: deckInfo?.color,
                     }}>
                         <div className="deckinfo-card-number">
-                            {deckInfo?.card_number} card(s)
+                            {`${deckInfo.card_number} card${deckInfo.card_number % 10 === 1 ? '' : 's'}`}
                         </div>
                         <div className="deckinfo-action-button-group">
                             { myDeckInfo &&
