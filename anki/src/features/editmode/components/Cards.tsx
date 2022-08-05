@@ -102,7 +102,7 @@ const Cards = (props: Props) => {
                                       height={'var(--cards-button-height)'} width={120} fontSize={16}/>
                     </div>
                     <div className="cards-md-container">
-                        <MarkdownTextArea key={subMode+cardIndex}   // can you guess what problem the key solves? if no, that's bc it's a bs solution. TODO: figure out the better way
+                        <MarkdownTextArea key={subMode+cardIndex+props.deckStuff.cards.length}   // can you guess what problem the key solves? if no, that's bc it's a bs solution. TODO: figure out the better way
                                           value={ subMode === SubMode.Question ? props.deckStuff.cards[cardIndex].question
                                                                                : props.deckStuff.cards[cardIndex].answer }
                                           onChange={(event) => {

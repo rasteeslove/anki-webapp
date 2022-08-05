@@ -76,8 +76,9 @@ const EditMode = () => {
                 !sameDeckStuff(deckStuff, newDeckStuff) &&
                 <SaveChangesBar saveFunction={() => {
                     updateDeckStuff(username!, newDeckStuff)
-                        .then(() => {
-                            setDeckStuff(newDeckStuff);
+                        .then((data) => {
+                            setDeckStuff(data);
+                            setNewDeckStuff(data);
                         })
                         .then(() => navigate(`/${username}/${newDeckStuff.deck.name}/edit`))
                         .catch(() => {
