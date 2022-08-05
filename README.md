@@ -32,6 +32,14 @@ Figma mockup is [here](https://www.figma.com/file/0R1rTfcYHTo10Wi72FazAE/Web?nod
 - Axios
 - Vercel
 
+### Challenges
+
+**Markdown & LaTeX** rendering in description and cards. The most probable solution to this is [react-markdown](https://github.com/remarkjs/react-markdown).
+
+**Media** rendering in descriptions and cards. Might be a little excessive but it would certainly be a cool addition.
+
+**TextArea editing** for Markdown & LaTeX.
+
 ## Other important notes
 
 ### Security
