@@ -59,12 +59,12 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
                     username:
                     <PlainInput type='text' name='username'
                                 value={this.state.username} onChange={(event) => this.handleUsernameChange(event)}
-                                maxLength={20}
+                                maxLength={30}
                                 width={220} height={32} />
                     password:
                     <PlainInput type='password' name='password'
                                 value={this.state.password} onChange={(event) => this.handlePasswordChange(event)}
-                                maxLength={20}
+                                maxLength={30}
                                 width={220} height={32} />
                     <ButtonSwitch text='submit' is_on={false}
                                   width={220} height={32} fontSize={16}/>
