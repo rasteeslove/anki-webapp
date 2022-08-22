@@ -14,18 +14,18 @@ import { MiddleGroundPanel } from "components";
 const DeckInfo = () => {
     const [theme, ] = useContext(ThemeContext);
     const [deckInfo, setDeckInfo] = useState<DeckInfoType>();
-    const [myDeckInfo, setMyDeckInfo] = useState<boolean>(false);
+    const [isMyDeckInfo, setIsMyDeckInfo] = useState<boolean>(false);
     const [subDeckInfo, setSubDeckInfo] = useState<string>('description');
     const { username, deckname } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         getDeckInfo(username!, deckname!)
-            .then(data => setDeckInfo(data))
+            .then(data => setDeckInfo(data.deckinfo))
             .then(() => getMe())
             .then(data => {
-                if (typeof data != "string" && data.username === username) {
-                    setMyDeckInfo(true);
+                if (data.user && data.user.username === username) {
+                    setIsMyDeckInfo(true);
                 }
             })
             .catch((error) => {
@@ -99,7 +99,7 @@ const DeckInfo = () => {
                             {`${deckInfo.card_number} card${deckInfo.card_number % 10 === 1 ? '' : 's'}`}
                         </div>
                         <div className="deckinfo-action-button-group">
-                            { myDeckInfo &&
+                            { isMyDeckInfo &&
                                 <Link to={`/${username}/${deckname}/edit`} className='deckinfo-action-button edit-button'/> }
                             <Link to={`/${username}/${deckname}/train`} className='deckinfo-action-button play-button'/>
                         </div>

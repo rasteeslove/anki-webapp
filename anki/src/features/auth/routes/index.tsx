@@ -15,8 +15,8 @@ const AuthRoutes = () => {
     useEffect(() => {
         getMe()
             .then((data) => {
-                if (typeof(data) != 'string') {
-                    navigate(`/${data.username}`)
+                if (data.user) {
+                    navigate(`/${data.user.username}`)
                 } else {
                     setAuthRequired(true);
                 }

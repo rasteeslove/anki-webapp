@@ -25,7 +25,7 @@ const TrainMode = () => {
     useEffect(() => {
         if (cardNumber > 0) {
             pullNextCard(username!, deckname!).then((data) => {
-                setCardInfo(data);
+                setCardInfo(data.card);
             });
         } else {
             if (totalCardNumber > 0) {
@@ -33,7 +33,7 @@ const TrainMode = () => {
             }
         }
 
-    }, [username, deckname, cardNumber]);
+    }, [username, deckname, cardNumber, totalCardNumber]);
 
     return(
         <div className="trainmode">
@@ -74,7 +74,6 @@ const TrainMode = () => {
                                 </div>
                             </div>
                             <div className='break-line'/>
-                            { /* TODO: maybe add visual separator */ }
                             <div className='answer-container'>
                                 {
                                     showAnswer ?

@@ -16,13 +16,13 @@ const DeckSpace = () => {
     useEffect(() => {
         getDecks(username!)
             .then(data => {
-                setDecks(data);
+                setDecks(data.decks);
             })
             .catch(() => {
                 getMe()
                     .then((data) => {
-                        if (typeof data != "string") {
-                            navigate(`/${data.username}`);
+                        if (data.user) {
+                            navigate(`/${data.user.username}`);
                         } else {
                             navigate('/auth/login');
                         }

@@ -27,9 +27,9 @@ const EditMode = () => {
 
     useEffect(() => {
         getDeckStuff(username!, deckname!)
-            .then((data) => {
-                setDeckStuff(data);
-                setNewDeckStuff(data);
+            .then(({ deck, cards }) => {
+                setDeckStuff({ deck, cards });
+                setNewDeckStuff({ deck, cards });
             });
     }, [username, deckname]);
 

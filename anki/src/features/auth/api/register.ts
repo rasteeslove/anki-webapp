@@ -1,6 +1,6 @@
 import { axios } from "lib/axios";
 
-import { UserType } from "types";
+import { UserResponseType } from "types";
 
 export type RegisterCredsDTO = {
     username: string,
@@ -8,7 +8,7 @@ export type RegisterCredsDTO = {
     password: string,
 };
 
-export const signupWithUsernameAndEmailAndPassword = (data: RegisterCredsDTO) : Promise<UserType> => {
+export const signupWithUsernameAndEmailAndPassword = (data: RegisterCredsDTO) : Promise<UserResponseType> => {
     let formData = new FormData();
     formData.append('username', data.username);
     formData.append('email', data.email);
