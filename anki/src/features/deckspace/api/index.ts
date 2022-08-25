@@ -23,4 +23,12 @@ const removeDeck = async (username: string, deckname: string) : Promise<Response
         .then(res => res.data);
 }
 
-export { getDecks, getDeckInfo };
+const createDeck = async (username: string) : Promise<DecksResponseType> => {
+    return axios
+        .post('/create-deck/', {
+            username
+        })
+        .then(res => res.data);
+}
+
+export { getDecks, getDeckInfo, removeDeck, createDeck };

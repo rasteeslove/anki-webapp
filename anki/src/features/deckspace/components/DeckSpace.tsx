@@ -3,13 +3,15 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Deck, FadeInOut } from "components";
 
 import { getMe } from 'api';
-import { getDecks } from "features/deckspace/api";
+import { getDecks, createDeck } from "features/deckspace/api";
 import { DeckType } from "types";
 import "./styles/DeckSpace.scss";
+import { AddDeck } from "./AddDeck";
 
 const DeckSpace = () => {
     const { username, deckname } = useParams();
     const [decks, setDecks] = useState<Array<DeckType>>([]);
+    const [isMyDeckspace, setIsMyDeckspace] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
@@ -17,6 +19,14 @@ const DeckSpace = () => {
         getDecks(username!)
             .then(data => {
                 setDecks(data.decks);
+            })
+            .then(() => {
+                getMe()
+                    .then(data => {
+                        if (data.user?.username === username) {
+                            setIsMyDeckspace(true);
+                        }
+                    })
             })
             .catch(() => {
                 getMe()
@@ -46,6 +56,13 @@ const DeckSpace = () => {
                                                 onClick={() => {
                                                     navigate(`/${username}/${deck.name}`);
                                                 }}/>)
+                    }
+                    {
+                        isMyDeckspace &&
+                        <AddDeck onClick={() => {
+                            createDeck(username!)
+                                .then(data => setDecks([...decks, data.decks[0]]))
+                        }}/>
                     }
                 </div>
             </div>
