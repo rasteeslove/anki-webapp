@@ -5,26 +5,33 @@ import { getMe } from "api";
 import { RefreshTokenExpirationError, NotFoundError } from "types";
 import { ThemeContext } from "context";
 import { ButtonSwitch } from "components/ButtonSwitch";
-import { getDeckInfo } from "../api";
+import { getDeckInfo, removeDeck } from "../api";
 import { DeckInfoType } from "types";
-import "./DeckInfo.css";
+import "./styles/DeckInfo.scss";
+import { MiddleGroundPanel } from "components";
 
 
 const DeckInfo = () => {
     const [theme, ] = useContext(ThemeContext);
+
     const [deckInfo, setDeckInfo] = useState<DeckInfoType>();
-    const [myDeckInfo, setMyDeckInfo] = useState<boolean>(false);
+    const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+    const [isMyDeckInfo, setIsMyDeckInfo] = useState<boolean>(false);
     const [subDeckInfo, setSubDeckInfo] = useState<string>('description');
+
     const { username, deckname } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         getDeckInfo(username!, deckname!)
-            .then(data => setDeckInfo(data))
+            .then(data => setDeckInfo(data.deckinfo))
             .then(() => getMe())
             .then(data => {
-                if (typeof data != "string" && data.username === username) {
-                    setMyDeckInfo(true);
+                if (data.user) {
+                    setIsSignedIn(true);
+                    if (data.user.username === username) {
+                        setIsMyDeckInfo(true);
+                    }
                 }
             })
             .catch((error) => {
@@ -43,10 +50,7 @@ const DeckInfo = () => {
         <>
             {
                 deckInfo &&
-                <div className='shadow-out-bottom deckinfo' style={{
-                    backgroundColor: theme.middleground,
-                    color: theme.text,
-                }}>
+                <MiddleGroundPanel className='shadow-out-bottom deckinfo'>
                     <div className='shadow-in-top-light inner-shadow-maker'/>
                     <div className="deckname-holder">
                         { deckInfo && deckInfo.name }
@@ -88,6 +92,7 @@ const DeckInfo = () => {
                                 padding: 30,
                                 boxSizing: "border-box",
                                 fontSize: 18,
+                                animation: 'fade 100ms linear',
                             }}>
                                 dunno how to present stats yet ._.
                             </div>
@@ -97,15 +102,24 @@ const DeckInfo = () => {
                         backgroundColor: deckInfo?.color,
                     }}>
                         <div className="deckinfo-card-number">
-                            {deckInfo?.card_number} card(s)
+                            {`${deckInfo.card_number} card${deckInfo.card_number % 10 === 1 ? '' : 's'}`}
                         </div>
                         <div className="deckinfo-action-button-group">
-                            { myDeckInfo &&
-                                <Link to={`/${username}/${deckname}/edit`} className='deckinfo-action-button edit-button'/> }
-                            <Link to={`/${username}/${deckname}/train`} className='deckinfo-action-button play-button'/>
+                            { isMyDeckInfo &&
+                                <>
+                                    <Link to={`/${username}/${deckname}/edit`} className='deckinfo-action-button edit-button'/>
+                                    <button onClick={() => {
+                                        removeDeck(username!, deckname!)
+                                            .then(() => {
+                                                navigate(`/${username}`);
+                                            });
+                                    }} className='deckinfo-action-button remove-button'/>
+                                </>
+                            }
+                            <Link to={isSignedIn ? `/${username}/${deckname}/train` : '/auth/login'} className='deckinfo-action-button play-button'/>
                         </div>
                     </div>
-                </div>
+                </MiddleGroundPanel>
             }
         </>
     );

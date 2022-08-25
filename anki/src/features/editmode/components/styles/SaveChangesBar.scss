@@ -1,9 +1,11 @@
 .save-changes-bar {
     position: absolute;
-    top: 40px;
+    top: -40px;
     height: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    animation: fade 100ms linear;
 }

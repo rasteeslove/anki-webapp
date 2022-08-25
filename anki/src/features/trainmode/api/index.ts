@@ -1,8 +1,8 @@
 import { axios } from "lib/axios";
-import { CardType } from "types";
+import { ResponseType, CardResponseType } from "types";
 
 const pullNextCard = async (deckOwnerUsername: string,
-                            deckname: string) : Promise<CardType> => {
+                            deckname: string) : Promise<CardResponseType> => {
     return axios
         .get('/pull-next-card', {
             params: {
@@ -15,7 +15,7 @@ const pullNextCard = async (deckOwnerUsername: string,
 const postFeedback = async (deckOwnerUsername: string,
                             deckname: string,
                             cardId: number,
-                            feedback: boolean) => {
+                            feedback: boolean) : Promise<ResponseType> => {
     return axios
         .post('/post-feedback/', {
             deck_owner_username: deckOwnerUsername,

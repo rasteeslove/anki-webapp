@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Header } from 'components/Header';
+import { Header, StatusBar } from 'components';
 import { ThemeContext } from 'context/ThemeContext';
 import { AppRoutes } from 'routes';
 
-import './index.css';
+import './index.scss';
 
 const App = () => {
     const [theme, ] = useContext(ThemeContext);
@@ -16,10 +16,10 @@ const App = () => {
         }}>
             <Router>
                 <Header/>
-                { /* SubHeader to be moved here in order to 
-                     provide a prompt-based navigation tool
-                     for the whole app */ }
-                <AppRoutes/>
+                <StatusBar/>
+                <div className='app-main-container'>
+                    <AppRoutes/>
+                </div>
             </Router>
         </div>
     );

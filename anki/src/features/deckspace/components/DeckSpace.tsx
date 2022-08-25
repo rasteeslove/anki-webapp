@@ -1,28 +1,38 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Deck, StatusBar, FadeInOut } from "components";
+import { Deck, FadeInOut } from "components";
 
 import { getMe } from 'api';
-import { getDecks } from "features/deckspace/api";
+import { getDecks, createDeck } from "features/deckspace/api";
 import { DeckType } from "types";
-import "./DeckSpace.css";
+import "./styles/DeckSpace.scss";
+import { AddDeck } from "./AddDeck";
 
 const DeckSpace = () => {
     const { username, deckname } = useParams();
     const [decks, setDecks] = useState<Array<DeckType>>([]);
+    const [isMyDeckspace, setIsMyDeckspace] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getDecks(username!)
             .then(data => {
-                setDecks(data);
+                setDecks(data.decks);
+            })
+            .then(() => {
+                getMe()
+                    .then(data => {
+                        if (data.user?.username === username) {
+                            setIsMyDeckspace(true);
+                        }
+                    })
             })
             .catch(() => {
                 getMe()
                     .then((data) => {
-                        if (typeof data != "string") {
-                            navigate(`/${data.username}`);
+                        if (data.user) {
+                            navigate(`/${data.user.username}`);
                         } else {
                             navigate('/auth/login');
                         }
@@ -34,8 +44,7 @@ const DeckSpace = () => {
     }, [username, navigate]);
 
     return(
-        <div className="deck-space-and-status-bar">
-            <StatusBar status={'your decks'}/>
+        <>
             <div className="deckspace" style={{
                 overflowY: 'auto',
             }}>
@@ -48,12 +57,19 @@ const DeckSpace = () => {
                                                     navigate(`/${username}/${deck.name}`);
                                                 }}/>)
                     }
+                    {
+                        isMyDeckspace &&
+                        <AddDeck onClick={() => {
+                            createDeck(username!)
+                                .then(data => setDecks([...decks, data.decks[0]]))
+                        }}/>
+                    }
                 </div>
             </div>
             <FadeInOut show={!!deckname} duration={100} style={{
                 /* don't know how to avoid using inline style here yet */
                 position: 'absolute',
-                top: 40,
+                top: 0,
                 bottom: 0,
                 width: '100%',
                 backdropFilter: 'blur(10px)',
@@ -66,7 +82,7 @@ const DeckSpace = () => {
                 }}/>
                 <Outlet/>
             </FadeInOut>
-        </div>
+        </>
     )
 };
 

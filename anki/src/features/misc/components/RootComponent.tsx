@@ -1,17 +1,11 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "context";
-import "./RootComponent.css";
+import { MiddleGroundPanel } from "components";
+import "./RootComponent.scss";
 
 const RootComponent = () => {
-    const [theme, ] = useContext(ThemeContext);
-
     return(
         <div className='root-component'>
-            <div className='shadow-out-bottom root-main' style={{
-                backgroundColor: theme.middleground,
-                color: theme.text,
-            }}>
+            <MiddleGroundPanel className='shadow-out-bottom root-main'>
                 <div className='text-container'>
                     Hi 👋
                     <br/>
@@ -23,7 +17,7 @@ const RootComponent = () => {
                     <br/>
                     And <Link to='/auth/login'>here</Link> you can login or register.
                 </div>
-            </div>
+            </MiddleGroundPanel>
         </div>
     );
 };

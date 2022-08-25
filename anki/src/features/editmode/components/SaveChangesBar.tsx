@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "context";
 import { ButtonSwitch } from "components";
-import './SaveChangesBar.css';
+import './styles/SaveChangesBar.scss';
 
 type Props = {
     saveFunction: () => void,

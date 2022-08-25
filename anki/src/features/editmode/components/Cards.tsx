@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { ButtonSwitch } from "components/ButtonSwitch";
-import { MarkdownTextArea } from "./MarkdownTextArea";
+import { MarkdownTextArea } from "components/MarkdownTextArea";
 import { DeckStuffDTO } from "../types";
 
 type Props = {
@@ -15,13 +15,31 @@ enum SubMode {
 }
 
 const Cards = (props: Props) => {
+    const [readyToPresent, setReadyToPresent] = useState<boolean>(false);
     const [cardIndex, setCardIndex] = useState<number>(0);
     const [subMode, setSubMode] = useState<SubMode>(SubMode.Question);
+
+    useEffect(() => {
+        if (props.deckStuff!.cards.length === 0) {
+            props.setDeckStuff(prev => ({
+                deck: prev!.deck,
+                cards: [
+                    {
+                        id: -1,
+                        question: '',
+                        answer: '',
+                        deck: prev!.deck.id,
+                    },
+                ]
+            }));
+        }
+        setReadyToPresent(true);
+    }, []);
 
     return(
         <>
             {
-                props.deckStuff &&
+                props.deckStuff && readyToPresent &&
                 <>
                     <div className="cards-iterator-container">
                         <ButtonSwitch text={'add'}
@@ -56,7 +74,7 @@ const Cards = (props: Props) => {
                                       // TODO: reimplement the line below in CSS
                                       height={'var(--cards-button-height)'} width={60} fontSize={16}/>
                         <ButtonSwitch text={'rm'}
-                                      is_on={false}
+                                      is_on={props.deckStuff.cards.length === 1}
                                       onClick={() => {
                                           const cardNum = props.deckStuff!.cards.length;
                                           const idOfCardToBeRemoved = props.deckStuff!.cards[cardIndex].id;
@@ -84,7 +102,7 @@ const Cards = (props: Props) => {
                                       height={'var(--cards-button-height)'} width={120} fontSize={16}/>
                     </div>
                     <div className="cards-md-container">
-                        <MarkdownTextArea key={subMode+cardIndex}   // can you guess what problem the key solves? if no, that's bc it's a bs solution. TODO: figure out the better way
+                        <MarkdownTextArea key={subMode+cardIndex+props.deckStuff.cards.length}   // can you guess what problem the key solves? if no, that's bc it's a bs solution. TODO: figure out the better way
                                           value={ subMode === SubMode.Question ? props.deckStuff.cards[cardIndex].question
                                                                                : props.deckStuff.cards[cardIndex].answer }
                                           onChange={(event) => {

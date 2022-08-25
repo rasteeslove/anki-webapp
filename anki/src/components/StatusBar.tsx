@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
+import { ThemeContext } from 'context/ThemeContext';
 
-import "./StatusBar.css";
+import "./styles/StatusBar.scss";
 
 interface Props {
-    status: string | undefined,
-    noShadow?: boolean,
+    status?: string,
 }
 
 const StatusBar = (props: Props) => {
@@ -17,10 +16,6 @@ const StatusBar = (props: Props) => {
             fontStyle: props.status ? 'inherit' : 'italic',
         }}>
             {props.status ? props.status : '(no status)'}
-            {
-                !props.noShadow &&
-                <div className='shadow-caster'/>
-            }
         </header>
     );
 };

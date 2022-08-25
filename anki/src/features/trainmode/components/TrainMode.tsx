@@ -1,20 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CardType } from "types";
-import { ThemeContext } from "context/ThemeContext";
-import { StatusBar } from "components/StatusBar";
+import { MiddleGroundPanel } from "components";
 
 import { pullNextCard, postFeedback } from "../api";
 import { ProgressBar } from "./ProgressBar";
 import { ButtonSwitch } from "components/ButtonSwitch";
 
-import "./TrainMode.css";
-import {PlainInput} from "../../editmode/components/PlainInput";
+import "./styles/TrainMode.scss";
+import { PlainInput } from "components/PlainInput";
 
 const TrainMode = () => {
     const { username, deckname } = useParams();
     const navigate = useNavigate();
-    const [theme, ] = useContext(ThemeContext);
 
     const [inputCardNum, setInputCardNum] = useState<string>('');
     const [started, setStarted] = useState<boolean>(false);
@@ -27,7 +25,7 @@ const TrainMode = () => {
     useEffect(() => {
         if (cardNumber > 0) {
             pullNextCard(username!, deckname!).then((data) => {
-                setCardInfo(data);
+                setCardInfo(data.card);
             });
         } else {
             if (totalCardNumber > 0) {
@@ -35,64 +33,58 @@ const TrainMode = () => {
             }
         }
 
-    }, [username, deckname, cardNumber]);
+    }, [username, deckname, cardNumber, totalCardNumber]);
 
     return(
-        <div className="trainmode-and-status-bar">
-            <StatusBar status={`the "${deckname}" deck: training mode`}/>
-            <div className="trainmode">
-                {
-                    !started &&
-                    <div className='alert-container shadow-out-bottom' style={{
-                        backgroundColor: theme.middleground,
-                        color: theme.text,
-                    }}>
-                        <div className='alert-main'>
-                            How many cards to train on?
-                            <PlainInput value={inputCardNum}
-                                        onChange={(event) => {
-                                            setInputCardNum(event.target.value);
-                                        }}
-                                        width={200} height={40}/>
-                            <ButtonSwitch text='start'
-                                          is_on={false}
-                                          onClick={() => {
-                                              const input = parseInt(inputCardNum);
-                                              if (!isNaN(input) && input > 0) {
-                                                  setCardNumber(input);
-                                                  setTotalCardNumber(input);
-                                                  setStarted(true);
-                                              }
-                                          }}
-                                          width={220} height={40}/>
-                        </div>
+        <div className="trainmode">
+            {
+                !started &&
+                <MiddleGroundPanel className='alert-container shadow-out-bottom'>
+                    <div className='alert-main'>
+                        How many cards to train on?
+                        <PlainInput value={inputCardNum}
+                                    onChange={(event) => {
+                                        setInputCardNum(event.target.value);
+                                    }}
+                                    width={200} height={40}/>
+                        <ButtonSwitch text='start'
+                                      is_on={false}
+                                      onClick={() => {
+                                          const input = parseInt(inputCardNum);
+                                          if (!isNaN(input) && input > 0) {
+                                              setCardNumber(input);
+                                              setTotalCardNumber(input);
+                                              setStarted(true);
+                                          }
+                                      }}
+                                      width={220} height={40}/>
                     </div>
-                }
-                {
-                    started && !completed && cardInfo &&
-                    <>
-                        <ProgressBar current={totalCardNumber-cardNumber} total={totalCardNumber}/>
-                        <div className='shadow-out-bottom question-answer' style={{
-                            backgroundColor: theme.middleground,
-                            color: theme.text,
-                        }}>
+                </MiddleGroundPanel>
+            }
+            {
+                started && cardInfo &&
+                <>
+                    <ProgressBar current={totalCardNumber-cardNumber} total={totalCardNumber}/>
+                    {
+                        !completed &&
+                        <MiddleGroundPanel className='shadow-out-bottom question-answer'>
                             <div className='question-container'>
-                                {cardInfo.question}
+                                <div className='question' key={cardInfo.id}>
+                                    {cardInfo.question}
+                                </div>
                             </div>
-                            { /* TODO: maybe add visual separator */ }
+                            <div className='break-line'/>
                             <div className='answer-container'>
                                 {
                                     showAnswer ?
-                                        <>
+                                        <div className='answer'>
                                             {cardInfo.answer}
-                                        </>
+                                        </div>
                                         :
-                                        <>
-                                            <ButtonSwitch text='show answer'
-                                                          is_on={false}
-                                                          width={160} height={40} fontSize={16}
-                                                          onClick={() => setShowAnswer(true)}/>
-                                        </>
+                                        <ButtonSwitch text='show answer'
+                                                      is_on={false}
+                                                      width={160} height={40} fontSize={16}
+                                                      onClick={() => setShowAnswer(true)}/>
                                 }
                             </div>
                             <div className='feedback-container'>
@@ -127,27 +119,24 @@ const TrainMode = () => {
                                 }
 
                             </div>
-                        </div>
-                    </>
-                }
-                {
-                    completed &&
-                    <div className='alert-container shadow-out-bottom' style={{
-                        backgroundColor: theme.middleground,
-                        color: theme.text,
-                    }}>
-                        <div className='alert-main'>
-                            Good job! You have trained on {totalCardNumber} card(s).
-                            <ButtonSwitch text='back to deck'
-                                          is_on={false}
-                                          onClick={() => {
-                                              navigate(`/${username}/${deckname}`);
-                                          }}
-                                          width={220} height={40}/>
-                        </div>
-                    </div>
-                }
-            </div>
+                        </MiddleGroundPanel>
+                    }
+                    {
+                        completed &&
+                        <MiddleGroundPanel className='alert-container shadow-out-bottom'>
+                            <div className='alert-main'>
+                                Good job! You have trained on {totalCardNumber} card(s).
+                                <ButtonSwitch text='back to deck'
+                                              is_on={false}
+                                              onClick={() => {
+                                                  navigate(`/${username}/${deckname}`);
+                                              }}
+                                              width={220} height={40}/>
+                            </div>
+                        </MiddleGroundPanel>
+                    }
+                </>
+            }
         </div>
     )
 }
