@@ -5,7 +5,7 @@ import { getMe } from "api";
 import { RefreshTokenExpirationError, NotFoundError } from "types";
 import { ThemeContext } from "context";
 import { ButtonSwitch } from "components/ButtonSwitch";
-import { getDeckInfo } from "../api";
+import { getDeckInfo, removeDeck } from "../api";
 import { DeckInfoType } from "types";
 import "./styles/DeckInfo.scss";
 import { MiddleGroundPanel } from "components";
@@ -106,7 +106,16 @@ const DeckInfo = () => {
                         </div>
                         <div className="deckinfo-action-button-group">
                             { isMyDeckInfo &&
-                                <Link to={`/${username}/${deckname}/edit`} className='deckinfo-action-button edit-button'/> }
+                                <>
+                                    <Link to={`/${username}/${deckname}/edit`} className='deckinfo-action-button edit-button'/>
+                                    <button onClick={() => {
+                                        removeDeck(username!, deckname!)
+                                            .then(() => {
+                                                navigate(`/${username}`);
+                                            });
+                                    }} className='deckinfo-action-button remove-button'/>
+                                </>
+                            }
                             <Link to={isSignedIn ? `/${username}/${deckname}/train` : '/auth/login'} className='deckinfo-action-button play-button'/>
                         </div>
                     </div>
