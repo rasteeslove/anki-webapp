@@ -69,6 +69,12 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
                     <ButtonSwitch text='submit' is_on={false}
                                   width={220} height={32} fontSize={16}/>
                 </form>
+                <div style={{
+                    fontStyle: 'italic',
+                    fontSize: 16
+                }}>
+                    (note that you can sign in only after you verify your email)
+                </div>
                 { this.state.loginSucceeded &&
                   <Navigate to={`/${this.state.username}`} replace={true}/> }
                 <ButtonSwitch text='to to sign up page' is_on={false}
