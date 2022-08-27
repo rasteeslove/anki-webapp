@@ -6,3 +6,4 @@ export * from "./StatusBar";
 export * from "./MiddleGroundPanel";
 export * from "./AlertWindow";
 export * from "./PlainInput";
+export * from "./Loading";
