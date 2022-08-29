@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { ButtonSwitch, MiddleGroundPanel } from "components";
+import {ButtonSwitch, Loading, MiddleGroundPanel} from "components";
 import { DeckStuffDTO } from "../types";
 import { getDeckStuff, updateDeckStuff } from "../api";
 import { sameDeckStuff } from "../utils";
@@ -36,40 +36,41 @@ const EditMode = () => {
     return(
         <>
             {
-                deckStuff &&
-                <div className="editmode">
-                    <div className="buttons-holder">
-                        <ButtonSwitch text={'general'}
-                                      super={true}
-                                      is_on={subMode === SubMode.General}
-                                      onClick={() => {setSubMode(SubMode.General)}}
-                                      height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
-                        <ButtonSwitch text={'description'}
-                                      super={true}
-                                      is_on={subMode === SubMode.Description}
-                                      onClick={() => {setSubMode(SubMode.Description)}}
-                                      height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
-                        <ButtonSwitch text={'cards'}
-                                      super={true}
-                                      is_on={subMode === SubMode.Cards}
-                                      onClick={() => {setSubMode(SubMode.Cards)}}
-                                      height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
-                    </div>
-                    <MiddleGroundPanel className='shadow-out-bottom main-container'>
-                        {
-                            subMode === SubMode.General &&
-                            <General deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
-                        }
-                        {
-                            subMode === SubMode.Description &&
-                            <Description deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
-                        }
-                        {
-                            subMode === SubMode.Cards &&
-                            <Cards deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
-                        }
-                    </MiddleGroundPanel>
-                </div>
+                deckStuff ?
+                    <div className="editmode">
+                        <div className="buttons-holder">
+                            <ButtonSwitch text={'general'}
+                                          super={true}
+                                          is_on={subMode === SubMode.General}
+                                          onClick={() => {setSubMode(SubMode.General)}}
+                                          height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
+                            <ButtonSwitch text={'description'}
+                                          super={true}
+                                          is_on={subMode === SubMode.Description}
+                                          onClick={() => {setSubMode(SubMode.Description)}}
+                                          height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
+                            <ButtonSwitch text={'cards'}
+                                          super={true}
+                                          is_on={subMode === SubMode.Cards}
+                                          onClick={() => {setSubMode(SubMode.Cards)}}
+                                          height={40} width={'var(--button-width)'} fontSize={'var(--button-font-size)'}/>
+                        </div>
+                        <MiddleGroundPanel className='shadow-out-bottom main-container'>
+                            {
+                                subMode === SubMode.General &&
+                                <General deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
+                            }
+                            {
+                                subMode === SubMode.Description &&
+                                <Description deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
+                            }
+                            {
+                                subMode === SubMode.Cards &&
+                                <Cards deckStuff={newDeckStuff} setDeckStuff={setNewDeckStuff} />
+                            }
+                        </MiddleGroundPanel>
+                    </div> :
+                    <Loading/>
             }
             {
                 deckStuff && newDeckStuff &&
