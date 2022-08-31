@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Deck, FadeInOut } from "components";
+import { Deck, FadeInOut, Loading } from "components";
 
 import { getMe } from 'api';
 import { getDecks, createDeck } from "features/deckspace/api";
@@ -12,6 +12,7 @@ const DeckSpace = () => {
     const { username, deckname } = useParams();
     const [decks, setDecks] = useState<Array<DeckType>>([]);
     const [isMyDeckspace, setIsMyDeckspace] = useState<boolean>(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ const DeckSpace = () => {
                         if (data.user?.username === username) {
                             setIsMyDeckspace(true);
                         }
+                        setIsLoaded(true);
                     })
             })
             .catch(() => {
@@ -48,23 +50,28 @@ const DeckSpace = () => {
             <div className="deckspace" style={{
                 overflowY: 'auto',
             }}>
-                <div className="decks">
-                    {
-                        decks.map(deck => <Deck key={deck.id}
-                                                name={deck.name}
-                                                color={deck.color}
-                                                onClick={() => {
-                                                    navigate(`/${username}/${deck.name}`);
-                                                }}/>)
-                    }
-                    {
-                        isMyDeckspace &&
-                        <AddDeck onClick={() => {
-                            createDeck(username!)
-                                .then(data => setDecks([...decks, data.decks[0]]))
-                        }}/>
-                    }
-                </div>
+                {
+                    isLoaded ?
+                        <div className="decks">
+                            {
+                                decks.map(deck => <Deck key={deck.id}
+                                                        name={deck.name}
+                                                        color={deck.color}
+                                                        onClick={() => {
+                                                            navigate(`/${username}/${deck.name}`);
+                                                        }}/>)
+                            }
+                            {
+                                isMyDeckspace &&
+                                <AddDeck onClick={() => {
+                                    createDeck(username!)
+                                        .then(data => setDecks([...decks, data.decks[0]]))
+                                }}/>
+                            }
+                        </div>
+                        :
+                        <Loading/>
+                }
             </div>
             <FadeInOut show={!!deckname} duration={100} style={{
                 /* don't know how to avoid using inline style here yet */

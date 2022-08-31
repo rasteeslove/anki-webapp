@@ -7,6 +7,7 @@ import { logOut } from "utils/auth";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { Verify } from "./Verify";
+import { Loading } from "components";
 
 const AuthRoutes = () => {
     const [authRequired, setAuthRequired] = useState(false);
@@ -33,13 +34,15 @@ const AuthRoutes = () => {
     return(
         <>
             {
-                authRequired &&
-                <Routes>
-                    <Route path='register' element={<Register/>}/>
-                    <Route path='login' element={<Login/>}/>
-                    <Route path='verify/:code' element={<Verify/>}/>
-                    <Route path='*' element={<Navigate to='login' replace={true}/>}/>
-                </Routes>
+                authRequired ?
+                    <Routes>
+                        <Route path='register' element={<Register/>}/>
+                        <Route path='login' element={<Login/>}/>
+                        <Route path='verify/:code' element={<Verify/>}/>
+                        <Route path='*' element={<Navigate to='login' replace={true}/>}/>
+                    </Routes>
+                    :
+                    <Loading/>
             }
         </>
     );
