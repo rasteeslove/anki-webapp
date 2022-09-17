@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext, themes } from "../context/ThemeContext";
+import { storage } from "../utils/storage";
 
 import "./styles/Header.scss";
 
@@ -14,7 +15,8 @@ const Header = () => {
             .anki
             <div className="theme-toggle">
                 <button onClick={() => {
-                    setTheme(theme === themes.light ? themes.dark : themes.light)
+                    storage.setTheme(theme === themes.light ? 'dark' : 'light');
+                    setTheme(theme === themes.light ? themes.dark : themes.light);
                 }}>change theme</button>
             </div>
         </header>
