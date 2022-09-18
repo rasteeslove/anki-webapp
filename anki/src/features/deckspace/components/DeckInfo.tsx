@@ -65,7 +65,7 @@ const DeckInfo = () => {
                                       text={'description'}
                                       width={'var(--button-width)'}
                                       height={'var(--button-height)'}
-                                      fontSize={16}
+                                      fontSize={14}
                                       onClick={() => {
                                           setSubDeckInfo('description');
                                       }}/>
@@ -73,7 +73,7 @@ const DeckInfo = () => {
                                       text={'stats'}
                                       width={'var(--button-width)'}
                                       height={'var(--button-height)'}
-                                      fontSize={16}
+                                      fontSize={14}
                                       onClick={() => {
                                           setSubDeckInfo('stats');
                                       }}/>
