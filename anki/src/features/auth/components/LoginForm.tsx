@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { getMe } from "api";
 import { loginWithUsernameAndPassword, LoginCredsDTO } from "../api/login";
 import { storage } from "utils/storage";
 import { AlertWindow, PlainInput, ButtonSwitch } from "components";
@@ -40,8 +41,12 @@ class LoginForm extends React.Component<any, LoginCredsDTO & LoginHelperType> {
                 console.log(data);
                 storage.setAccessToken(data.access);
                 storage.setRefreshToken(data.refresh);
-
-                this.setState({ loginSucceeded: true });
+            })
+            .then(() => {
+                getMe().then(data => {
+                    storage.setUsername(data.user!.username);
+                    this.setState({ loginSucceeded: true });
+                })
             })
             .catch((error) => {
                 console.log('Login failed with these creds');

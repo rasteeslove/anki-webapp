@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Deck, FadeInOut, Loading } from "components";
+import { storage } from "utils/storage";
 
-import { getMe } from 'api';
 import { getDecks, createDeck } from "features/deckspace/api";
 import { DeckType } from "types";
 import "./styles/DeckSpace.scss";
@@ -20,28 +20,18 @@ const DeckSpace = () => {
         getDecks(username!)
             .then(data => {
                 setDecks(data.decks);
-            })
-            .then(() => {
-                getMe()
-                    .then(data => {
-                        if (data.user?.username === username) {
-                            setIsMyDeckspace(true);
-                        }
-                        setIsLoaded(true);
-                    })
+                if (username === storage.getUsername()) {
+                    setIsMyDeckspace(true);
+                }
+                setIsLoaded(true);
             })
             .catch(() => {
-                getMe()
-                    .then((data) => {
-                        if (data.user) {
-                            navigate(`/${data.user.username}`);
-                        } else {
-                            navigate('/auth/login');
-                        }
-                    })
-                    .catch(() => {
-                        navigate('/auth/login');
-                    });
+                const clientUsername = storage.getUsername();
+                if (clientUsername) {
+                    navigate(`/${clientUsername}`);
+                } else {
+                    navigate('/auth/login');
+                }
             })
     }, [username, navigate]);
 

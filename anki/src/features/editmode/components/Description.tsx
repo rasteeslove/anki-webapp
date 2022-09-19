@@ -31,7 +31,7 @@ const Description = (props: Props) => {
                         <ButtonSwitch text={'show preview'}
                                       is_on={false}
                                       // TODO: reimplement the line below in CSS
-                                      width={200} height={'var(--button-height)'} fontSize={18}/>
+                                      width={200} height={'var(--button-height)'} fontSize={16}/>
                     </div>
                 </>
             }

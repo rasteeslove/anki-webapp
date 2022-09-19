@@ -94,7 +94,7 @@ const TrainMode = () => {
                                         <ButtonSwitch text={'knew it'}
                                                       is_on={false}
                                                       color='#7CFF3E'
-                                                      width={160} height={40}
+                                                      width={160} height={40} fontSize={16}
                                                       onClick={() => {
                                                           postFeedback(username!, deckname!,
                                                               cardInfo.id, true)
@@ -106,7 +106,7 @@ const TrainMode = () => {
                                         <ButtonSwitch text={'not there yet'}
                                                       is_on={false}
                                                       color='#FF603E'
-                                                      width={160} height={40}
+                                                      width={160} height={40} fontSize={16}
                                                       onClick={() => {
                                                           postFeedback(username!, deckname!,
                                                               cardInfo.id, false)
