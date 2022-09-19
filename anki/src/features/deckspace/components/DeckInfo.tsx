@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { getMe } from "api";
+import { storage } from "utils/storage";
 import { RefreshTokenExpirationError, NotFoundError } from "types";
 import { ThemeContext } from "context";
 import { ButtonSwitch } from "components/ButtonSwitch";
@@ -24,14 +24,14 @@ const DeckInfo = () => {
 
     useEffect(() => {
         getDeckInfo(username!, deckname!)
-            .then(data => setDeckInfo(data.deckinfo))
-            .then(() => getMe())
             .then(data => {
-                if (data.user) {
+                setDeckInfo(data.deckinfo);
+                const clientUsername = storage.getUsername();
+                if (clientUsername) {
                     setIsSignedIn(true);
-                    if (data.user.username === username) {
-                        setIsMyDeckInfo(true);
-                    }
+                }
+                if (clientUsername === username) {
+                    setIsMyDeckInfo(true);
                 }
             })
             .catch((error) => {
