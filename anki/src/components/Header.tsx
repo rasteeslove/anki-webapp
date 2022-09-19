@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { ThemeContext, themes } from "../context/ThemeContext";
 import { storage } from "../utils/storage";
 
@@ -14,10 +15,10 @@ const Header = () => {
         }}>
             .anki
             <div className="theme-toggle">
-                <button onClick={() => {
+                <DarkModeSwitch onChange={() => {
                     storage.setTheme(theme === themes.light ? 'dark' : 'light');
                     setTheme(theme === themes.light ? themes.dark : themes.light);
-                }}>change theme</button>
+                }} checked={theme === themes.dark} moonColor={theme.secondary} sunColor={theme.secondary}/>
             </div>
         </header>
     );
