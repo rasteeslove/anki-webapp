@@ -10,10 +10,6 @@ Here is a set of videos, articles, and whatnot explaining the whole deal:
 - [Ali Abdaal](https://aliabdaal.com)'s videos on [study techniques](https://www.youtube.com/watch?v=ukLnPbIffxE), [learning stuff](https://www.youtube.com/watch?v=unityETmypk), and [using Anki itself](https://www.youtube.com/watch?v=W-EpiaPcgTk)
 - [Anki subreddit](https://www.reddit.com/r/Anki/)
 
-### Why reinvent the wheel
-
-For ultimate customization, i.e. to explore and gain more control over the underlying algorithm to better utilize it.
-
 ## Design
 
 ### General
